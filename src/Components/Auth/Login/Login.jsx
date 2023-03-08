@@ -1,4 +1,5 @@
 import { Button, Checkbox, Form, Input } from 'antd'
+import './Login.scss'
 
 const onFinish = (values) => {
   console.log('Success:', values);
@@ -10,25 +11,25 @@ const onFinishFailed = (errorInfo) => {
 
 export const Login = () => (
 
-  <div>
-  <Form
-    name="basic"
-    labelCol={{
-      span: 8,
-    }}
-    wrapperCol={{
-      span: 16,
-    }}
-    style={{
-      maxWidth: 600,
-    }}
-    initialValues={{
-      remember: true,
-    }}
-    onFinish={onFinish}
-    onFinishFailed={onFinishFailed}
-    autoComplete="off"
-  >
+  <div className='login-container'>
+    <Form
+      name="basic"
+      labelCol={{
+        span: 8,
+      }}
+      wrapperCol={{
+        span: 16,
+      }}
+      style={{
+        maxWidth: 600,
+      }}
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      autoComplete="off"
+    >
     <Form.Item
       label="Username"
       name="username"
@@ -72,11 +73,11 @@ export const Login = () => (
         span: 16,
       }}
     >
-      <Button type="primary" htmlType="submit">
-        Submit
-      </Button>
+    <Button type="primary" htmlType="submit" href='/profile'>
+      login
+    </Button>
     </Form.Item>
   </Form>
-  <Button type="link" href='/' >Register</Button>
+  <Button type="link" href='/register' >Register</Button>
   </div>
 )

@@ -9,12 +9,12 @@ export const Routes = () => {
 
         [
             {
-                element: <Register/>,
+                element: <Login/>,
                 path: '/'
               },
               {
-                element: <Login/>,
-                path: '/login'
+                element: <Register/>,
+                path: '/register'
               },
               {
                 element: <Profile/>,

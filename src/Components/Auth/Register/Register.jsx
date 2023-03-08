@@ -1,4 +1,5 @@
 import { Button, Checkbox, Form, Input } from 'antd'
+import './Register.scss'
 
 const onFinish = (values) => {
   console.log('Success:', values);
@@ -12,15 +13,15 @@ const onFinishFailed = (errorInfo) => {
 export const Register = () => {
 
   return(
-    <div>
-  <Form
-    name="basic"
-    labelCol={{
-      span: 8,
-    }}
-    wrapperCol={{
-      span: 16,
-    }}
+    <div className='register-container'>
+      <Form
+        name="basic"
+        labelCol={{
+          span: 8,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
     style={{
       maxWidth: 600,
     }}
@@ -30,7 +31,7 @@ export const Register = () => {
     onFinish={onFinish}
     onFinishFailed={onFinishFailed}
     autoComplete="off"
-  >
+    >
     <Form.Item
       label="Username"
       name="username"
@@ -43,7 +44,6 @@ export const Register = () => {
     >
       <Input />
     </Form.Item>
-
     <Form.Item
       label="Password"
       name="password"
@@ -74,12 +74,12 @@ export const Register = () => {
         span: 16,
       }}
     >
-      <Button type="primary" htmlType="submit">
-        Submit
+      <Button type="primary" htmlType="submit" href='/profile'>
+        register
       </Button>
     </Form.Item>
     </Form>
-    <Button type="link" href='/login' >Login</Button>
+    <Button type="link" href='/' >Login</Button>
   </div>
 
   )
