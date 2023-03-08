@@ -4,7 +4,8 @@ import './NavBar.scss'
 export const NavBar = () => {
   return (
     <div className='navbar'>
-      NavBar
+      <div>Crear publicacion</div>
+      <div>Perfil</div>
     </div>
   )
 }
