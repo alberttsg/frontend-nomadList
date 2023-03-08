@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom"
 import './App.scss'
 import { NavBar } from './Components/NavBar/NavBar'
 import { Header } from './Components/Header/Header'
-import { UsersProvider } from './context/UsersState.js'
+import { UsersProvider } from './context/UsersState'
 
 export const App = () => {
 

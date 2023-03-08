@@ -1,6 +1,86 @@
 
 .navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
   width: 20%;
   height: 100%;
-  background-color: yellow;
+  border-right: 1px solid black;
+}
+
+.container-nav {
+  width: 150px;
+  height: 300px;
+
+  div {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    width:130px;
+    height: 30px;
+    transition: all 0.8s;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  div.home:hover{
+    cursor: pointer;
+    background-color: rgba(205, 205, 205, 0.183);
+    border-radius: 10px;
+  }
+
+  div.profile:hover{
+    cursor: pointer;
+    background-color: rgba(205, 205, 205, 0.183);
+    border-radius: 10px;
+  }
+
+  div.create:hover{
+    cursor: pointer;
+    background-color: rgba(205, 205, 205, 0.183);
+    border-radius: 10px;
+  }
+
+  div:hover .iconHome {
+    scale: 1.2;
+  }
+
+  div:hover .iconProfile {
+    scale: 1.2;
+  }
+
+  div:hover .iconCreate {
+    scale: 1.2;
+  }
+
+  .iconHome, .iconProfile, .iconCreate {
+    transition: all 0.5s;
+  }
+
+}
+
+.home, .profile, .create{
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    .iconHome, .iconProfile, .iconCreate {
+      margin: auto;
+    }
+    .divHome {
+      display: none;
+    }
+    .divProfile {
+      display: none;
+    }
+    .divCreate {
+      display: none;
+    }
+  }
+  
 }

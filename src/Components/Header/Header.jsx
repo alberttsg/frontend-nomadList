@@ -4,7 +4,7 @@ import './Header.scss'
 export const Header = () => {
   return (
     <div className='header'>
-      Header
+      <input type='text' placeholder='Buscar'/>
     </div>
   )
 }
