@@ -5,7 +5,7 @@ import { NavBar } from './Components/NavBar/NavBar'
 import { Header } from './Components/Header/Header'
 
 export const App = () => {
-
+//aqi
   return (
     <div className='body'>
       <BrowserRouter>
