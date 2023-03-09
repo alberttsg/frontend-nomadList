@@ -1,4 +1,4 @@
-import { Button, Form, Input, Cascader, Select, DatePicker } from 'antd'
+import { Button, Form, Input, Select, DatePicker } from 'antd'
 import './Register.scss'
 
 
@@ -72,7 +72,7 @@ export const Register = () => {
               message: 'Please select time!',
             },
           ]}
-          >
+        >
           <DatePicker />
         </Form.Item>
         <Form.Item
@@ -127,7 +127,9 @@ export const Register = () => {
             },
           ]}
         >
-          <Cascader placeholder='select your country' options={options} />
+          <Select placeholder="select your country">
+            <Option value={options}>{options}</Option>
+          </Select>
         </Form.Item>
         <Form.Item
           name="gender"
