@@ -10,8 +10,8 @@ export const NavBar = () => {
     <div className='navbar'>
       <div className='logo' onClick={()=>navigate('/')}><b><span>nomad</span></b></div>
       <div className='container-nav'>
-        <div className='home'><HomeFilled className='iconHome'/><div className='divHome'>Home</div> </div>
-        <div className='profile'><UserOutlined className='iconProfile'/><div className='divProfile'>Profile</div></div>
+        <div className='home' onClick={()=>navigate('/')}><HomeFilled className='iconHome'/><div className='divHome'>Home</div> </div>
+        <div className='profile' onClick={()=>navigate('/profile')}><UserOutlined className='iconProfile'/><div className='divProfile'>Profile</div></div>
         <div className='create'><PlusCircleFilled className='iconCreate'/><div className='divCreate'>Crear post</div></div>
       </div>
     </div>
