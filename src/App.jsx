@@ -11,10 +11,10 @@ export const App = () => {
     <div className='body'>
       <UsersProvider>
         <BrowserRouter>
-        <NavBar/>
-          <div className='header-content'>
-            <Header/>
-            <Routes/>
+        <NavBar className='navbar'/>
+          <div className='header-container'>
+            <Header className='header'/>
+            <Routes className='content'/>
           </div>
         </BrowserRouter>
       </UsersProvider>
