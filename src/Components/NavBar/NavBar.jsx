@@ -1,11 +1,14 @@
 import React from 'react'
 import './NavBar.scss'
 import { HomeFilled, PlusCircleFilled, UserOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
 
 export const NavBar = () => {
+  const navigate = useNavigate()
+
   return (
     <div className='navbar'>
-      <div className='logo'><b><span>nomad</span></b></div>
+      <div className='logo' onClick={()=>navigate('/')}><b><span>nomad</span></b></div>
       <div className='container-nav'>
         <div className='home'><HomeFilled className='iconHome'/><div className='divHome'>Home</div> </div>
         <div className='profile'><UserOutlined className='iconProfile'/><div className='divProfile'>Profile</div></div>
