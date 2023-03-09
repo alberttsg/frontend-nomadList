@@ -6,7 +6,7 @@ export const Register = () => {
 
   const onFinish = (values) => {
     console.log('Success:', values);
-    console.log(values.birthDate.$d);
+    console.log(values.birthDate);
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -63,17 +63,8 @@ export const Register = () => {
         >
           <Input />
         </Form.Item>
-        <Form.Item
-          name='birthDate'
-          label="Birth Date"
-          rules={[
-            {
-              type: 'object',
-              message: 'Please select time!',
-            },
-          ]}
-        >
-          <DatePicker />
+        <Form.Item name='birthDate' label="Birth Date">
+          <Input type="date" />
         </Form.Item>
         <Form.Item
           name="email"
@@ -127,8 +118,7 @@ export const Register = () => {
             },
           ]}
         >
-          <Select placeholder="select your country">
-            <Option value={options}>{options}</Option>
+          <Select placeholder="select your country" options={options}>
           </Select>
         </Form.Item>
         <Form.Item
