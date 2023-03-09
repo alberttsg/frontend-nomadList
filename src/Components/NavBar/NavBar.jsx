@@ -5,7 +5,7 @@ import { HomeFilled, PlusCircleFilled, UserOutlined } from '@ant-design/icons'
 export const NavBar = () => {
   return (
     <div className='navbar'>
-      <div className='logo'>Nomad list</div>
+      <div className='logo'><b><span>nomad</span></b></div>
       <div className='container-nav'>
         <div className='home'><HomeFilled className='iconHome'/><div className='divHome'>Home</div> </div>
         <div className='profile'><UserOutlined className='iconProfile'/><div className='divProfile'>Profile</div></div>
