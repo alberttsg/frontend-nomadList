@@ -1,4 +1,5 @@
-@import url(//fonts.googleapis.com/css?family=Vibur);
+@import url(//fonts.googleapis.com/css?family=Monoton);
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&family=Noto+Sans+Mono:wght@200&family=PT+Sans&family=Roboto+Mono:wght@100;200&family=Roboto:ital,wght@0,100;1,100&family=Teko&family=Tilt+Neon&display=swap');
 
 .navbar {
   display: flex;
@@ -7,58 +8,16 @@
   align-items: center;
   gap: 30px;
   border-right: 1px solid black;
+  font-family: "Tilt Neon";
+  font-size: 10px;
 
   .logo {
     text-align: center;
     width:65%;
     height: 50px;
     user-select: none;
-    margin-bottom: 120px;
-  }
-
-  .logo b{
-    font: 400 7vh "Vibur";
-    color: #fee;
-    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
-  }
-  .logo b span{
-    animation: blink linear 2s;
-  }
-  // .logo b span:nth-of-type(2){
-  //   animation: blink linear 2s;
-  // }
-  @keyframes blink {
-    78% {
-      color: inherit;
-      text-shadow: inherit;
-    }
-    79%{
-       color: rgb(255, 255, 255);
-    }
-    80% {
-
-      text-shadow: none;
-    }
-    81% {
-      color: inherit;
-      text-shadow: inherit;
-    }
-    82% {
-      color: rgb(255, 255, 255);
-      text-shadow: none;
-    }
-    83% {
-      color: inherit;
-      text-shadow: inherit;
-    }
-    92% {
-      color: rgb(255, 255, 255);
-      text-shadow: none;
-    }
-    92.5% {
-      color: inherit;
-      text-shadow: inherit;
-    }
+    font: 400 4vh "Monoton";
+    cursor: pointer;
   }
 }
 
