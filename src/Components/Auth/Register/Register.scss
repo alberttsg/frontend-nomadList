@@ -29,6 +29,20 @@
 
 .ant-btn-primary:hover,
 .ant-btn-primary {
-  border-color: #000000;
   background-color: #000000;
+}
+
+:where(.css-dev-only-do-not-override-1me4733).ant-btn-primary:not(:disabled):hover{
+  background-color:rgb(176, 171, 171) ;
+  color: #000000;
+  border-color: transparent;
+}
+
+.login-button{
+  color:#000000,
+}
+
+:where(.css-dev-only-do-not-override-1me4733).ant-btn-link:not(:disabled):hover{
+  background-color:rgb(176, 171, 171) ;
+  color: #000000;
 }

@@ -2,7 +2,7 @@ import { Button, Form, Input, Select, DatePicker } from 'antd'
 import './Register.scss'
 
 
-export const Register = () => {
+export const Register = ({onCancel}) => {
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -143,13 +143,12 @@ export const Register = () => {
             span: 16,
           }}
         >
-          <Button type="primary" htmlType="submit" >
+          <Button type="primary" htmlType="submit" onClick={onCancel}>
             Register
           </Button>
         </Form.Item>
       </Form>
-      <Button type="link" href='/' >Login</Button>
+      <Button type="link" href='/login' className='login-button'>Login</Button>
     </div>
-
   )
 }

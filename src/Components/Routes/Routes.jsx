@@ -1,23 +1,19 @@
 import { useRoutes } from 'react-router-dom';
-import { Register } from '../Auth/Register/Register';
+import { Login } from '../Auth/Login/Login';
 import { Content } from '../Content/Content';
-import { Profile } from '../Profile/Profile';
+// import { Profile } from '../Profile/Profile';
 
 export const Routes = () => {
   return useRoutes(
 
         [
               {
-                element: <Content/>,
+                element: <Login/>,
                 path: '/'
               },
               {
-                element: <Profile/>,
-                path: '/profile'
-              },
-              {
-                element: <Register/>,
-                path: '/register'
+                element: <Content/>,
+                path: '/home'
               },
         ]
         );
