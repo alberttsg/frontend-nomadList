@@ -1,20 +1,21 @@
 import { useRoutes } from 'react-router-dom';
-import { Login } from '../Auth/Login/Login';
+import { PrivateZone } from '../../guards/PrivateZone';
+import { Register } from '../Auth/Register/Register';
 import { Content } from '../Content/Content';
-// import { Profile } from '../Profile/Profile';
+import { Profile } from '../Profile/Profile';
 
 export const Routes = () => {
   return useRoutes(
 
         [
               {
-                element: <Login/>,
+                element:<Content/> ,
                 path: '/'
               },
               {
-                element: <Content/>,
-                path: '/home'
-              },
+                element:<PrivateZone><Profile/></PrivateZone> ,
+                path: '/profile'
+              }
         ]
         );
 
