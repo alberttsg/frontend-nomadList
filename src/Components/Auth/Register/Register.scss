@@ -1,13 +1,48 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
 .register-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: white;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):focus,
+.ant-input-affix-wrapper:focus,
+:where(.css-dev-only-do-not-override-1me4733).ant-input-affix-wrapper,
+.ant-select-focused:where(.css-dev-only-do-not-override-1me4733).ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px rgba(54, 54, 54, 0.1);
+}
+
+.ant-input:hover,
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover,
+.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
+  border-color: #000000;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary {
+  background-color: #000000;
+}
+
+:where(.css-dev-only-do-not-override-1me4733).ant-btn-primary:not(:disabled):hover{
+  background-color:rgb(176, 171, 171) ;
+  color: #000000;
+  border-color: transparent;
+}
+
+.login-button{
+  color:#000000,
+}
+
+:where(.css-dev-only-do-not-override-1me4733).ant-btn-link:not(:disabled):hover{
+  background-color:rgb(176, 171, 171) ;
+  color: #000000;
+}

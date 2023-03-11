@@ -7,6 +7,11 @@ const users = (state, action) => {
         ...state,
         users: action.payload,
       };
+      case "POST_USER":
+      return {
+        ...state,
+        token: action.payload,
+      };
     default:
       return state;
   }
