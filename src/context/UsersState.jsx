@@ -13,7 +13,7 @@ export const UsersProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   const login = async (user) => {
-    const res = await axios.post ('',user);
+    const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/login',user);
     dispatch ({
       type: "POST_USER",
       payload: res.data
@@ -24,7 +24,7 @@ export const UsersProvider = ({ children }) => {
   };
 
   const register = async (user) => {
-    const res = await axios.post ('',user);
+    const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/register',user);
     dispatch ({
       type: "POST_USER",
       payload: res.data

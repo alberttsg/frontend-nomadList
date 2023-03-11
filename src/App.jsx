@@ -4,19 +4,21 @@ import './App.scss'
 import { NavBar } from './Components/NavBar/NavBar'
 import { Header } from './Components/Header/Header'
 import { UsersProvider } from './context/UsersState'
+import { Login } from './Components/Auth/Login/Login'
 
 export const App = () => {
 
   return (
     <div className='body'>
       <UsersProvider>
-        <BrowserRouter>
-        <NavBar className='navbar'/>
+        <Login/>
+        {/* <BrowserRouter>
+          <NavBar className='navbar' />
           <div className='header-container'>
-            <Header className='header'/>
-            <Routes className='content'/>
+            <Header className='header' />
+            <Routes className='content' />
           </div>
-        </BrowserRouter>
+        </BrowserRouter> */}
       </UsersProvider>
     </div>
   )
