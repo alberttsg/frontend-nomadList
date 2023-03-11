@@ -1,12 +1,15 @@
-import { Button, Form, Input, Select, DatePicker } from 'antd'
+import { Button, Form, Input, Select } from 'antd'
+import { useContext } from 'react'
+import { GlobalContext } from '../../../context/UsersState'
 import './Register.scss'
 
 
-export const Register = ({onCancel}) => {
+export const Register = ({ onCancel }) => {
+  const { register } = useContext(GlobalContext);
 
   const onFinish = (values) => {
+    register(values);
     console.log('Success:', values);
-    console.log(values.birthDate);
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -118,8 +121,7 @@ export const Register = ({onCancel}) => {
             },
           ]}
         >
-          <Select placeholder="select your country" options={options}>
-          </Select>
+          <Select placeholder="select your country" options={[{options}]} />
         </Form.Item>
         <Form.Item
           name="gender"
