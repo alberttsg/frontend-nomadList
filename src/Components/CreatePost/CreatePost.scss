@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&family=Noto+Sans+Mono:wght@200&family=PT+Sans&family=Roboto+Mono:wght@100;200&family=Roboto:ital,wght@0,100;1,100&family=Teko&family=Tilt+Neon&display=swap');
+
+.container-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://images.ecestaticos.com/svQkpRHGCpf_arlLfdRSHczlJU0=/0x0:2120x1414/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F09b%2F94b%2F0af%2F09b94b0afe62646e72bd87ae96c0d359.jpg');
+  background-size:contain;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  height:60%;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  backdrop-filter: blur(5px);
+
+  .input-title {
+    width:250px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-family: "Tilt Neon";
+    font-size: 15px;
+  }
+
+  .textArea {
+    width:250px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-family: "Tilt Neon";
+    font-size: 15px;
+  }
+
+  .input-submit{
+    width:250px;
+    height: 40px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.836);
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.836);
+    border-radius: 2px;
+    font-family: "Tilt Neon";
+    font-size: 15px;
+  }
+}

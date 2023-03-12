@@ -6,8 +6,8 @@ export const Header = () => {
   return (
     <div className='header'>
       <div>
-      <input type='text' placeholder='Buscar'/>
-      <SearchOutlined className='search' />
+        <input type='text' placeholder='Buscar'/>
+        <SearchOutlined className='search' />
       </div>
     </div>
   )

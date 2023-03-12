@@ -26,8 +26,6 @@ localStorage.setItem('token', 'dd')
               <Routes className='content'/>
             </div></>
           }
-        
-        
         </BrowserRouter>
       </UsersProvider>
     </div>
