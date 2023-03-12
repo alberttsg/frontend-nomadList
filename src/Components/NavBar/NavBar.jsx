@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import './NavBar.scss'
 import { HomeFilled, PlusCircleFilled, UserOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
-import { Modal } from 'antd';
 
 
 export const NavBar = () => {
