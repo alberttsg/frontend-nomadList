@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select } from 'antd'
+import { Button, Form, Input, Select, notification } from 'antd'
 import { useContext } from 'react'
 import { GlobalContext } from '../../../context/UsersState'
 import './Register.scss'
@@ -7,8 +7,11 @@ import './Register.scss'
 export const Register = ({ onCancel }) => {
   const { register } = useContext(GlobalContext);
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     register(values);
+    notification.success({
+      message: "Succesful register. Please Login Now!",
+    });
     console.log('Success:', values);
   }
 
@@ -150,7 +153,7 @@ export const Register = ({ onCancel }) => {
           </Button>
         </Form.Item>
       </Form>
-      <Button type="link" href='/login' className='login-button'>Login</Button>
+      <Button type="link" href='/' className='login-button'>Login</Button>
     </div>
   )
 }
