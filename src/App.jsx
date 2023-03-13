@@ -9,10 +9,7 @@ import { Login } from './Components/Auth/Login/Login'
 
 export const App = () => {
 
-localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MGUwNDhjMmI0NzQzYjcxM2RlMDYwZSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE2Nzg2NDAyNjksImV4cCI6MTY4MzgyNDI2OX0.FEFtiq0npjbzPz_YTslGuqtQfQ7bbYknfHP1ttuxNac')
   const token = localStorage.getItem('token')
- localStorage.clear()
-
   return (
     <div className='body'>
       <UsersProvider>
