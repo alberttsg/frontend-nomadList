@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal } from 'antd';
+import { Button, Form, Input, Modal, notification } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../../context/UsersState';
@@ -7,19 +7,27 @@ import './Login.scss';
 
 
 export const Login = () => {
-  const { login } = useContext(GlobalContext);
+  const [form] = Form.useForm();
+
+  const { login, isError, reset } = useContext(GlobalContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const onFinish = (values) => {
     login(values);
+    form.resetFields()
     navigate('/');
-    console.log('Success:', values);
+    reset()
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+  useEffect(() => {
+    if (isError) {
+      notification.error({
+        message: "Wrong email or password"
+      });
+      reset()
+    };
+  }, [isError]);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -65,8 +73,8 @@ export const Login = () => {
             remember: true,
           }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           autoComplete="off"
+          form={form}
         >
           <div className='title-login'>
             <h2>Login</h2>
@@ -77,7 +85,8 @@ export const Login = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your username!',
+                pattern: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+                message: 'Please input a correct e-mail!',
               },
             ]}
           >
