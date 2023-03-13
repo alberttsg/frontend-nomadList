@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const ServiceCreatePost = ({ body }) => {
+export const ServiceCreatePost = async ({ body }) => {
 
   const token = localStorage.getItem('token')
 
@@ -10,8 +10,8 @@ export const ServiceCreatePost = ({ body }) => {
     }
   }
 
-  const res = axios.post('https://backend-nomadsociety-development.up.railway.app/post/newpost', body, config)
-  console.log(res.data)
+  const res = await axios.post('http://clone-backend-production.up.railway.app/post/newpost', body, config)
+  console.log(res)
 
   return res.data
 }

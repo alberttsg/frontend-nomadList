@@ -13,7 +13,7 @@ export const CreatePost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(form)
+    console.log(form.title)
     ServiceCreatePost({ form })
 
     setForm({
