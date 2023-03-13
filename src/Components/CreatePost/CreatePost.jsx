@@ -13,7 +13,10 @@ export const CreatePost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(form.title)
+
+    if(form.title || form.content){
+      
+    }
     ServiceCreatePost({ form })
 
     setForm({
