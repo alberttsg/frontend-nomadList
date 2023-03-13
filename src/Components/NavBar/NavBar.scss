@@ -54,6 +54,12 @@
     border-radius: 10px;
   }
 
+  div.logout:hover{
+    cursor: pointer;
+    background-color: rgba(205, 205, 205, 0.183);
+    border-radius: 10px;
+  }
+
   div:hover .iconHome {
     scale: 1.2;
   }
@@ -66,13 +72,17 @@
     scale: 1.2;
   }
 
-  .iconHome, .iconProfile, .iconCreate {
+  div:hover .iconlogout {
+    scale: 1.2;
+  }
+
+  .iconHome, .iconProfile, .iconCreate, .iconlogout {
     transition: all 0.5s;
   }
 
 }
 
-.home, .profile, .create{
+.home, .profile, .create, .logout {
   display: flex;
   gap: 10px;
   margin-top: 30px;
@@ -86,7 +96,7 @@
     justify-content: center;
     align-items: center;
 
-    .iconHome, .iconProfile, .iconCreate {
+    .iconHome, .iconProfile, .iconCreate, .iconlogout {
       margin: auto;
     }
     .divHome {
@@ -96,6 +106,9 @@
       display: none;
     }
     .divCreate {
+      display: none;
+    }
+    .divLogout {
       display: none;
     }
 
