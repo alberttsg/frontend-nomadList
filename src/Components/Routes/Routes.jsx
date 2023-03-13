@@ -1,6 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 import { PrivateZone } from '../../guards/PrivateZone';
 import { Content } from '../Content/Content';
+import { CreatePost } from '../CreatePost/CreatePost';
 import { Profile } from '../Profile/Profile';
 
 export const Routes = () => {
@@ -14,6 +15,10 @@ export const Routes = () => {
               {
                 element:<PrivateZone><Profile/></PrivateZone> ,
                 path: '/profile'
+              },
+              {
+                element:<PrivateZone><CreatePost/></PrivateZone> ,
+                path: '/createPost'
               }
         ]
         );

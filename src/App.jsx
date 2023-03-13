@@ -10,6 +10,7 @@ import { useContext } from 'react'
 
 
 export const App = () => {
+
   const { token } = useContext(GlobalContext);
 
   return (
@@ -27,6 +28,7 @@ export const App = () => {
             </>
         }
       </BrowserRouter>
+
     </div>
   )
 }

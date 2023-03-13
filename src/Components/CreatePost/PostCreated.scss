@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&family=Noto+Sans+Mono:wght@200&family=PT+Sans&family=Roboto+Mono:wght@100;200&family=Roboto:ital,wght@0,100;1,100&family=Teko&family=Tilt+Neon&display=swap');
+
+.post-created {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:500px;
+  height:300px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 5px;
+  position: absolute;
+  top:100px;
+  font-size: 50px;
+  font-family: "Tilt Neon";
+  color: #fee;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #44ff57, 0 0 0.5em #44ff44, 0 0 0.1em #44ff70, 0 10px 3px #000;
+
+
+  div span{
+    animation: blink linear infinite 1s;
+  }
+  div span:nth-of-type(2){
+    animation: blink linear infinite 2s;
+  }
+}
+
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  79%{
+     color: #333;
+  }
+  80% {
+
+    text-shadow: none;
+  }
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  82% {
+    color: #333;
+    text-shadow: none;
+  }
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  92% {
+    color: #333;
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+}
