@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './CreatePost.scss'
 import { PostCreated } from './PostCreated'
+import { PostEmpty } from './PostEmpty'
 import { ServiceCreatePost } from './ServiceCreatePost'
 
 export const CreatePost = () => {
 
+  const [formEpmty, setFormEmpty] = useState(false)
   const [modal, setModal] = useState(false)
   const [form, setForm] = useState({
     title:'',
@@ -14,8 +16,13 @@ export const CreatePost = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if(form.title || form.content){
-      
+    if(form.title == '' || form.content == ''){
+      setFormEmpty(true)
+
+    setTimeout(()=>{
+      setFormEmpty(false)
+    }, 2000)
+      return
     }
     ServiceCreatePost({ form })
 
@@ -39,6 +46,7 @@ export const CreatePost = () => {
         <input className='input-submit' type='submit' value='Create'/>
       </form>
       {modal && <PostCreated/>}
+      {formEpmty && <PostEmpty/>}
     </div>
   )
 }

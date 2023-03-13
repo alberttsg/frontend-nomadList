@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&family=Noto+Sans+Mono:wght@200&family=PT+Sans&family=Roboto+Mono:wght@100;200&family=Roboto:ital,wght@0,100;1,100&family=Teko&family=Tilt+Neon&display=swap');
+
+.formEmpty{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:400px;
+  height:100px;
+  font-size: 25px;
+  color:rgb(0, 0, 0);
+  background-color: rgba(255, 0, 0, 0.666);
+  position: absolute;
+  border-radius: 4px;
+  top: 120px;
+  font-family: "Tilt Neon";
+}
