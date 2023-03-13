@@ -5,17 +5,29 @@ import './Register.scss'
 
 
 export const Register = ({ onCancel }) => {
-  const { register } = useContext(GlobalContext);
+  const { register, isSuccess, reset } = useContext(GlobalContext);
+  const [form] = Form.useForm();
 
   const onFinish = async (values) => {
+    form.resetFields()
     register(values);
-    notification.success({
-      message: "Succesful register. Please Login Now!",
-    });
+    if (isSuccess) {
+      notification.success({
+        message: "Succesful register. Please Login Now!",
+      });
+    } else {
+      notification.error({
+        message: "Something went wrong, please try again!"
+      });
+      reset();
+    }
     console.log('Success:', values);
   }
 
   const onFinishFailed = (errorInfo) => {
+    notification.error({
+      message: 'Failed: you must fill in all the fields',
+    });
     console.log('Failed:', errorInfo);
   }
 
@@ -42,8 +54,8 @@ export const Register = ({ onCancel }) => {
           remember: true,
         }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
+        form={form}
       >
         <Form.Item
           label="First Name"
@@ -124,7 +136,7 @@ export const Register = ({ onCancel }) => {
             },
           ]}
         >
-          <Select placeholder="select your country" options={[{options}]} />
+          <Select placeholder="select your country" options={[{ options }]} />
         </Form.Item>
         <Form.Item
           name="gender"
