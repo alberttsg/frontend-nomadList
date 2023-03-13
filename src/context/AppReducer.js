@@ -2,15 +2,15 @@
 const users = (state, action) => {
 
   switch (action.type) {
-    case "GET_USERS":
-      return {
-        ...state,
-        users: action.payload,
-      };
       case "POST_USER":
       return {
         ...state,
-        token: action.payload,
+        token: action.payload.token,
+      };
+      case "GET_USER_INFO":
+      return {
+        ...state,
+        user: action.payload,
       };
     default:
       return state;

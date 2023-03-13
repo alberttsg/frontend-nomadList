@@ -2,8 +2,10 @@ import React, { createContext, useReducer } from 'react'
 import AppReducer  from './AppReducer.js'
 import axios from 'axios'
 
+const token = JSON.parse(localStorage.getItem("token"));
+
 const initialState = {
-  users : [],
+  token: token ? token : null,
   user: {}
 };
 
@@ -34,22 +36,27 @@ export const UsersProvider = ({ children }) => {
     };
   };
 
-  const getUsers = async () => {
-    const res = await axios.get("")
+  const getUserInfo = async () => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const res = await axios.get('', {
+      headers: {
+        authorization: token,
+      },
+    });
       dispatch({
-        type: "GET_USERS",
-        payload: res.data.results,
+        type: "GET_USER_INFO",
+        payload: res.data,
     });
   };
 
   return (
     <GlobalContext.Provider
       value={{
-        users: state.users,
-        getUsers,
+        token: state.token,
         user: state.user,
         login,
         register,
+        getUserInfo,
       }}
     >
       {children}
