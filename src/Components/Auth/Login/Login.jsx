@@ -119,7 +119,7 @@ export const Login = () => {
           </Form>
           <div className='register-content'>
             <p>You don´t have an account?</p>
-            <Button type="link" onClick={showModal} >Register</Button>
+            <Button type="link" onClick={showModal}  className="register-button">Register</Button>
           </div>
           <Modal title="Register" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={[]}>
             <Register onCancel={handleCancel} />
