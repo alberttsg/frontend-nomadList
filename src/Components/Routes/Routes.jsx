@@ -18,7 +18,7 @@ export const Routes = () => {
               },
               {
                 element:<PrivateZone><CreatePost/></PrivateZone> ,
-                path: '/createPost'
+                path: '/createpost'
               }
         ]
         );
