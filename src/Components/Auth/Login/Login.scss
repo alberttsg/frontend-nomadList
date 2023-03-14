@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: flex-end;
 
-    .logo {
+    .logo-login{
       display: flex;
       justify-content: flex-end;
       width: 65%;
@@ -24,7 +24,6 @@
       user-select: none;
       font: 400 6vh "Monoton";
       cursor: pointer;
-      margin-right: 10%;
       margin-bottom: 5%;
     }
   }
@@ -183,4 +182,45 @@
   100% {
     margin-left: -300%;
   }
+}
+
+
+@media (max-width: 1024px) {
+   .logo-login{
+      width: 40% !important;
+      height: auto !important;
+      font: 400 4vh "Monoton" !important;
+   }
+   .carousel-container{
+    width: 50%;
+   }
+}
+
+@media (max-width: 670px) {
+  .body{
+    flex-direction: row;
+    .container{
+      flex-direction: column; 
+      justify-content: space-around;
+      align-items: center;
+      .primary-container{
+        width: auto;
+        margin: 5px;
+      }
+      .login-container{
+        height: 50vh;
+      }
+    }
+  }
+  .logo-login{
+     font: 400 6vh "Monoton" !important;
+     width: 85% !important;
+     margin: 20px;
+     align-items: center;
+
+  }
+  .carousel-container{
+    display: none;
+  }
+  
 }
