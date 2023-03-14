@@ -129,7 +129,7 @@ export const Register = ({ onCancel }) => {
             },
           ]}
         >
-          <Select placeholder="select your country" options={[{ options }]} />
+          <Select placeholder="select your country" showSearch="true" options={[{ options }]} />
         </Form.Item>
         <Form.Item
           name="gender"
