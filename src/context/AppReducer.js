@@ -14,12 +14,18 @@ const users = (state, action) => {
         ...state,
         isError: true,
       };
+      case "LOGOUT":
+      return {
+        ...state,
+        user: null,
+        token: null
+      };
       case "RESET":
         return {
           ...state,
           isError: false,
           isSuccess:false,
-
+          isLogOut: false,
         };
       case "GET_USER_INFO":
       return {
