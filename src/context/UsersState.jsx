@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react'
-import AppReducer from './AppReducer.js'
+import AppReducer from './UserReducer.js'
 import axios from 'axios'
 
 const token = JSON.parse(localStorage.getItem("token"));
@@ -75,16 +75,18 @@ export const UsersProvider = ({ children }) => {
 
   const getUserInfo = async () => {
     const token = JSON.parse(localStorage.getItem("token"));
-    const res = await axios.get('', {
+    const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/users/info?populateFollowers=${true}&populateFollowed=${true}&populatedLikedPosts=${false}`, {
       headers: {
         authorization: token,
       },
     });
+    console.log(res.data);
     dispatch({
       type: "GET_USER_INFO",
       payload: res.data,
     });
   };
+ 
 
   return (
     <GlobalContext.Provider
