@@ -23,7 +23,7 @@ export const Login = () => {
   useEffect(() => {
     if (isError) {
       notification.error({
-        message: "Wrong email or password"
+        message: "Wrong email or password. Try Again!!"
       });
       reset()
     };
@@ -31,6 +31,7 @@ export const Login = () => {
 
   const showModal = () => {
     setIsModalOpen(true);
+    reset()
   };
   const handleOk = () => {
     setIsModalOpen(false);
