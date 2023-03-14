@@ -112,7 +112,7 @@ export const Login = () => {
                 span: 16,
               }}
             >
-              <Button type="primary" htmlType="submit" className='login-title'>
+              <Button type="primary" htmlType="submit">
                 Login
               </Button>
             </Form.Item>
