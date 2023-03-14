@@ -14,7 +14,7 @@ export const App = () => {
   useEffect(() => {
     if (isSuccess) {
       return notification.success({
-        message: "Welcome. You have successfully registered!!",
+        message: "Welcome to Nomad, your social network!",
       });
     }
     reset()
