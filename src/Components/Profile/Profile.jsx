@@ -8,6 +8,7 @@ import {
 import { Card, Avatar, Modal } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/UsersState";
+import EditUser from "../EditUser/EditUser";
 import "./Profile.scss";
 
 export const Profile = () => {
@@ -16,8 +17,12 @@ export const Profile = () => {
   const handleModal = () => {
     setShowModal(!showModal);
   };
+  const showEditModal = () => {
+    getUserInfo();
 
-  
+    setIsModalVisible(true);
+  };
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const { getUserInfo, user } = useContext(GlobalContext);
   useEffect(() => {
     getUserInfo();
@@ -31,7 +36,10 @@ export const Profile = () => {
             <span>
             {user.firstName} {user.lastName}
             </span>
-            <EditOutlined style={{ fontSize: '24px'}} onClick={() => console.log("clic to Edit")} />
+            <EditOutlined style={{ fontSize: '24px'}} onClick={() => {
+                    showEditModal();
+                    console.log("editando");
+                  }} />
           </span>
         }
         className='card-title'
@@ -232,7 +240,7 @@ export const Profile = () => {
           </span>
         }
       ></Card>
- 
+    <EditUser visible={isModalVisible} setVisible={setIsModalVisible}/>
     </div>
   );
 };

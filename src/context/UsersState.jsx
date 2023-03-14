@@ -86,7 +86,20 @@ export const UsersProvider = ({ children }) => {
       payload: res.data,
     });
   };
- 
+  const editUser = async (user, id) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const res = await axios.put(`https://backend-nomadsociety-development.up.railway.app/users/id/${id}`, user, {
+      headers: {
+        Authorization: token
+      }
+    });
+    dispatch({
+      type: 'EDIT_USER',
+      payload: res.data,
+    });
+    getUserInfo();
+    return res;
+  }
 
   return (
     <GlobalContext.Provider
@@ -100,7 +113,8 @@ export const UsersProvider = ({ children }) => {
         register,
         getUserInfo,
         reset,
-        logOut
+        logOut,
+        editUser
       }}
     >
       {children}
