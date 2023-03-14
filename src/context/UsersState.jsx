@@ -55,14 +55,22 @@ export const UsersProvider = ({ children }) => {
   }
 
   const register = async (user) => {
-    const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/register', user);
-    dispatch({
-      type: "POST_USER",
-      payload: res.data
-    });
-    if (res.data) {
-      localStorage.setItem("token", JSON.stringify(res.data.token));
-    };
+    try {
+      const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/register', user);
+      dispatch({
+        type: "POST_USER",
+        payload: res.data
+      });
+      if (res.data) {
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+      };
+      
+    } catch (error) {
+      console.error(error)
+      dispatch({
+        type: "POST_USER_ERROR"
+      });
+    }
   };
 
   const getUserInfo = async () => {
