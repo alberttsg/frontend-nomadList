@@ -14,6 +14,7 @@ import EditUser from "../EditUser/EditUser";
 import "./Profile.scss";
 
 export const Profile = () => {
+  const { getUserInfo, user, deleteUser, logOut, reset } = useContext(GlobalContext);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   
@@ -26,7 +27,6 @@ export const Profile = () => {
     setIsModalVisible(true);
   };
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const { getUserInfo, user, deleteUser, logOut, reset } = useContext(GlobalContext);
   useEffect(() => {
     getUserInfo();
   }, []);
