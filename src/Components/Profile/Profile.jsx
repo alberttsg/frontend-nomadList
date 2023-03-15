@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Card, Avatar, Modal, message } from "antd";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { GlobalContext } from "../../context/UsersState";
 import EditUser from "../EditUser/EditUser";
 import "./Profile.scss";
@@ -21,15 +21,19 @@ export const Profile = () => {
   const handleModal = () => {
     setShowModal(!showModal);
   };
+
   const showEditModal = () => {
     getUserInfo();
 
     setIsModalVisible(true);
   };
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   useEffect(() => {
+
     getUserInfo();
   }, []);
+
   const handleDeleteUserClick = (id) => {
     Modal.confirm({
        title: "¿Estas seguro de borrar tu cuenta?",
@@ -51,6 +55,11 @@ export const Profile = () => {
       });
     
   };
+
+const handleAvatarClick = (followedOne) => {
+  console.log('clickando ando',followedOne.firstName, followedOne.id)
+}
+
   return (
     <div className='profile-container'>
       <Card 
@@ -125,13 +134,14 @@ export const Profile = () => {
             {user.followed.slice(0, 11).map((followedOne, index) => (
               <span className="followers-list" key={index + followedOne._id}>
                 <p>
-                  <Avatar
+                  <Avatar onClick={()=>handleAvatarClick(followedOne)}  
                     size={75}
                     src={
                       followedOne.avatar ||
                       "https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w"
                     }
                   />
+                  {followedOne.firstName}
                 </p>
               </span>
             ))}
@@ -143,7 +153,7 @@ export const Profile = () => {
               >
                 <p style={{ position: "relative" }}><PlusCircleTwoTone twoToneColor={"#FA91CF" } style={{  fontSize: "35px", transform: "scale(2)", position: "absolute",
           left: "24px",
-          bottom: "21px"}} /></p>
+          bottom: "39px"}} /></p>
               </span>
             )}
           </span>
@@ -210,6 +220,7 @@ export const Profile = () => {
                       "https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w"
                     }
                   />
+                  {followersOne.firstName}
                 </p>
               </span>
             ))}
@@ -221,7 +232,7 @@ export const Profile = () => {
               >
                 <p style={{ position: "relative" }}><PlusCircleTwoTone twoToneColor={"#FA91CF" } style={{  fontSize: "35px", transform: "scale(2)", position: "absolute",
           left: "24px",
-          bottom: "21px"}} /></p>
+          bottom: "39px"}} /></p>
               </span>
             )}
           </span>
