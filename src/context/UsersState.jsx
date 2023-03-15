@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react'
-import AppReducer from './AppReducer.js'
+import AppReducer from './UserReducer.js'
 import axios from 'axios'
 
 const token = JSON.parse(localStorage.getItem("token"));
@@ -75,17 +75,45 @@ export const UsersProvider = ({ children }) => {
 
   const getUserInfo = async () => {
     const token = JSON.parse(localStorage.getItem("token"));
-    const res = await axios.get('', {
+    const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/users/info?populateFollowers=${true}&populateFollowed=${true}&populatedLikedPosts=${false}`, {
       headers: {
         authorization: token,
       },
     });
+    console.log(res.data);
     dispatch({
       type: "GET_USER_INFO",
       payload: res.data,
     });
   };
-
+  const editUser = async (user, id) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const res = await axios.put(`https://backend-nomadsociety-development.up.railway.app/users/id/${id}`, user, {
+      headers: {
+        Authorization: token
+      }
+    });
+    dispatch({
+      type: 'EDIT_USER',
+      payload: res.data,
+    });
+    getUserInfo();
+    return res;
+  }
+  const deleteUser = async (id) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const res = await axios.delete(`https://backend-nomadsociety-development.up.railway.app/users/id/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
+    dispatch({
+      type: 'DELETE_USER',
+      payload: res.data,
+    });
+    
+    return res;
+  }
   return (
     <GlobalContext.Provider
       value={{
@@ -98,7 +126,9 @@ export const UsersProvider = ({ children }) => {
         register,
         getUserInfo,
         reset,
-        logOut
+        logOut,
+        editUser,
+        deleteUser
       }}
     >
       {children}

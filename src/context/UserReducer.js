@@ -32,6 +32,16 @@ const users = (state, action) => {
         ...state,
         user: action.payload,
       };
+      case "EDIT_USER":
+        return {
+          ...state,
+          user: state.user
+        };
+        case "DELETE_USER":
+      return {
+        ...state,
+        users: state.users
+      };
     default:
       return state;
   }
