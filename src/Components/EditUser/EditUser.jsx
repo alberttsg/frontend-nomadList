@@ -48,6 +48,9 @@ const [form]= Form.useForm();
         >
           <Select placeholder="select your country" options={[{ options }]} />
         </Form.Item>
+        <Form.Item label='Foto de Perfil' name='avatar'>
+          <Input placeholder='Ingrese la URL de la foto de Perfil' />
+        </Form.Item>
         <Form.Item>
           <Button type='primary' htmlType='submit'>
             Enviar

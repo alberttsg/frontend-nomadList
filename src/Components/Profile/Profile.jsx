@@ -1,19 +1,22 @@
 import {
+  DeleteTwoTone,
   EditOutlined,
   HeartFilled,
   HeartOutlined,
   PlusCircleTwoTone,
   ThunderboltFilled,
 } from "@ant-design/icons";
-import { Card, Avatar, Modal } from "antd";
+import { Card, Avatar, Modal, message } from "antd";
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { GlobalContext } from "../../context/UsersState";
 import EditUser from "../EditUser/EditUser";
 import "./Profile.scss";
 
 export const Profile = () => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-
+  
   const handleModal = () => {
     setShowModal(!showModal);
   };
@@ -23,23 +26,48 @@ export const Profile = () => {
     setIsModalVisible(true);
   };
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const { getUserInfo, user } = useContext(GlobalContext);
+  const { getUserInfo, user, deleteUser, logOut, reset } = useContext(GlobalContext);
   useEffect(() => {
     getUserInfo();
   }, []);
-
+  const handleDeleteUserClick = (id) => {
+    Modal.confirm({
+       title: "¿Estas seguro de borrar tu cuenta?",
+       content: " Esta acción no se puede deshacer! No podrás revertirlo!",
+       okText: "SI",
+       okType: "danger",
+       cancelText: "No",
+       onOk() {
+         deleteUser(id);
+        logOut();
+        navigate('/');
+        reset();
+        message.success('CIAO, BORRASTE LA CUENTA');
+       },
+       onCancel() {
+        message.error('NO BORRASTE LA CUENTA');
+         console.log("Cancel");
+       },
+      });
+    
+  };
   return (
     <div className='profile-container'>
       <Card 
         title={
           <span className="title-edit-user">
             <span>
-            {user.firstName} {user.lastName}
+            {user.displayName}
             </span>
-            <EditOutlined style={{ fontSize: '24px'}} onClick={() => {
-                    showEditModal();
-                    console.log("editando");
-                  }} />
+            <span style={{margin: "5px"}}>
+
+            <EditOutlined style={{ fontSize: '24px', margin: "5px"}} onClick={() => {
+              showEditModal();
+              console.log("editando");
+            }} />
+            <DeleteTwoTone style={{ fontSize: '22px', margin: "5px"}}  twoToneColor={"#DC675B" } onClick={()=>handleDeleteUserClick(user._id)}/>    
+            </span>
+            
           </span>
         }
         className='card-title'
@@ -47,7 +75,7 @@ export const Profile = () => {
         <div className='card-container'>
           <Avatar
             size={138}
-            src='https://img.freepik.com/vector-premium/lindo-retrato-hombres-pelo-largo-rubio-avatar-aislado-fondo-blanco_555467-2696.jpg?w=2000'
+            src={user.avatar || 'https://img.freepik.com/vector-premium/lindo-retrato-hombres-pelo-largo-rubio-avatar-aislado-fondo-blanco_555467-2696.jpg?w=2000'}
           />
           <div className='card-container-info'>
             <p>
@@ -77,7 +105,7 @@ export const Profile = () => {
         title={
           <span>
             {" "}
-            <HeartOutlined style={{ color: "red" }} /> SIGUIENDO A {"  "} 
+            <HeartOutlined style={{ color: "red"}} /> SIGUIENDO A {"  "} 
             {user.followedCount} PERSONAS
           </span>
         }
@@ -119,7 +147,7 @@ export const Profile = () => {
               </span>
             )}
           </span>
-          <Modal visible={showModal} onCancel={() => setShowModal(false)}>
+          <Modal open={showModal} onCancel={() => setShowModal(false)} onOk={()=>setShowModal(false)}>
             <span
               style={{
                 display: "grid",
@@ -146,7 +174,7 @@ export const Profile = () => {
           </Modal>
         </>
       ) : (
-        <span>Aún no está siguiendo a nadie.</span>
+        <span>Aún no estás siguiendo a nadie.</span>
       )}
     </span>
   
@@ -197,7 +225,7 @@ export const Profile = () => {
               </span>
             )}
           </span>
-          <Modal visible={showModal} onCancel={() => setShowModal(false)}>
+          <Modal open={showModal} onCancel={() => setShowModal(false)} onOk={()=>setShowModal(false)}>
             <span
               style={{
                 display: "grid",
@@ -223,7 +251,7 @@ export const Profile = () => {
           </Modal>
         </>
       ) : (
-        <span>Aún no está siguiendo a nadie.</span>
+        <span>Aún no te está siguiendo  nadie.</span>
       )}
     </span>
   

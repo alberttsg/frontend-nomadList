@@ -100,7 +100,20 @@ export const UsersProvider = ({ children }) => {
     getUserInfo();
     return res;
   }
-
+  const deleteUser = async (id) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const res = await axios.delete(`https://backend-nomadsociety-development.up.railway.app/users/id/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
+    dispatch({
+      type: 'DELETE_USER',
+      payload: res.data,
+    });
+    
+    return res;
+  }
   return (
     <GlobalContext.Provider
       value={{
@@ -114,7 +127,8 @@ export const UsersProvider = ({ children }) => {
         getUserInfo,
         reset,
         logOut,
-        editUser
+        editUser,
+        deleteUser
       }}
     >
       {children}
