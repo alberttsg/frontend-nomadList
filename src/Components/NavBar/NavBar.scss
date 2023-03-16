@@ -88,7 +88,7 @@
   margin-top: 30px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
 
   .navbar {
     display: flex;
@@ -129,7 +129,7 @@
 
 }
 
-@media (max-width: 640px){
+@media (min-width: 640px){
 
   .container-nav {
     display: flex;

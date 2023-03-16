@@ -32,7 +32,7 @@
   height: 80%;
 }
 
-@media (max-width: 640px){
+@media (min-width: 640px){
 
   .body {
     display: flex;
