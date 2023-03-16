@@ -24,6 +24,7 @@ export const CreatePost = () => {
     }, 2000)
       return
     }
+    console.log(form)
     ServiceCreatePost({ form })
 
     setForm({
