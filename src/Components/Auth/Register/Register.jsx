@@ -40,7 +40,7 @@ export const Register = ({ onCancel }) => {
           span: 16,
         }}
         style={{
-          maxWidth: 600,
+          maxWidth: 800,
         }}
         initialValues={{
           remember: true,
