@@ -1,18 +1,18 @@
 import axios from 'axios'
 
 export const ServiceCreatePost = async ({ body }) => {
-console.log(888888)
-  const token = localStorage.getItem('token')
-  console.log(token, 8888)
+
+  const token = JSON.parse(localStorage.getItem('token'))
+  console.log(token)
 
   const config = {
     headers:{
-      Authorization:token
+      'Authorization': token
     }
   }
 
   const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/post/newpost', body, config)
-  console.log(res)
+  console.log(res.data)
 
   return res.data
 }
