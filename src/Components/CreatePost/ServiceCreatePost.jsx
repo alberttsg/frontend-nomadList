@@ -10,7 +10,7 @@ export const ServiceCreatePost = async ({ body }) => {
     }
   }
 
-  const res = await axios.post('http://clone-backend-production.up.railway.app/post/newpost', body, config)
+  const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/', body, config)
   console.log(res)
 
   return res.data
