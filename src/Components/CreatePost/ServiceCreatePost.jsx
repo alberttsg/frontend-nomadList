@@ -11,6 +11,7 @@ export const ServiceCreatePost = async ({ body }) => {
     }
   }
 
+  console.log(body, 333)
   const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/post/newpost', body, config)
   console.log(res.data)
 
