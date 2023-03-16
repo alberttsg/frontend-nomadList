@@ -25,7 +25,7 @@ export const CreatePost = () => {
       return
     }
     console.log(form)
-    ServiceCreatePost({ form })
+    ServiceCreatePost(form)
 
     setForm({
       title:'',
