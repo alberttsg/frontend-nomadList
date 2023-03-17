@@ -114,6 +114,18 @@ export const UsersProvider = ({ children }) => {
     
     return res;
   }
+  const getUserById = async (id) => {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/users/id/${id}`, {
+    headers: {
+      Authorization: token
+    }
+  });
+  dispatch({
+    type: 'GET_USER_BY_ID',
+    payload: res.data,
+  });
+  }
   return (
     <GlobalContext.Provider
       value={{
@@ -128,7 +140,8 @@ export const UsersProvider = ({ children }) => {
         reset,
         logOut,
         editUser,
-        deleteUser
+        deleteUser,
+        getUserById
       }}
     >
       {children}
