@@ -88,6 +88,12 @@
   margin-top: 30px;
 }
 
+@media(max-width: 930px){
+  .logo {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
 
   .navbar {
@@ -109,10 +115,6 @@
       display: none;
     }
     .divLogout {
-      display: none;
-    }
-
-    .logo {
       display: none;
     }
   }
