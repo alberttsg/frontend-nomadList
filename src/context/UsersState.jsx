@@ -19,7 +19,6 @@ export const UsersProvider = ({ children }) => {
 
   const login = async (user) => {
     try {
-
       const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/login', user);
       dispatch({
         type: "POST_USER",
@@ -83,7 +82,7 @@ export const UsersProvider = ({ children }) => {
     console.log(res.data);
     dispatch({
       type: "GET_USER_INFO",
-      payload: res.data,
+      payload: res.data, 
     });
   };
   const editUser = async (user, id) => {
