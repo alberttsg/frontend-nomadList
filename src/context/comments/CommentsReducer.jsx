@@ -8,7 +8,7 @@ const comments = (state, action) => {
     case 'ADD_COMMENT':
       return {
         ...state,
-        comment: [action.payload, ...state.comments]
+        comment: action.payload
       };
     case 'EDIT_COMMENT':
       return {
