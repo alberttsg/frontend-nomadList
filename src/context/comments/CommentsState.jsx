@@ -25,7 +25,7 @@ export const CommentsProvider = ({ children }) => {
       payload: res.data,
     });
   }
-
+//se necesita el post id para relacionarlo y para crear
   const createComment = async (comment, user, id) =>{
     const token = JSON.parse(localStorage.getItem("token"));
     const currentDate = new Date();
