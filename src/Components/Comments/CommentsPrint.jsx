@@ -1,16 +1,34 @@
-import React, { useContext, useEffect } from 'react'
-import { CommentsContext } from '../../context/comments/CommentsState';
-import { GlobalContext } from '../../context/UsersState';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 const CommentsPrint = (props) => {
-  const {postId} = props;
-  const { getComments, comments, comment } = useContext(CommentsContext);
+  const { postId } = props;
+  const [comments, setComments] = useState([]);
+
+  const getComments = async () => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/post/${postId}/comments`, {
+      headers: {
+        authorization: token,
+      },
+    });
+    console.log(res.data)
+    return setComments(res.data);
+  }
+
+  useEffect(()=>{
+    getComments()
+  },[])
+
 
   return (
     <div>
-      hola
+      {comments && comments.map((comment)=>{
+        return <p>{comment.content}</p>
+      })}
     </div>
   )
 }
 
-export default CommentsPrint
+export default CommentsPrint;

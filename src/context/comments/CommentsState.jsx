@@ -12,20 +12,6 @@ export const CommentsContext = createContext(initialState);
 
 export const CommentsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CommentsReducer, initialState);
- 
-  const getComments = async (postId) => {
-    console.log(postId)
-    const token = JSON.parse(localStorage.getItem("token"));
-    const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/post/${postId}/comments`, {
-      headers: {
-        authorization: token,
-      },
-    });
-    dispatch({
-      type: "GET_COMMENTS",
-      payload: res.data,
-    });
-  }
 
   const createComment = async (comment, user, postId) =>{
     const token = JSON.parse(localStorage.getItem("token"));
@@ -34,7 +20,7 @@ export const CommentsProvider = ({ children }) => {
       author: user._id,
       post_id: postId,
       content: comment,
-      createAt: currentDate,
+      createAt: currentDate.getUTCDate(),
     }
  
     try {
@@ -57,8 +43,7 @@ export const CommentsProvider = ({ children }) => {
     <CommentsContext.Provider
       value={{
         comments: state.comments,
-        comment: state.comment,
-        getComments,
+        // getComments,
         createComment,
       }}
     >

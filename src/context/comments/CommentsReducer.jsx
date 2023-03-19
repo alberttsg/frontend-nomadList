@@ -1,10 +1,5 @@
 const comments = (state, action) => {
   switch (action.type) {
-    case 'GET_COMMENTS':
-      return {
-        ...state,
-        comments: action.payload,
-      };
     case 'CREATE_COMMENT':
       return {
         ...state,

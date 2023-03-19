@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Button, Form, Input } from 'antd';
 import { CommentsContext } from '../../context/comments/CommentsState';
 import { GlobalContext } from '../../context/UsersState';
@@ -6,7 +6,7 @@ import { GlobalContext } from '../../context/UsersState';
 
 const CommentsForm = (props) => {
   const [form] = Form.useForm();
-  const { createComment } = useContext(CommentsContext)
+  const { createComment } = useContext(CommentsContext);
   const { user } = useContext(GlobalContext);
   const { postId } = props;
 
