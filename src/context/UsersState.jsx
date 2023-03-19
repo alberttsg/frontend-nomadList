@@ -3,10 +3,11 @@ import AppReducer from './UserReducer.js'
 import axios from 'axios'
 
 const token = JSON.parse(localStorage.getItem("token"));
+const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
   token: token ? token : null,
-  user: {},
+  user: user ? user : null,
   isSuccess: false,
   isError: false,
   isLogOut: false,
@@ -19,7 +20,6 @@ export const UsersProvider = ({ children }) => {
 
   const login = async (user) => {
     try {
-
       const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/login', user);
       dispatch({
         type: "POST_USER",
@@ -36,15 +36,16 @@ export const UsersProvider = ({ children }) => {
     };
 
   }
-  
-  const logOut = () =>{
+
+  const logOut = () => {
     const token = JSON.parse(localStorage.getItem("token"));
     dispatch({
       type: "LOGOUT",
       payload: token,
     });
-    if(token){
+    if (token || user) {
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
     }
   }
 
@@ -64,7 +65,7 @@ export const UsersProvider = ({ children }) => {
       if (res.data) {
         localStorage.setItem("token", JSON.stringify(res.data.token));
       };
-      
+
     } catch (error) {
       console.error(error)
       dispatch({
@@ -80,12 +81,15 @@ export const UsersProvider = ({ children }) => {
         authorization: token,
       },
     });
-    console.log(res.data);
+    if(res.data){
+      localStorage.setItem('user', JSON.stringify(res.data));
+    }
     dispatch({
       type: "GET_USER_INFO",
       payload: res.data,
     });
   };
+
   const editUser = async (user, id) => {
     const token = JSON.parse(localStorage.getItem('token'));
     const res = await axios.put(`https://backend-nomadsociety-development.up.railway.app/users/id/${id}`, user, {
@@ -111,7 +115,7 @@ export const UsersProvider = ({ children }) => {
       type: 'DELETE_USER',
       payload: res.data,
     });
-    
+
     return res;
   }
   return (

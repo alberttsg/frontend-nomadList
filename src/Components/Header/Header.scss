@@ -12,9 +12,9 @@
 .divInput {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 300px;
   height:40px;
-  padding-left: 20px;
   border-radius: 5px;
   background-color: red;
 
@@ -28,6 +28,12 @@
     border-radius: 3px;
     background-color: rgb(223, 223, 223);
     border: 1px solid rgb(223, 223, 223);
+    margin-left: 10px;
+  }
+
+  .closeBtn{
+    cursor:pointer;
+    margin-right: 10px;
   }
 }
 
@@ -38,6 +44,9 @@
 }
 
 .divSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position:absolute;
   top:70px;
   display: flex;
