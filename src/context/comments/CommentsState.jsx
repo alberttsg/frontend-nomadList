@@ -13,9 +13,10 @@ export const CommentsContext = createContext(initialState);
 export const CommentsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CommentsReducer, initialState);
  
-  const getComments = async () => {
+  const getComments = async (postId) => {
+    console.log(postId)
     const token = JSON.parse(localStorage.getItem("token"));
-    const res = await axios.get('https://backend-nomadsociety-development.up.railway.app/comments', {
+    const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/post/${postId}/comments`, {
       headers: {
         authorization: token,
       },
@@ -26,33 +27,37 @@ export const CommentsProvider = ({ children }) => {
     });
   }
 
-  const createComment = async (comment, user, id) =>{
+  const createComment = async (comment, user, postId) =>{
     const token = JSON.parse(localStorage.getItem("token"));
     const currentDate = new Date();
     const newComment = {
       author: user._id,
+      post_id: postId,
       content: comment,
       createAt: currentDate,
     }
+ 
     try {
-      const res = await axios.post(`https://backend-nomadsociety-development.up.railway.app/post/${id}/comments`, newComment, {
+      const res = await axios.post(`https://backend-nomadsociety-development.up.railway.app/post/${postId}/comments`, newComment, {
         headers: {
           authorization: token,
         },
       })
       dispatch({
-        type: 'ADD_COMMENT',
+        type: 'CREATE_COMMENT',
         payload: res.data
       })
     } catch (error) {
       console.error(error);
     }
+    console.log(newComment);
   }
 
   return (
     <CommentsContext.Provider
       value={{
         comments: state.comments,
+        comment: state.comment,
         getComments,
         createComment,
       }}

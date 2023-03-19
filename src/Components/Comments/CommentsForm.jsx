@@ -4,40 +4,21 @@ import { CommentsContext } from '../../context/comments/CommentsState';
 import { GlobalContext } from '../../context/UsersState';
 
 
-const Comments = () => {
+const CommentsForm = (props) => {
   const [form] = Form.useForm();
-  const { getComments, comments, createComment} = useContext(CommentsContext)
+  const { createComment } = useContext(CommentsContext)
   const { user } = useContext(GlobalContext);
-
-  useEffect(() => {
-    getComments();
-    console.log(user);
-  }, []);
+  const { postId } = props;
 
   const onFinish = async (values) => {
-    const inputComment = values.comment;
+    const inputComment = values.content;
     console.log(inputComment);
-    createComment(inputComment, user);
+    createComment(inputComment, user, postId);
     form.resetFields();
   }
 
-  const comment = Object.values(comments);
-
-  const printComments = comment.map((element) => {
-    console.log(element)
-    return (
-      <div key={element._id}>
-        <div>{element.author}</div>
-        <div>{element.content}</div>
-      </div>
-    )
-  })
-
   return (
     <div>
-      <div>
-        {printComments}
-      </div>
       <Form
         layout='vertical'
         form={form}
@@ -46,15 +27,15 @@ const Comments = () => {
         }}
         onFinish={onFinish}
       >
-        <Form.Item name='comment'>
+        <Form.Item name='content'>
           <Input placeholder="Leave your comments" />
         </Form.Item>
         <Form.Item >
-          <Button type="primary" style={{ left: 500 }} htmlType="submit">Send</Button>
+          <Button type="primary" style={{ left: 160 }} htmlType="submit">Send</Button>
         </Form.Item>
       </Form>
     </div>
   )
 }
 
-export default Comments
+export default CommentsForm
