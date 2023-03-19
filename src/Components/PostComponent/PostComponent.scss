@@ -2,26 +2,24 @@
 
 .post-container{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-around;
-  
+  justify-content: center;
+  align-items: center;
   gap: 1em;
   
 .post-content {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  align-content: center;
   margin: 0 1rem;
-  width: 27%;
+  width: 70%;
   padding: 0 1rem;
   border : 1px solid rgb(92, 92, 92);
 
   .post-img {
-    width: 100%;
+    width: 60%;
     height: 100%;
     object-fit: cover;
   }
