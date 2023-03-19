@@ -39,10 +39,10 @@ export const PostComponent = () => {
             <div key={post._id}>
               <p>{post.title}</p>
               <p>{post.description}</p>
+              <p>{post.content}</p>
               {<img className='post-img' src='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' alt="" />}
             </div>
-            <p>{post.content}</p>
-            <img className='post-img' src='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' alt="" />
+          
             <div className="btn-like-coment">
               <span>{likes} </span>
               <LikeButton id={post._id} />
