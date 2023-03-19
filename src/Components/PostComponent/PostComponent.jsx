@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { Button, Form, Input } from 'antd';
+import { CommentOutlined } from "@ant-design/icons";
 import axios from 'axios'
 import './PostComponent.scss'
 import { LikeButton } from '../LikeButton/LikeButton'
+import CommentsForm from '../Comments/CommentsForm'
+import CommentsPrint from '../Comments/CommentsPrint';
+
 
 export const PostComponent = () => {
   const [posts, setPosts] = useState([])
@@ -9,12 +14,12 @@ export const PostComponent = () => {
   const headerAxios = {
     headers: {
       Authorization: token
+    }
   }
-}
-  
+
   useEffect(() => {
     const getPost = async () => {
-     console.log(token)
+      console.log(token)
       const res = await axios.get('https://backend-nomadsociety-development.up.railway.app/post/all', headerAxios);
       setPosts(res.data)
     }
@@ -22,7 +27,7 @@ export const PostComponent = () => {
 
     console.log(posts)
   }, [])
-  
+
 
   return (
     <div className='post-container' key={'1111'}>
@@ -34,13 +39,24 @@ export const PostComponent = () => {
             <div key={post._id}>
               <p>{post.title}</p>
               <p>{post.description}</p>
+              {<img className='post-img' src='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' alt="" />}
+            </div>
+            <div className="button-container" >
+              <LikeButton />
+              <CommentOutlined />
+            </div>
               <p>{post.content}</p>
              <img className='post-img' src='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' alt=""/>
              <div className="btn-like-coment">
               <span>{likes} </span>
               <LikeButton id={post._id} />   
+              <CommentOutlined />
              </div>
-            </div>
+            
+            <div>
+              <CommentsPrint postId={post._id} />
+              <CommentsForm postId={post._id} />
+              </div>
           </div>
         )
       })}

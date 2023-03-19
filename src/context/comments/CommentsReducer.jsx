@@ -5,11 +5,11 @@ const comments = (state, action) => {
         ...state,
         comments: action.payload,
       };
-    case 'ADD_COMMENT':
+    case 'CREATE_COMMENT':
       return {
         ...state,
-        comment: action.payload
-      };
+        comment: [action.payload, ...state.comments],
+      }; 
     case 'EDIT_COMMENT':
       return {
 
