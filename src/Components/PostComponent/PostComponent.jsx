@@ -31,7 +31,7 @@ export const PostComponent = () => {
 
   return (
     <div className='post-container' key={'1111'}>
-      {posts && posts.map ((post)=>{
+      {posts && posts.map((post) => {
         const likes = post.likes.length
         // añadir componete de likes (numero de likes) para actualizar el numero de likes sin refrescar la pagina
         return (
@@ -41,22 +41,17 @@ export const PostComponent = () => {
               <p>{post.description}</p>
               {<img className='post-img' src='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' alt="" />}
             </div>
-            <div className="button-container" >
-              <LikeButton />
+            <p>{post.content}</p>
+            <img className='post-img' src='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' alt="" />
+            <div className="btn-like-coment">
+              <span>{likes} </span>
+              <LikeButton id={post._id} />
               <CommentOutlined />
             </div>
-              <p>{post.content}</p>
-             <img className='post-img' src='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' alt=""/>
-             <div className="btn-like-coment">
-              <span>{likes} </span>
-              <LikeButton id={post._id} />   
-              <CommentOutlined />
-             </div>
-            
             <div>
               <CommentsPrint postId={post._id} />
               <CommentsForm postId={post._id} />
-              </div>
+            </div>
           </div>
         )
       })}
