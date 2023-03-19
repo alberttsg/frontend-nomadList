@@ -50,7 +50,7 @@ export const PostComponent = () => {
             </div>
             <div>
               <CommentsPrint postId={post._id} />
-              <CommentsForm postId={post._id} />
+
             </div>
           </div>
         )
