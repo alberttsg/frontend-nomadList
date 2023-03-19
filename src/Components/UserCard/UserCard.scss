@@ -1,0 +1,32 @@
+.card-info-container{
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid gray;
+}
+.left-avatar{
+ width: 25%;
+}
+.right-info{
+   width: 65%;
+}
+.first-line {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+}
+.second-line{
+    text-align: left;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+}
+.third-line {
+    display: flex;
+    justify-content:center;
+    padding: 0.5rem;
+}
