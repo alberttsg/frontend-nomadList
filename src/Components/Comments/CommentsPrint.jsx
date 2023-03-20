@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import CommentsForm from './CommentsForm';
-import { getComments } from './ServiceCommentCreate';
+import { deleteComments, getComments } from './ServiceCommentCreate';
 import { CommentOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { GlobalContext } from '../../context/UsersState';
 
@@ -8,12 +8,19 @@ import { GlobalContext } from '../../context/UsersState';
 const CommentsPrint = (props) => {
   const { postId } = props;
   const [comments, setComments] = useState([]);
-  const [click, setClick] =useState(false);
+  const [click, setClick] = useState(false);
   const { user } = useContext(GlobalContext);
 
-  const clickHandler= () =>{
+  const clickHandler = () => {
     setClick(!click)
-    console.log('apretaste aca')
+  }
+  const deletehandler = (commentId) => {
+    console.log(commentId)
+    const deleteComment = async () => {
+      await deleteComments(commentId);
+      setComments(comments.filter(comment => comment._id !== commentId));
+    }
+    deleteComment()
   }
 
   useEffect(() => {
@@ -38,9 +45,9 @@ const CommentsPrint = (props) => {
               <p>{comment.content}</p>
               <div>
                 {user._id === comment.author && <div>
-                  <EditOutlined/>
-                  <DeleteOutlined />
-                  </div>}
+                  <EditOutlined />
+                  <DeleteOutlined onClick={() => deletehandler(comment._id)} />
+                </div>}
               </div>
             </div>
           )
