@@ -13,7 +13,6 @@ export const Header = () => {
 
     const usersSearch = async () =>{
       const res = await ServiceSearch(search)
-      console.log(res.data.length)
 
       if(res.data.length > 7){
         res.data.splice(7, res.data.length)
@@ -41,7 +40,7 @@ export const Header = () => {
         <CloseCircleOutlined className='closeBtn' onClick={resetInput} />
       </div>
       <div className='divSearch' id={display}>
-      { searched.length == 0 && <div className='noFounds'>No se han encontrado resultados</div>}
+      {searched.length == 0 && <div className='noFounds'>No se han encontrado resultados</div>}
       {searched.map((e, index)=>(
         <div className='searched' key={`searched ${index}`}>
           <div className='divImg'>
