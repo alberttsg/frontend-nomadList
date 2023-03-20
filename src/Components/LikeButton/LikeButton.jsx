@@ -5,8 +5,9 @@ import { HeartFilled, HeartOutlined } from '@ant-design/icons/lib/icons';
 import axios from 'axios';
 
 export const LikeButton = (props) => {
-  const {id} = props
+  const {id, likes} = props
   const [liked, setLiked] = useState(false)
+  const [like, setLike] = useState(likes)
   const user = JSON.parse(localStorage.getItem("user"));
   const token = JSON.parse(localStorage.getItem("token"));
   const headerAxios = { headers: { Authorization: token } }
@@ -17,14 +18,28 @@ export const LikeButton = (props) => {
   const likePost = async () => {
     const res = await axios.put(`https://backend-nomadsociety-development.up.railway.app/post/like/${id}`, {}, headerAxios);
     setLiked(!liked)
+    liked === false ? setLike(like + 1) : setLike(like - 1)
     return
   }
+  const likeHandler = () => {
+    likePost()
+  }
+
 useEffect(()=>{
   isLiked().then((res)=>{
     setLiked(res)
   })
 },[])
 
-  return (liked === false ? <HeartOutlined onClick={likePost}/> : <HeartFilled style={{color: "#eb2f96"}} onClick={likePost} />
+  return (liked === false ? 
+  <>
+  <span>{like}</span> 
+  <HeartOutlined onClick={likeHandler}/> 
+  </>
+  : 
+  <>
+  <span>{like}</span>
+  <HeartFilled style={{color: "#eb2f96"}} onClick={likeHandler} />
+  </>
   )
 }
