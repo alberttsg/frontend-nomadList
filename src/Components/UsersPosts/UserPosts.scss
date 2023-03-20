@@ -6,8 +6,17 @@
     flex-direction: row;
     // padding: 1rem;
     .post-container-uni{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: 1rem;
         padding: 1rem;
         width: 20%;
     }
 
+}
+.button-container-posts{
+    display: flex;
+    // flex-direction: row;
+    justify-content: space-evenly;
 }
