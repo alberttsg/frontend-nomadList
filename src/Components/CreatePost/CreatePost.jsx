@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Form } from 'react-router-dom'
 import './CreatePost.scss'
 import { PostCreated } from './PostCreated'
 import { PostEmpty } from './PostEmpty'
@@ -10,7 +11,8 @@ export const CreatePost = () => {
   const [modal, setModal] = useState(false)
   const [form, setForm] = useState({
     title:'',
-    content:''
+    content:'',
+    image:''
   })
 
   const handleSubmit = (e) => {
@@ -25,11 +27,13 @@ export const CreatePost = () => {
       return
     }
 
-    ServiceCreatePost(form)
+   // ServiceCreatePost(form)
+    console.log(form)
 
     setForm({
       title:'',
-      content:''
+      content:'',
+      image:''
     })
 
     setModal(true)
@@ -41,10 +45,12 @@ export const CreatePost = () => {
 
   return (
     <div className='container-form'>
-      <form onSubmit={handleSubmit} className='form'>
+      <form onSubmit={handleSubmit} className='form' enctype="multipart/form-data" method="post">
         <input placeholder='Title' className='input-title' type='text' name='title' value={form.title} onChange={(e)=>setForm({...form, [e.target.name] : e.target.value})}/>
         <textarea placeholder='Content' className='textArea' name='content' value={form.content} onChange={(e)=>setForm({...form, [e.target.name] : e.target.value})}/>
+        <input type="file" name='image' onChange={(e)=>setForm({...form, [e.target] : e.target.value})}/>
         <input className='input-submit' type='submit' value='Create'/>
+        
       </form>
       {modal && <PostCreated/>}
       {formEpmty && <PostEmpty/>}
