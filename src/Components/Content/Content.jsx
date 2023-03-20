@@ -1,4 +1,3 @@
-
 import './Content.scss'
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/UsersState";

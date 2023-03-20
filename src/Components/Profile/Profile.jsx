@@ -11,6 +11,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { GlobalContext } from "../../context/UsersState";
 import EditUser from "../EditUser/EditUser";
+import Post from '../Post/Post'
 import "./Profile.scss";
 
 export const Profile = () => {
