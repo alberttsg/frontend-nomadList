@@ -1,18 +1,30 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { Button, Form, Input } from 'antd';
-import { createComment, getComments } from './ServiceCommentCreate';
+import { createComment } from './ServiceCommentCreate';
 import { GlobalContext } from '../../context/UsersState';
+
 
 const CommentsForm = (props) => {
   const [form] = Form.useForm();
   const { user } = useContext(GlobalContext);
-  const { postId } = props;
+  const { postId, comments, setComments } = props;
 
   const onFinish = async (values) => {
     const content = values.content;
-    createComment(content, user, postId);
+    const currentDate = new Date().toLocaleString("es-ES");;
+    const newComment = {
+      _id: '',
+      author: user._id,
+      post: postId,
+      content: content,
+      createdAt: currentDate,
+    }
+    createComment(newComment, postId);
+    const update = [...comments, newComment];
+    setComments(update)
     form.resetFields();
   }
+
 
   return (
     <div>

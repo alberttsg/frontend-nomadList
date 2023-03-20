@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Form, Input } from 'antd';
-import { CommentOutlined } from "@ant-design/icons";
+
 import axios from 'axios'
 import './PostComponent.scss'
 import { LikeButton } from '../LikeButton/LikeButton'
-import CommentsForm from '../Comments/CommentsForm'
+
 import CommentsPrint from '../Comments/CommentsPrint';
 
 
@@ -46,11 +45,9 @@ export const PostComponent = () => {
             <div className="btn-like-coment">
               <span>{likes} </span>
               <LikeButton id={post._id} />
-              <CommentOutlined />
             </div>
             <div>
               <CommentsPrint postId={post._id} />
-
             </div>
           </div>
         )
