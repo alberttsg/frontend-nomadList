@@ -3,7 +3,6 @@ import axios from 'axios'
 export const ServiceSearch = async (params) => {
 
   const token = JSON.parse(localStorage.getItem('token'))
-  console.log(params)
 
   const config = {
     headers:{
