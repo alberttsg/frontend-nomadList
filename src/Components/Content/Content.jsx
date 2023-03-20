@@ -1,11 +1,8 @@
-
 import './Content.scss'
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/UsersState";
-import UserCard from '../UserCard/UserCard';
-import EditUser from '../EditUser/EditUser';
-import UserPosts from '../UsersPosts/UsersPosts';
-
+import { LikeButton } from '../LikeButton/LikeButton';
+import { PostComponent } from '../PostComponent/PostComponent';
 export const Content = () => {
   const { getUserInfo, user, deleteUser, logOut, reset } = useContext(GlobalContext);
   useEffect(()=>{
@@ -14,8 +11,7 @@ export const Content = () => {
   },[])
   return (
     <div className='content'>
-      <UserCard/>
-      <UserPosts/>
+      <PostComponent />
     </div>
   )
 }

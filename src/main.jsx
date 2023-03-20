@@ -5,6 +5,6 @@ import { UsersProvider } from './context/UsersState'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <UsersProvider>
-    <App />
+      <App />
   </UsersProvider>
 )

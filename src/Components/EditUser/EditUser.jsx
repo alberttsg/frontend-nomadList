@@ -36,12 +36,12 @@ const EditUser = ({ visible, setVisible}) => {
   ))
 
 
-const [form]= Form.useForm();
+  const [form] = Form.useForm();
 
 
-    useEffect(()=>{
-        form.setFieldsValue(user);
-    },[user])
+  useEffect(() => {
+    form.setFieldsValue(user);
+  }, [user])
 
   const onFinish = (values) => {
     console.log(values);
@@ -50,7 +50,7 @@ const [form]= Form.useForm();
     setVisible(false);
   };
   return (
-    <Modal title='EDITAR USUARIO'  open={visible} onCancel={()=>setVisible(false)}  footer={[]}>
+    <Modal title='EDITAR USUARIO' open={visible} onCancel={() => setVisible(false)} footer={[]}>
       <Form form={form} onFinish={onFinish} >
         <Form.Item label='Nombre' name='firstName'>
           <Input placeholder='Edite su nombre' />

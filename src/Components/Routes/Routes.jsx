@@ -23,7 +23,7 @@ export const Routes = () => {
               {
                 element:<PrivateZone><Content/></PrivateZone> ,
                 path: '/*'
-              }
+              },
         ]
         );
 
