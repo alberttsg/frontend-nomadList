@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './PostComponent.scss'
 import { LikeButton } from '../LikeButton/LikeButton'
-
 import CommentsPrint from '../Comments/CommentsPrint';
 import { DateComponent } from '../DateComponent/DateComponent';
 
@@ -18,13 +17,10 @@ export const PostComponent = () => {
 
   useEffect(() => {
     const getPost = async () => {
-      console.log(token)
       const res = await axios.get('https://backend-nomadsociety-development.up.railway.app/post/all', headerAxios);
       setPosts(res.data)
     }
     getPost()
-
-    console.log(posts)
   }, [])
 
 
@@ -32,7 +28,6 @@ export const PostComponent = () => {
     <div className='post-container' key={'1111'}>
       {posts && posts.map((post) => {
         const likes = post.likes.length
-        // añadir componete de likes (numero de likes) para actualizar el numero de likes sin refrescar la pagina
         return (
           <div className="post-content" key={post._id}>
             <div >
@@ -48,7 +43,7 @@ export const PostComponent = () => {
             <div>
               <CommentsPrint postId={post._id} />
             </div>
-            <DateComponent datePost={post.createdAt}/>
+             <DateComponent datePost={post.createdAt}/>
           </div>
         )
       })}

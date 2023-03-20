@@ -2,6 +2,7 @@ import React from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime';
 
+
 export const DateComponent = (props) => {
   dayjs.extend(relativeTime)
   const {datePost} = props
@@ -11,6 +12,5 @@ export const DateComponent = (props) => {
     <div>
       {dayjs().to(dayjs(dateString))}
     </div>
-    
   )
 }
