@@ -7,6 +7,7 @@ export const Content = () => {
   const { getUserInfo, user, deleteUser, logOut, reset } = useContext(GlobalContext);
   useEffect(()=>{
     getUserInfo()
+
   },[])
   return (
     <div className='content'>

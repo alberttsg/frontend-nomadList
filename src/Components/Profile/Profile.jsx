@@ -8,29 +8,37 @@ import {
 } from "@ant-design/icons";
 import { Card, Avatar, Modal, message } from "antd";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { GlobalContext } from "../../context/UsersState";
 import EditUser from "../EditUser/EditUser";
 import Post from '../Post/Post'
 import "./Profile.scss";
 
+
 export const Profile = () => {
-  const { getUserInfo, user, deleteUser, logOut, reset } = useContext(GlobalContext);
+  const { getUserInfo, user, deleteUser, logOut, reset, getUserById } = useContext(GlobalContext);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-  
+  const [userObject, setUserObject] = useState({});
+  const { userId } = useParams();
   const handleModal = () => {
     setShowModal(!showModal);
   };
   const showEditModal = () => {
-    getUserInfo();
-
+      getUserInfo();
     setIsModalVisible(true);
   };
   const [isModalVisible, setIsModalVisible] = useState(false);
   useEffect(() => {
-    getUserInfo();
-  }, []);
+    if(!userId){
+      getUserInfo();
+      setUserObject(user);
+    }
+    if(userId){
+      const userById = getUserById(userId)
+      setUserObject(userById)
+      } 
+    }, []);
   const handleDeleteUserClick = (id) => {
     Modal.confirm({
        title: "¿Estas seguro de borrar tu cuenta?",
