@@ -32,7 +32,6 @@ export const Header = () => {
 
   const resetInput = (e) => {
     e.target.value = ''
-    setDisplay('x')
   }
 
   return (
@@ -42,7 +41,7 @@ export const Header = () => {
         <CloseCircleOutlined className='closeBtn' onClick={resetInput} />
       </div>
       <div className='divSearch' id={display}>
-      { searched.length == 0 && <div>No se han encontrado resultados</div>}
+      { searched.length == 0 && <div className='noFounds'>No se han encontrado resultados</div>}
       {searched.map((e, index)=>(
         <div className='searched' key={`searched ${index}`}>
           <div className='divImg'>
