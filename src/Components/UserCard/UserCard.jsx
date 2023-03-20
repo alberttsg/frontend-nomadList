@@ -1,4 +1,4 @@
-import { DeleteTwoTone, EditOutlined, SettingFilled } from '@ant-design/icons';
+import { CheckCircleTwoTone, DeleteTwoTone, EditOutlined, SettingFilled } from '@ant-design/icons';
 import { Avatar, Button, Card, Modal } from 'antd';
 import React, { useContext,useEffect, useState } from 'react';
 import { GlobalContext } from "../../context/UsersState";
@@ -26,19 +26,19 @@ const [isModalVisible, setIsModalVisible] = useState(false);
            <div className='right-info'>
 
             <div className='first-line'>
-              <span>{user.username}</span>
+              <span>{user.username}{' '}<CheckCircleTwoTone  style={{fontSize: '12px'}} twoToneColor={'#3797F0'} /></span>
               {/* <button>siguiendo</button>
               <button>enviar mensaje</button> */}
               <Button type='primary' onClick={() => {
               showEditModal();
               console.log("editando");
-            } }><SettingFilled />Editar perfil</Button>
+            } }><SettingFilled />Editar Perfil</Button>
 
             </div>
             <div className='second-line'>
               {/* <span>{posts.length}{' '}Publicaciones</span> */}
-              <span >{user.followersCount}{' '}Seguidores</span>
-              <span >{user.followedCount}{' '}Seguidos</span>
+              <span >{user.followersCount}{' '}seguidores</span>
+              <span >{user.followedCount}{' '}seguidos</span>
 
             </div>
             <br />
