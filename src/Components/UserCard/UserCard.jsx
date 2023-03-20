@@ -18,7 +18,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
     return (
  
       <div className='card-info-container'>
-        
+        {console.log(user)}
          <div className='left-avatar'><Avatar size={158}
             src={user.avatar}/>
             </div>

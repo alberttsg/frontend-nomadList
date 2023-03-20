@@ -94,7 +94,7 @@ const [form]= Form.useForm();
           <Button onClick={()=>setVisible(false)} style={{background: "gray"}} type='primary'>
             Cancelar
           </Button>
-          <Button type='primary' >
+          <Button type='primary'htmlType="submit" >
             Enviar
           </Button>
           </div>
