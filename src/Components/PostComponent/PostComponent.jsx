@@ -43,8 +43,7 @@ export const PostComponent = () => {
             </div>
 
             <div className="btn-like-coment">
-              <span>{likes} </span>
-              <LikeButton id={post._id} />
+              <LikeButton id={post._id} likes={likes} />
             </div>
             <div>
               <CommentsPrint postId={post._id} />
