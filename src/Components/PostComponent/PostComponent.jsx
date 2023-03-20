@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-
 import axios from 'axios'
 import './PostComponent.scss'
 import { LikeButton } from '../LikeButton/LikeButton'
 
 import CommentsPrint from '../Comments/CommentsPrint';
+import { DateComponent } from '../DateComponent/DateComponent';
 
 
 export const PostComponent = () => {
@@ -48,6 +48,7 @@ export const PostComponent = () => {
             <div>
               <CommentsPrint postId={post._id} />
             </div>
+            <DateComponent datePost={post.createdAt}/>
           </div>
         )
       })}
