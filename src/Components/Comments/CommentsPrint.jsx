@@ -4,7 +4,6 @@ import { deleteComments, getComments } from './ServiceCommentCreate';
 import { CommentOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { GlobalContext } from '../../context/UsersState';
 
-
 const CommentsPrint = (props) => {
   const { postId } = props;
   const [comments, setComments] = useState([]);
@@ -15,7 +14,6 @@ const CommentsPrint = (props) => {
     setClick(!click)
   }
   const deletehandler = (commentId) => {
-    console.log(commentId)
     const deleteComment = async () => {
       await deleteComments(commentId);
       setComments(comments.filter(comment => comment._id !== commentId));
@@ -27,7 +25,6 @@ const CommentsPrint = (props) => {
     const print = async () => {
       const res = await getComments(postId);
       setComments(res);
-      console.log(res)
     }
     print()
   }, [])
@@ -40,11 +37,11 @@ const CommentsPrint = (props) => {
         {click === true && comments && comments.map((comment) => {
           return (
             <div key={comment._id}>
-              <p>{comment.author}</p>
+              <p>{comment.author.displayName}</p>
               <p>{comment.createdAt}</p>
               <p>{comment.content}</p>
               <div>
-                {user._id === comment.author && <div>
+                {user._id === comment.author.displayName && <div>
                   <EditOutlined />
                   <DeleteOutlined onClick={() => deletehandler(comment._id)} />
                 </div>}
