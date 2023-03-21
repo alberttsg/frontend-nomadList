@@ -4,18 +4,18 @@ import { Avatar, Button, Modal } from 'antd';
 import { GlobalContext } from '../../context/UsersState';
 import { useNavigate } from 'react-router';
 
-const FollowedModal = ({ followed, visible, onClose }) => {
+const FollowedModal = ({ followed, visiblers, onClosers }) => {
     const {user} = useContext(GlobalContext)
     const navigate = useNavigate();
     
   return (
     <Modal
       title="Followers"
-      open={visible}
-      onCancel={onClose}
+      open={visiblers}
+      onCancel={onClosers}
       footer={[
-        <Button key="close" onClick={onClose}>
-          Close
+        <Button key="close" onClick={onClosers}>
+          Cerrar
         </Button>,
       ]}
     >
