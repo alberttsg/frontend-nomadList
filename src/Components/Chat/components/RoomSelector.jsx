@@ -44,7 +44,7 @@ export function RoomSelector() {
       <Collapse.Panel header={
         <>
           Chat Rooms
-          <Tooltip title='Add contact'>
+          <Tooltip title='Create room'>
             <Button
               size='small'
               shape='circle'
