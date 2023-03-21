@@ -25,7 +25,6 @@ export const PostComponent = () => {
     getPost()
   }, [])
 
-
   return (
     <>
       {posts && posts.map((post) => {

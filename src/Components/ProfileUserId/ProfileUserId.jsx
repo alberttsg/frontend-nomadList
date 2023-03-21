@@ -80,7 +80,7 @@ const navigate = useNavigate();
         <div className='card-info-container'>
         {console.log(user)}
          <div className='left-avatar'><Avatar size={158}
-            src={user.avatar[0]}/>
+            src={user.avatar}/>
             </div>
            <div className='right-info'>
 

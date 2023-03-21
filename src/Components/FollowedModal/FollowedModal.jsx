@@ -24,7 +24,7 @@ const FollowedModal = ({ followed, visiblers, onClosers }) => {
           <ul style={{cursor: 'pointer'}} key={followed._id} onClick={()=>{
             navigate(`/profile/${followed._id}`)
           }}>
-            <Avatar size={60} src={followed.avatar[0] ||'https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w'} alt={followed.firstName} />
+            <Avatar size={60} src={followed.avatar ||'https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w'} alt={followed.firstName} />
             {followed.firstName}
           </ul >
         ))}

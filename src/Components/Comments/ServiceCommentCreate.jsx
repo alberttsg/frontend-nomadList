@@ -34,3 +34,16 @@ export const deleteComments = async (commentId) => {
   const res = await axios.delete(`https://backend-nomadsociety-development.up.railway.app/comments/${commentId}/`, config);
   return res.data;
 }
+
+export const updateComments = async (commentId,comment) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const config = {
+    headers: {
+      'Authorization': token
+    }
+  }
+  const res = await axios.put(`https://backend-nomadsociety-development.up.railway.app/comments/${commentId}/`,comment, config);
+  console.log(res.data);
+  console.log('nfaskl');
+  return res.data;
+}
