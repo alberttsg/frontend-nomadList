@@ -28,6 +28,7 @@ const FollowersModalById = ({ visible, onClose }) => {
     }
     useEffect(() => {
     setFollowers(user.followers)
+    console.log('followers',followers);
     },[user])
     
    
