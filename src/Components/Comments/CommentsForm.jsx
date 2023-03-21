@@ -31,10 +31,6 @@ const CommentsForm = (props) => {
     form.resetFields();
   }
 
-  useEffect(()=>{
-    getComments()
-  }, [comments]);
-
   return (
     <div>
       <Form
