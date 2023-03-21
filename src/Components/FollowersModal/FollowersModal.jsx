@@ -23,7 +23,7 @@ const FollowersModal = ({  visible, onClose }) => {
           <ul style={{cursor: 'pointer'}} key={follower._id} onClick={()=>{
             navigate(`/profile/${follower._id}`)
           }}>
-            <Avatar size={60} src={follower.avatar[0] ||'https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w'} alt={follower.firstName} />
+            <Avatar size={60} src={follower.avatar ||'https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w'} alt={follower.firstName} />
             {follower.firstName}
           </ul >
         ))}
