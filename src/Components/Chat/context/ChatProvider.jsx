@@ -118,6 +118,7 @@ export const ChatProvider = ({ children }) => {
   }
 
   const createRoom = async (room) => {
+    setActiveRoom(room, room);
     setSocket(state.generalSocket);
     state.generalSocket.emitWithAck('joinRoom', room);
     const rooms = await axios.get(URL + 'chatrooms');
@@ -125,7 +126,6 @@ export const ChatProvider = ({ children }) => {
       type: 'SET_CHATROOMS',
       payload: rooms,
     });
-    setActiveRoom(room);
   }
 
   const search = async (search) => {
