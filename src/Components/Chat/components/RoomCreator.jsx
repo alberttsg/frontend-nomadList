@@ -4,21 +4,26 @@ import { Modal, Form, Input, Button } from 'antd';
 
 export function RoomCreator(props) {
   const { open, onOk, onCancel } = props;
-  const { socket, createRoom } = useContext(ChatContext);
-  const [form] = Form.useForm();
+  const { createRoom } = useContext(ChatContext);
   const [isLoading, setIsLoading] = useState(false);
 
+  const addRoom = async (room) => {
+    setIsLoading(true);
+    await createRoom(room);
+    setIsLoading(false);
+    onCancel();
+  }
+
   return (
-    <Modal open={open} onOk={onOk} onCancel={onCancel}>
-      <Form
-        form={form}
-        layout='horizontal'
-        autoComplete='off'
-        onFinish={(input) => console.log(input)}
-      >
-        <Form.Item name='message' style={{ width: '410px' }}><Input /></Form.Item>
-        <Button type="primary" htmlType="submit">Enviar</Button>
-      </Form>
+    <Modal open={open} onOk={onOk} onCancel={onCancel} closable={false}>
+      <Input.Search
+        loading={isLoading}
+        disabled={isLoading}
+        enterButton='Create'
+        size='big'
+        placeholder='Create a room'
+        onSearch={(input) => addRoom(input)}
+      />
     </Modal>
   )
 }

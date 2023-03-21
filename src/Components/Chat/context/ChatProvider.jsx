@@ -118,8 +118,8 @@ export const ChatProvider = ({ children }) => {
   }
 
   const createRoom = async (room) => {
-    setSocket(generalSocket);
-    generalSocket.emitWithAck('joinRoom', room);
+    setSocket(state.generalSocket);
+    state.generalSocket.emitWithAck('joinRoom', room);
     const rooms = await axios.get(URL + 'chatrooms');
     dispatch({
       type: 'SET_CHATROOMS',
