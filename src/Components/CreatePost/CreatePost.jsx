@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Form } from 'react-router-dom'
 import './CreatePost.scss'
 import { PostCreated } from './PostCreated'
 import { PostEmpty } from './PostEmpty'
@@ -9,35 +8,22 @@ export const CreatePost = () => {
 
   const [formEpmty, setFormEmpty] = useState(false)
   const [modal, setModal] = useState(false)
-  const [form, setForm] = useState({
-    title:'',
-    content:'',
-    image:''
-  })
-
-  const handleSubmit = (e) => {
+ 
+  
+  const handleForm = (e) => {
     e.preventDefault()
-
-    if(form.title == '' || form.content == ''){
+    const objectForm = new FormData(e.target)
+    const formObj = Object.fromEntries(objectForm)
+    if(formObj.title == '' || formObj.content == '' || formObj.image.name == ''){
       setFormEmpty(true)
-
-    setTimeout(()=>{
-      setFormEmpty(false)
-    }, 2000)
+      setTimeout(()=>{
+        setFormEmpty(false)
+      }, 2000)
       return
     }
-
-   // ServiceCreatePost(form)
-    console.log(form)
-
-    setForm({
-      title:'',
-      content:'',
-      image:''
-    })
-
+    ServiceCreatePost(objectForm)
     setModal(true)
-
+    document.getElementById('form').reset();
     setTimeout(()=>{
       setModal(false)
     }, 3000)
@@ -45,12 +31,11 @@ export const CreatePost = () => {
 
   return (
     <div className='container-form'>
-      <form onSubmit={handleSubmit} className='form' enctype="multipart/form-data" method="post">
-        <input placeholder='Title' className='input-title' type='text' name='title' value={form.title} onChange={(e)=>setForm({...form, [e.target.name] : e.target.value})}/>
-        <textarea placeholder='Content' className='textArea' name='content' value={form.content} onChange={(e)=>setForm({...form, [e.target.name] : e.target.value})}/>
-        <input type="file" name='image' onChange={(e)=>setForm({...form, [e.target] : e.target.value})}/>
-        <input className='input-submit' type='submit' value='Create'/>
-        
+      <form onSubmit={handleForm} id='form' className='form' encType="multipart/form-data" method="post">
+        <input placeholder='Title'  className='input-title' type='text' name='title'   />
+        <textarea placeholder='Content' className='textArea' name='content' />
+        <input type="file" name='image' id='image' />
+        <input className='input-submit' type='submit' value='Create'/>   
       </form>
       {modal && <PostCreated/>}
       {formEpmty && <PostEmpty/>}
