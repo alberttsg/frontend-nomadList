@@ -43,10 +43,10 @@ const handleShowFollowers = async () => {
 
             </div>
             <div className='second-line'>
-              {/* <span>{posts.length}{' '}Publicaciones</span> */}
+           
               <span onClick={handleShowFollowers}>{user.followersCount}{' '}seguidores</span>
               <FollowersModal visible={visible} onClose={() => setVisible(false)}/>
-              {/* <span >{user.followedCount}{' '}seguidos</span> */}
+        
               <span onClick={handleShowFollowers}>{user.followedCount}{' '}seguidos</span>
               <FollowedModal visible={visible} onClose={() => setVisible(false)}/>
 

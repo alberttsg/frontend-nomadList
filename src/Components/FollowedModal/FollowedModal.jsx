@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 const FollowedModal = ({ followed, visible, onClose }) => {
     const {user} = useContext(GlobalContext)
     const navigate = useNavigate();
+    
   return (
     <Modal
       title="Followers"
