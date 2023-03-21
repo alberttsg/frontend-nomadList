@@ -28,7 +28,7 @@ const handleShowFollowers = async () => {
       <div className='card-info-container'>
         {console.log(user)}
          <div className='left-avatar'><Avatar size={158}
-            src={user.avatar}/>
+            src={user.avatar[0]}/>
             </div>
            <div className='right-info'>
 
