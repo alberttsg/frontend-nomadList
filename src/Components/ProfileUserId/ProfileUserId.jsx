@@ -10,6 +10,8 @@ import { CheckCircleTwoTone, CommentOutlined, ThunderboltFilled } from '@ant-des
 import Meta from 'antd/es/card/Meta';
 import { LikeButton } from '../LikeButton/LikeButton';
 import { DateComponent } from '../DateComponent/DateComponent';
+import FollowersModal from '../FollowersModal/FollowersModal';
+import FollowedModal from '../FollowedModal/FollowedModal';
 import FollowedModalById from '../FollowedModalById/FollowedModalById';
 
 const ProfileUserId = () => {
@@ -20,7 +22,12 @@ const ProfileUserId = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const { userId } = useParams();
-
+ const [visible, setVisible] = useState(false);
+  const handleShowFollowers = async () => {
+    console.log('kndakdhik')
+      setVisible(true);
+    
+  };
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'));
     const fetchData = async () => {
@@ -49,7 +56,6 @@ const ProfileUserId = () => {
 
     fetchData();
   }, [userId]);
-
   if (!user) {
       return <div>Loading...</div>;
   }

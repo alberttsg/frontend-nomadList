@@ -13,6 +13,7 @@ const CommentsPrint = (props) => {
 
   const clickHandler = () => {
     setClick(!click)
+    print()
   }
   
   const deletehandler = (commentId) => {
@@ -22,14 +23,10 @@ const CommentsPrint = (props) => {
     }
     deleteComment();
   }
-
-  useEffect(() => {
-    const print = async () => {
-      const res = await getComments(postId);
-      setComments(res);
-    }
-    print()
-  }, [comments]);
+  const print = async () => {
+    const res = await getComments(postId);
+    setComments(res);
+  }
 
   return (
     <div>
