@@ -1,0 +1,14 @@
+
+.post-content {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  width:  80%;
+  margin: 1rem;
+  padding: 1rem;
+  .post-img {
+    object-fit: cover;
+    width: 100%;
+  }
+}

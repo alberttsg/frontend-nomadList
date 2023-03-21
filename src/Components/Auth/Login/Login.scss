@@ -1,7 +1,7 @@
 @import url(//fonts.googleapis.com/css?family=Monoton);
 @import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&family=Noto+Sans+Mono:wght@200&family=PT+Sans&family=Roboto+Mono:wght@100;200&family=Roboto:ital,wght@0,100;1,100&family=Teko&family=Tilt+Neon&display=swap');
 
-//APLICANDO CAMBIOS 
+
 * {
   margin: 0;
   padding: 0;
@@ -55,7 +55,7 @@
     align-items: center;
     margin-left: 1%;
 
-    :where(.css-dev-only-do-not-override-1me4733).ant-btn-link {
+    .register-button {
       color: black;
       margin: 5px;
     }
@@ -203,6 +203,7 @@
 }
 
 @media (max-width: 670px) {
+
   .container {
     flex-direction: column;
     justify-content: space-around;

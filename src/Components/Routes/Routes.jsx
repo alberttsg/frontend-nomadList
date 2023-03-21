@@ -3,6 +3,7 @@ import { PrivateZone } from '../../guards/PrivateZone';
 import { Content } from '../Content/Content';
 import { CreatePost } from '../CreatePost/CreatePost';
 import { Profile } from '../Profile/Profile';
+import ProfileUserId from '../ProfileUserId/ProfileUserId';
 
 export const Routes = () => {
   return useRoutes(
@@ -23,7 +24,11 @@ export const Routes = () => {
               {
                 element:<PrivateZone><Content/></PrivateZone> ,
                 path: '/*'
-              }
+              },
+              {
+                element:<PrivateZone><ProfileUserId/></PrivateZone> ,
+                path: '/profile/:userId'
+              },
         ]
         );
 
