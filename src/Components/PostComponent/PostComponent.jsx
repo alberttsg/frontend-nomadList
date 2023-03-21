@@ -6,8 +6,8 @@ import { Spin, Alert } from 'antd';
 export const PostComponent = () => {
   const [page, setPage] = useState(1)
   const { posts, hasMore, loading, error } = getPosts(page);
-
   const observer = useRef();
+  
   const lastPostElementRef = useCallback(node => {
     if (loading) return;
     if (observer.current) observer.current.disconnect();
