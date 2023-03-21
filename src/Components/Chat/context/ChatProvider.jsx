@@ -10,6 +10,7 @@ const initialState = {
   activeRoom: null,
   contacts: [],
   chatrooms: [],
+  searchResult: [],
 }
 
 export const ChatContext = createContext(initialState);
@@ -50,15 +51,16 @@ export const ChatProvider = ({ children }) => {
     });
   }
 
-  const setActiveRoom = (room) => {
+  const setActiveRoom = (room, name) => {
     dispatch({
       type: 'SET_ACTIVE_ROOM',
-      payload: room,
+      payload: { room, name },
     });
   }
 
   const setContacts = async () => {
-    const contacts = await axios.get(URL + 'contacts');
+    const token = JSON.parse(localStorage.getItem('token'));
+    const contacts = await axios.get(URL + 'contacts?token=' + token);
     dispatch({
       type: 'SET_CONTACTS',
       payload: contacts,
@@ -73,15 +75,85 @@ export const ChatProvider = ({ children }) => {
     });
   }
 
+  const addContact = async (contactId) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const body = { contactId: contactId };
+    const contacts = await axios.post(URL + 'addContact?token=' + token, body);
+    const addedUsers = contacts.data.map(item => item.userId);
+    const checkAdded = state.searchResult.map(e => {
+      return {
+        ...e,
+        added: addedUsers.includes(e._id),
+      }
+    })
+    dispatch({
+      type: 'SET_SEARCH',
+      payload: checkAdded,
+    });
+    dispatch({
+      type: 'SET_CONTACTS',
+      payload: contacts,
+    });
+  }
+
+  const removeContact = async (contactId) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    const body = { contactId: contactId };
+    const contacts = await axios.post(URL + 'removeContact?token=' + token, body);
+    const addedUsers = contacts.data.map(item => item.userId);
+    const checkAdded = state.searchResult.map(e => {
+      return {
+        ...e,
+        added: addedUsers.includes(e._id),
+      }
+    })
+    dispatch({
+      type: 'SET_SEARCH',
+      payload: checkAdded,
+    });
+    dispatch({
+      type: 'SET_CONTACTS',
+      payload: contacts,
+    });
+  }
+
+  const createRoom = async (room) => {
+    setSocket(generalSocket);
+    generalSocket.emitWithAck('joinRoom', room);
+    const rooms = await axios.get(URL + 'chatrooms');
+    dispatch({
+      type: 'SET_CHATROOMS',
+      payload: rooms,
+    });
+    setActiveRoom(room);
+  }
+
+  const search = async (search) => {
+    const searchResult = await axios.get(URL + 'find/' + search);
+    const users = searchResult.data;
+    const addedUsers = state.contacts.map(item => item.userId);
+    const checkAdded = users.map(e => {
+      return {
+        ...e,
+        added: addedUsers.includes(e._id),
+      }
+    })
+    dispatch({
+      type: 'SET_SEARCH',
+      payload: checkAdded,
+    });
+  }
+
   return (
     <ChatContext.Provider
       value={{
         socket: state.socket, setSocket,
         personalSocket: state.personalSocket,
         generalSocket: state.generalSocket,
-        activeRoom: state.activeRoom, setActiveRoom,
-        contacts: state.contacts, setContacts,
-        chatrooms: state.chatrooms, setChatrooms,
+        activeRoom: state.activeRoom, activeRoomName: state.activeRoomName, setActiveRoom,
+        contacts: state.contacts, setContacts, addContact, removeContact, 
+        chatrooms: state.chatrooms, setChatrooms, createRoom,
+        searchResult: state.searchResult, search,
       }}
     >
       {children}

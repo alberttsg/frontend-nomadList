@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../context/UsersState';
 import { ChatContext } from '../context/ChatProvider';
 import { List, ConfigProvider } from 'antd';
-import '../styles/MessageBoard.scss';
+import '../styles/chatStyles.scss';
 
 export function MessageBoard() {
   const { user } = useContext(GlobalContext);
@@ -53,11 +53,12 @@ export function MessageBoard() {
     <ConfigProvider renderEmpty={() => <span>No messages</span>}>
       <List
         split={false}
-        bordered={false}
+        bordered={true}
         itemLayout='vertical'
         dataSource={events}
+        style={{ height: '95%', overflowY: 'auto' }}
         renderItem={(event, index) => (
-          <List.Item>
+          <List.Item style={{ padding: '5px 5px' }}>
             <div key={index} className={event.type}>{event.value}</div>
           </List.Item>
         )}

@@ -29,7 +29,7 @@ export function ChatInput() {
         autoComplete='off'
         onFinish={(input) => emitMessage(input)}
       >
-        <Form.Item name='message'><Input /></Form.Item>
+        <Form.Item name='message' style={{ width: '410px' }}><Input /></Form.Item>
         <Button type="primary" htmlType="submit">Enviar</Button>
       </Form>
     </>

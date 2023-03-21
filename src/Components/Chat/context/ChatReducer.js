@@ -11,7 +11,6 @@ const chatReducer = (state, action) => {
         personalSocket: action.payload,
       };
     case 'SET_GENERAL_SOCKET':
-      console.log(action.payload)
       return {
         ...state,
         generalSocket: action.payload,
@@ -19,7 +18,8 @@ const chatReducer = (state, action) => {
     case 'SET_ACTIVE_ROOM':
       return {
         ...state,
-        activeRoom: action.payload,
+        activeRoom: action.payload.room,
+        activeRoomName: action.payload.name,
       };
     case 'SET_CONTACTS':
       return {
@@ -30,6 +30,11 @@ const chatReducer = (state, action) => {
       return {
         ...state,
         chatrooms: action.payload.data,
+      };
+    case 'SET_SEARCH':
+      return {
+        ...state,
+        searchResult: action.payload,
       };
     default:
       return state;
