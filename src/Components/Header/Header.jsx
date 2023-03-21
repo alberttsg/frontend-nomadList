@@ -32,7 +32,7 @@ export const Header = () => {
   const resetInput = (e) => {
     e.target.value = ''
   }
-console.log(9)
+
   return (
     <div className='header'>
       <div className='divInput'>
