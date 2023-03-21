@@ -10,7 +10,7 @@ const FollowedModal = ({ followed, visible, onClose }) => {
     
   return (
     <Modal
-      title="Followers"
+      title="Followed"
       open={visible}
       onCancel={onClose}
       footer={[
