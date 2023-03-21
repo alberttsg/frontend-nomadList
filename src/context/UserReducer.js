@@ -42,6 +42,11 @@ const users = (state, action) => {
         ...state,
         users: state.users
       };
+      case "GET_USER_BY_ID":
+      return {
+       ...state,
+        user: action.payload,
+      };
     default:
       return state;
   }
