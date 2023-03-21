@@ -10,6 +10,8 @@ import { CheckCircleTwoTone, CommentOutlined, ThunderboltFilled } from '@ant-des
 import Meta from 'antd/es/card/Meta';
 import { LikeButton } from '../LikeButton/LikeButton';
 import { DateComponent } from '../DateComponent/DateComponent';
+import FollowersModal from '../FollowersModal/FollowersModal';
+import FollowedModal from '../FollowedModal/FollowedModal';
 
 const ProfileUserId = () => {
     const [loading, setLoading] = useState(true);
@@ -17,7 +19,12 @@ const ProfileUserId = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const { userId } = useParams();
-
+ const [visible, setVisible] = useState(false);
+  const handleShowFollowers = async () => {
+    console.log('kndakdhik')
+      setVisible(true);
+    
+  };
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'));
     const fetchData = async () => {
@@ -46,7 +53,6 @@ const ProfileUserId = () => {
 
     fetchData();
   }, [userId]);
-
   if (!user) {
       return <div>Loading...</div>;
   }
@@ -73,8 +79,11 @@ const ProfileUserId = () => {
             </div>
             <div className='second-line'>
               {/* <span>{posts.length}{' '}Publicaciones</span> */}
-              <span >{user.followersCount}{' '}seguidores</span>
-              <span >{user.followedCount}{' '}seguidos</span>
+              <span onClick={handleShowFollowers}>{user.followersCount}{' '}seguidores</span>
+              <FollowersModal visible={visible} onClose={() => setVisible(false)}/>
+        
+              <span onClick={handleShowFollowers}>{user.followedCount}{' '}seguidos</span>
+              <FollowedModal visible={visible} onClose={() => setVisible(false)}/>
 
             </div>
             <br />
