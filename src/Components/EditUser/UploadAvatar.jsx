@@ -13,7 +13,7 @@ export const UploadAvatar = () => {
     }
     fmData.append("image", file);
     try {
-      const res = await axios.post('http://localhost:3000/users/avatar/', fmData, config);
+      const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/users/avatar/', fmData, config);
       onSuccess("Ok");
       console.log("server res: ", res);
     }catch(err){
