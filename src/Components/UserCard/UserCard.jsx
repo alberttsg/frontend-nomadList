@@ -5,17 +5,24 @@ import { GlobalContext } from "../../context/UsersState";
 import EditUser from "../../Components/EditUser/EditUser";
 import { useNavigate } from 'react-router';
 import './UserCard.scss';
+import FollowersModal from '../FollowersModal/FollowersModal';
+import FollowedModal from '../FollowedModal/FollowedModal';
 
 
 
 const UserCard = () => {
- 
+  const [visible, setVisible] = useState(false);
   const { getUserInfo, user, deleteUser, logOut, reset, getUserById } = useContext(GlobalContext);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const showEditModal = () => {
     getUserInfo();
   setIsModalVisible(true);
 };
-const [isModalVisible, setIsModalVisible] = useState(false);
+const handleShowFollowers = async () => {
+  console.log('kndakdhik')
+    setVisible(true);
+  
+};
     return (
  
       <div className='card-info-container'>
@@ -37,8 +44,11 @@ const [isModalVisible, setIsModalVisible] = useState(false);
             </div>
             <div className='second-line'>
               {/* <span>{posts.length}{' '}Publicaciones</span> */}
-              <span >{user.followersCount}{' '}seguidores</span>
-              <span >{user.followedCount}{' '}seguidos</span>
+              <span onClick={handleShowFollowers}>{user.followersCount}{' '}seguidores</span>
+              <FollowersModal visible={visible} onClose={() => setVisible(false)}/>
+              {/* <span >{user.followedCount}{' '}seguidos</span> */}
+              <span onClick={handleShowFollowers}>{user.followedCount}{' '}seguidos</span>
+              <FollowedModal visible={visible} onClose={() => setVisible(false)}/>
 
             </div>
             <br />
