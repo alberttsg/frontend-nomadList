@@ -22,12 +22,7 @@ const ProfileUserId = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const { userId } = useParams();
- const [visible, setVisible] = useState(false);
-  const handleShowFollowers = async () => {
-    console.log('kndakdhik')
-      setVisible(true);
-    
-  };
+
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'));
     const fetchData = async () => {
