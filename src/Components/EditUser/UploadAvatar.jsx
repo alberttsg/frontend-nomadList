@@ -9,11 +9,11 @@ export const UploadAvatar = () => {
     const { onSuccess, onError, file, onProgress } = options;
     const fmData = new FormData();
     const config = {
-      headers: { Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MGUyZTY4MjEyOTE3ZWViNDU5ZjFkYyIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE2Nzk0MDM0NjQsImV4cCI6MTY3OTQxNDI2NH0.garlrsW8e_SAwKceiv_sqcCexuL0xdgIcbDebbR29NM'},
+      headers: { Authorization: token},
     }
     fmData.append("image", file);
     try {
-      const res = await axios.post('http://localhost:3000/users/avatar/', fmData, config);
+      const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/users/avatar/', fmData, config);
       onSuccess("Ok");
       console.log("server res: ", res);
     }catch(err){
