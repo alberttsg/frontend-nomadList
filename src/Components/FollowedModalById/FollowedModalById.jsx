@@ -5,7 +5,7 @@ import { GlobalContext } from '../../context/UsersState';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router';
 
-const FollowedModalById = ({  visible, onClose }) => {
+const FollowedModalById = ({  visiblers, onClosers }) => {
   const [followed, setFollowed] = useState([]);
   const [user,setUser] = useState([]);
   const {userId} = useParams();
@@ -34,10 +34,10 @@ const FollowedModalById = ({  visible, onClose }) => {
   return (
     <Modal
       title="Followed"
-      open={visible}
-      onCancel={onClose}
+      open={visiblers}
+      onCancel={onClosers}
       footer={[
-        <Button key="close" onClick={onClose}>
+        <Button key="close" onClick={onClosers}>
           Close
         </Button>,
       ]}

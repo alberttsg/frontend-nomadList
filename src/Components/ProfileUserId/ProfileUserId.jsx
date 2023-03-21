@@ -17,6 +17,8 @@ import FollowersModalById from '../FollowersModalByid/FollowersModalById';
 
 const ProfileUserId = () => {
   const [visible, setVisible] = useState(false);
+  const [visiblers, setVisiblers] = useState(false);
+
   
 
     const [loading, setLoading] = useState(true);
@@ -66,6 +68,11 @@ const navigate = useNavigate();
       setVisible(true);
     
   };
+  const handleShowFollowed = async () => {
+    console.log('kndakdhik')
+      setVisiblers(true);
+    
+  };
     return (
         <>
         <br />
@@ -91,8 +98,8 @@ const navigate = useNavigate();
               <span onClick={handleShowFollowers}>{user.followedCount}{' '}seguidores</span>
               <FollowersModalById visible={visible} onClose={() => setVisible(false)}/>
 
-              <span onClick={handleShowFollowers}>{user.followedCount}{' '}seguidos</span>
-              <FollowedModalById followed={followed} visible={visible} onClose={() => setVisible(false)}/>
+              <span onClick={handleShowFollowed}>{user.followedCount}{' '}seguidos</span>
+              <FollowedModalById  visiblers={visiblers} onClosers={() => setVisiblers(false)}/>
 
             </div>
             <br />
