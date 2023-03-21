@@ -1,0 +1,29 @@
+div {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+.message {
+  text-align: left;
+  border-radius: 5px 5px 5px 0;
+  padding: 5px;
+  background: rgb(198, 230, 241);
+}
+
+.inc_message {
+  text-align: right;
+  border-radius: 5px 5px 0 5px;
+  padding: 5px;
+  background: rgb(144, 242, 185);
+}
+
+.warning {
+  font-style: italic;
+  text-decoration: underline;
+  text-align: center;
+  color: silver;
+}
+
+.active {
+  background: lightgreen;
+}
