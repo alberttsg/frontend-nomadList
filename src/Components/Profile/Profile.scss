@@ -1,10 +1,10 @@
 .profile-container{
-    display: flex;
+    display: block;
     justify-content: space-around;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     margin: 10px;
     overflow-y: scroll;
 
