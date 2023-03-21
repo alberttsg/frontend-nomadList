@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
-import { createComment } from './ServiceCommentCreate';
+import { createComment, getComments } from './ServiceCommentCreate';
 import { GlobalContext } from '../../context/UsersState';
 
 
@@ -11,20 +11,25 @@ const CommentsForm = (props) => {
 
   const onFinish = async (values) => {
     const content = values.content;
-    const currentDate = new Date().toLocaleString("es-ES");;
+
     const newComment = {
-      _id: '',
       author: user._id,
       post: postId,
       content: content,
-      createdAt: currentDate,
     }
-    createComment(newComment, postId);
-    const update = [...comments, newComment];
+
+    const commentary = {
+      author: {displayName: user.displayName},
+      post: postId,
+      content: content,
+    }
+
+    await createComment(newComment, postId);
+    const update = [...comments, commentary];
     setComments(update)
+    console.log(update)
     form.resetFields();
   }
-
 
   return (
     <div>
@@ -36,7 +41,14 @@ const CommentsForm = (props) => {
         }}
         onFinish={onFinish}
       >
-        <Form.Item name='content'>
+        <Form.Item 
+        name='content'
+        rules={[
+          {
+            required: true,
+            message: 'Please put a message',
+          },
+        ]}>
           <Input placeholder="Leave your comments" />
         </Form.Item>
         <Form.Item >
