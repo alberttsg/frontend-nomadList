@@ -17,6 +17,7 @@ const CommentsPrint = (props) => {
 
   const clickHandler = () => {
     setClick(!click)
+    print()
   }
 
   const deletehandler = (commentId) => {

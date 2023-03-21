@@ -1,16 +1,33 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect} from 'react';
 import axios from 'axios';
 import { Avatar, Button, Modal } from 'antd';
 import { GlobalContext } from '../../context/UsersState';
 import { useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 
-const FollowedModal = ({ followed, visible, onClose }) => {
-    const {user} = useContext(GlobalContext)
-    const navigate = useNavigate();
+const FollowedModalById = ({ followed, visible, onClose }) => {
+  const [data, setData] = useState([])
+  const {userId} = useParams();
+  console.log(userId)
+  const navigate = useNavigate();
+  const token = JSON.parse(localStorage.getItem('token'));
+  useEffect(() => {
+    getFollowers();
+  },[]);
+    const getFollowers = async () => {
+      const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/users/id/${userId}`, {
+        headers: {
+          Authorization: token
+        }
+      });
+      console.log(res.data);
+      return res.data;
+    }
     
+   
   return (
     <Modal
-      title="Followers"
+      title="Followed"
       open={visible}
       onCancel={onClose}
       footer={[
@@ -32,4 +49,4 @@ const FollowedModal = ({ followed, visible, onClose }) => {
     </Modal>
   );
 };
-export default FollowedModal;
+export default FollowedModalById;
