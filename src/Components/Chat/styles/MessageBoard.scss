@@ -1,0 +1,19 @@
+div {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+.message {
+  text-align: left;
+}
+
+.inc_message {
+  text-align: right;
+}
+
+.warning {
+  font-style: italic;
+  text-decoration: underline;
+  text-align: center;
+  color: silver;
+}
