@@ -4,7 +4,7 @@ import { Avatar, Button, Modal } from 'antd';
 import { GlobalContext } from '../../context/UsersState';
 import { useNavigate } from 'react-router';
 
-const FollowersModal = ({ followers, visible, onClose }) => {
+const FollowersModal = ({  visible, onClose }) => {
     const {user} = useContext(GlobalContext)
     const navigate = useNavigate();
   return (

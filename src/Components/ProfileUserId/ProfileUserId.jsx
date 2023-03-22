@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import './ProfileUserId.scss';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalContext } from '../../context/UsersState';
 import { Avatar, Button, Card, Spin } from 'antd';
@@ -10,16 +10,30 @@ import { CheckCircleTwoTone, CommentOutlined, ThunderboltFilled } from '@ant-des
 import Meta from 'antd/es/card/Meta';
 import { LikeButton } from '../LikeButton/LikeButton';
 import { DateComponent } from '../DateComponent/DateComponent';
+import FollowersModal from '../FollowersModal/FollowersModal';
+import FollowedModal from '../FollowedModal/FollowedModal';
+import FollowedModalById from '../FollowedModalById/FollowedModalById';
+import FollowersModalById from '../FollowersModalByid/FollowersModalById';
 
 const ProfileUserId = () => {
+  const [visible, setVisible] = useState(false);
+  const [visiblers, setVisiblers] = useState(false);
+
+  
+
     const [loading, setLoading] = useState(true);
 //   const { editUser, user, getUserInfo, deleteUser } = useContext(GlobalContext);
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const { userId } = useParams();
-
+const navigate = useNavigate();
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'));
+    const userlocal = JSON.parse(localStorage.getItem('user'));
+    if(userlocal._id === userId){
+    navigate('/profile');
+    }
+    console.log('userLocal', userlocal);
     const fetchData = async () => {
       try {
         const responseUser = await axios.get(`https://backend-nomadsociety-development.up.railway.app/users/id/${userId}`, {
@@ -46,10 +60,19 @@ const ProfileUserId = () => {
 
     fetchData();
   }, [userId]);
-
   if (!user) {
       return <div>Loading...</div>;
   }
+  const handleShowFollowers = async () => {
+    console.log('kndakdhik')
+      setVisible(true);
+    
+  };
+  const handleShowFollowed = async () => {
+    console.log('kndakdhik')
+      setVisiblers(true);
+    
+  };
     return (
         <>
         <br />
@@ -72,9 +95,11 @@ const ProfileUserId = () => {
 
             </div>
             <div className='second-line'>
-              {/* <span>{posts.length}{' '}Publicaciones</span> */}
-              <span >{user.followersCount}{' '}seguidores</span>
-              <span >{user.followedCount}{' '}seguidos</span>
+              <span onClick={handleShowFollowers}>{user.followedCount}{' '}seguidores</span>
+              <FollowersModalById visible={visible} onClose={() => setVisible(false)}/>
+
+              <span onClick={handleShowFollowed}>{user.followedCount}{' '}seguidos</span>
+              <FollowedModalById  visiblers={visiblers} onClosers={() => setVisiblers(false)}/>
 
             </div>
             <br />
@@ -85,7 +110,7 @@ const ProfileUserId = () => {
              
               <div><b>Hobbie:</b> { ' ' + user.hobbie}</div>
            
-            </div>
+            </div> 
 
            </div>
          
@@ -102,7 +127,7 @@ const ProfileUserId = () => {
             {console.log(posts)}
             {posts &&
               posts.map((post) => {
-                const likes = post.likes.length;
+                // const likes = post.likes.length;
                 return (
                   <Card
                     key={post._id}
@@ -124,7 +149,7 @@ const ProfileUserId = () => {
                     <br />
                     <div className="orginze-buttons">
                       <div>
-                        <LikeButton id={post._id} likes={likes} />{" "}
+                        {/* <LikeButton id={post._id} likes={likes} />{" "} */}
                         <CommentOutlined
                           onClick={() => {
                             return <CommentsPrint postId={post._id} />;

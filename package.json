@@ -18,12 +18,25 @@
     "react-redux": "^8.0.5",
     "react-router": "^6.8.2",
     "react-router-dom": "^6.8.2",
-    "sass": "^1.58.3"
+    "sass": "^1.58.3",
+    "socket.io-client": "^4.6.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
     "vite": "^4.1.0"
-  }
+  },
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alberttsg/frontend-nomadList.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alberttsg/frontend-nomadList/issues"
+  },
+  "homepage": "https://github.com/alberttsg/frontend-nomadList#readme",
+  "description": ""
 }

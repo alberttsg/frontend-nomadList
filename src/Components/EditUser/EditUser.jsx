@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Button, Modal, Form, Input, Select, message } from "antd";
 import { GlobalContext } from "../../context/UsersState";
 import './EditUser.scss'
+import { UploadAvatar } from "./UploadAvatar";
 
 
 const EditUser = ({ visible, setVisible}) => {
@@ -83,7 +84,7 @@ const EditUser = ({ visible, setVisible}) => {
           <Input placeholder='¿Qué te apasiona?' />
         </Form.Item>
         <Form.Item label='Foto de Perfil' name='avatar'>
-          <Input placeholder='Ingrese la URL de la foto de Perfil' />
+        <UploadAvatar />
         </Form.Item>
         <Form.Item >
           <div className="handle-user-actions">
