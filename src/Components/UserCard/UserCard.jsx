@@ -1,7 +1,7 @@
 import { CheckCircleTwoTone, DeleteTwoTone, EditOutlined, SettingFilled } from '@ant-design/icons';
 import { Avatar, Button, Card, Modal } from 'antd';
 import React, { useContext,useEffect, useState } from 'react';
-import { GlobalContext } from "../../context/UsersState";
+import { GlobalContext } from "../../context/GlobalState";
 import EditUser from "../../Components/EditUser/EditUser";
 import { useNavigate } from 'react-router';
 import './UserCard.scss';

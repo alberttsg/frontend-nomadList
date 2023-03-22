@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import { Avatar, Button, Modal } from 'antd';
-import { GlobalContext } from '../../context/UsersState';
+import { GlobalContext } from '../../context/GlobalState';
 import { useNavigate } from 'react-router';
 
 const FollowersModal = ({  visible, onClose }) => {

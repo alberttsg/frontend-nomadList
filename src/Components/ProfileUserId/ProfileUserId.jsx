@@ -4,7 +4,7 @@ import './ProfileUserId.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { GlobalContext } from '../../context/UsersState';
+import { GlobalContext } from '../../context/GlobalState';
 import { Avatar, Button, Card, Spin } from 'antd';
 import { CheckCircleTwoTone, CommentOutlined, ThunderboltFilled } from '@ant-design/icons';
 import Meta from 'antd/es/card/Meta';

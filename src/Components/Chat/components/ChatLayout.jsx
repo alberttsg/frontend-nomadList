@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { GlobalContext } from '../../../context/UsersState';
+import { GlobalContext } from '../../../context/GlobalState';
 import { ChatProvider } from '../context/ChatProvider';
 import { RoomSelector } from './RoomSelector';
 import { ActiveRoom } from './ActiveRoom';

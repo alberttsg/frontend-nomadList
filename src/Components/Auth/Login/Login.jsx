@@ -1,15 +1,14 @@
-import { Button, Form, Input, Modal, notification } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GlobalContext } from '../../../context/UsersState';
+import { UserContext } from '../../../context/UsersState';
 import { Register } from '../Register/Register';
 import './Login.scss';
+import { Button, Form, Input, Modal, notification } from 'antd';
 
 
 export const Login = () => {
   const [form] = Form.useForm();
-
-  const { login, isError, reset } = useContext(GlobalContext);
+  const { login } = useContext(UserContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 

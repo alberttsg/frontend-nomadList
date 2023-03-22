@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Button, Modal, Form, Input, Select, message } from "antd";
-import { GlobalContext } from "../../context/UsersState";
+import { GlobalContext } from "../../context/GlobalState";
 import './EditUser.scss'
 import { UploadAvatar } from "./UploadAvatar";
 

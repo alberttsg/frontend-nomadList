@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect} from 'react';
 import axios from 'axios';
 import { Avatar, Button, Modal } from 'antd';
-import { GlobalContext } from '../../context/UsersState';
+import { GlobalContext } from '../../context/GlobalState';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router';
 

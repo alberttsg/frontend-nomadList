@@ -1,13 +1,13 @@
 import React from "react";
 import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../../context/UsersState";
+import { GlobalContext } from "../../context/GlobalState";
 import axios from "axios";
 import "./UserPosts.scss";
 import { Button, Card, Spin } from "antd";
 import Meta from "antd/es/card/Meta";
-import { LikeButton } from "../LikeButton/LikeButton";
+import { LikeButton } from "../Post/Buttons/LikeButton";
 import { CommentOutlined, ThunderboltFilled } from "@ant-design/icons";
-import CommentsPrint from "../Comments/CommentsPrint";
+import CommentsPrint from "../Post/Buttons/CommentsPrint";
 import { DateComponent } from "../DateComponent/DateComponent";
 
 const UsersPosts = () => {

@@ -1,0 +1,1 @@
+export const URL = 'https://backend-nomadsociety-development.up.railway.app/';

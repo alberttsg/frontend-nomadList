@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../context/UsersState';
+import { GlobalContext } from '../../../context/GlobalState';
 import { ChatContext } from '../context/ChatProvider';
 import { List, ConfigProvider } from 'antd';
 import '../styles/chatStyles.scss';

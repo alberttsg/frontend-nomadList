@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
 import { createComment, getComments } from './ServiceCommentCreate';
-import { GlobalContext } from '../../context/UsersState';
+import { GlobalContext } from '../../../../context/GlobalState';
 
 
 const CommentsForm = (props) => {

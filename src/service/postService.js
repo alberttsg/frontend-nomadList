@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import { URL } from './endpoints';
 import axios from 'axios';
 
-export default function getPosts(pageNumber) {
+export function paginatePosts(pageNumber) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [posts, setPosts] = useState([])
@@ -14,7 +15,7 @@ export default function getPosts(pageNumber) {
     let cancel;
     axios({
       method: 'GET',
-      url: 'https://backend-nomadsociety-development.up.railway.app/post/all',
+      url: URL + 'post/all',
       params: { page: pageNumber },
       headers: { Authorization: token },
       cancelToken: new axios.CancelToken(c => cancel = c)

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import CommentsForm from './CommentsForm';
-import { deleteComments, getComments, updateComments } from './ServiceCommentCreate';
+import CommentsForm from './Comments/CommentsForm';
+import { deleteComments, getComments, updateComments } from './Comments/ServiceCommentCreate';
 import { CommentOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { GlobalContext } from '../../context/UsersState';
-import { DateComponent } from '../DateComponent/DateComponent';
+import { GlobalContext } from '../../../context/GlobalState';
+import { DateComponent } from '../../DateComponent/DateComponent';
 import { Modal, Input, Form, Button } from 'antd'
 
 const CommentsPrint = (props) => {
