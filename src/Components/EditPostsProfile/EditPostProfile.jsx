@@ -6,48 +6,29 @@ import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
 import { PostContext } from "../../context/PostContext/PostState";
 
-const EditPostProfile = ({ visible, setVisible, selectedPostId , content, title}) => {
+const EditPostProfile = ({ visible, setVisible, selectedPost }) => {
     const {editPost, deletePost, getPostById} = useContext(PostContext);
-    const handleDeleteUserClick = (id) => {
-        setVisible(false);
-        Modal.confirm({
-           title: "¿Estas seguro de borrar tu post?",
-           content: " Esta acción no se puede deshacer! No podrás revertirlo!",
-           okText: "SI",
-           okType: "danger",
-           cancelText: "No",
-           onOk() {
-             deletePost(id);
-            message.success(' BORRASTE EL POST');
-           },
-           onCancel() {
-             message.error('NO BORRASTE EL POST');
-             console.log("Cancel");
-            //  setVisible(true)
-           },
-          });
-        }
+    const {user} = useContext(GlobalContext);
+    
     const [form] = Form.useForm();
-        form.setFieldsValue({
-            title: title,
-            content: content
-        });
-        console.log('titulooooooooooo',title)
-    // useEffect(() => {
-    //     if (selectedPostId) {
-    //         console.log(selectedPostId)
-    //        const post = getPostById(selectedPostId);
-    //         form.setFieldsValue({
-    //           title,
-    //           content 
-    //         });
-    //       }
-    //     }, [selectedPostId, form]);
-    const onFinish = (values, id  ) => {
-      console.log('VALOREEEEES:', values, 'id:', id);
-      editPost(id, values);
-      setVisible(false);
+    // const token = JSON.parse(localStorage.getItem("token"));
+
+  
+    
+    useEffect(() => {
+        if (selectedPost) {
+            getPostById(selectedPost._id);
+            form.setFieldsValue(selectedPost);
+          }
+        }, [selectedPost, form]);
+        
+    const onFinish = (values ) => {
+        
+        editPost(selectedPost._id, values);
+        setVisible(false);
+        message.success(' EDITADO CORRECTAMENTE ');
     };
+
     return (
         <Modal title='EDITAR POST' open={visible} onCancel={() => setVisible(false)} footer={[]}>
       <Form form={form} onFinish={onFinish} >
@@ -56,9 +37,8 @@ const EditPostProfile = ({ visible, setVisible, selectedPostId , content, title}
         </Form.Item>
         <Form.Item  name='content'>
             <TextArea 
-            value={content}
             showCount
-            maxLength={200}
+            maxLength={5000}
             style={{ height: 120, marginBottom: 24 }}
             placeholder="Editar contenido"
             />
@@ -66,9 +46,9 @@ const EditPostProfile = ({ visible, setVisible, selectedPostId , content, title}
         <Form.Item >
           <div className="handle-user-actions">
 
-          <Button onClick={()=>handleDeleteUserClick(post._id)} style={{background: "#F23F42"}} type='primary' htmlType=''>
+          {/* <Button onClick={()=>handleDeleteUserClick()} style={{background: "#F23F42"}} type='primary' htmlType=''>
             Eliminar publicación
-          </Button>
+          </Button> */}
           <Button onClick={()=>setVisible(false)} style={{background: "gray"}} type='primary'>
             Cancelar
           </Button>

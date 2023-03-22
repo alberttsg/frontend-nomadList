@@ -3,16 +3,19 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/UsersState";
 import axios from "axios";
 import "./UserPosts.scss";
-import { Button, Card, Spin } from "antd";
+import { Button, Card, message, Modal, Spin } from "antd";
 import Meta from "antd/es/card/Meta";
 import { LikeButton } from "../LikeButton/LikeButton";
 import { CommentOutlined, ThunderboltFilled } from "@ant-design/icons";
 import CommentsPrint from "../Comments/CommentsPrint";
 import { DateComponent } from "../DateComponent/DateComponent";
 import EditPostProfile from "../EditPostsProfile/EditPostProfile";
+import { PostContext } from "../../context/PostContext/PostState";
 
 const UsersPosts = () => {
-  const [selectedPostId, setSelectedPostId] = useState(null);
+
+  const {getPostById, post, deletePost } = useContext(PostContext);
+  const [selectedPost, setSelectedPost] = useState(null);
   const { editUser, user, getUserInfo, deleteUser } = useContext(GlobalContext);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,19 +31,50 @@ const UsersPosts = () => {
       Authorization: token,
     },
   };
-  useEffect(() => {
+  const getPosts = async (id) => {
+    const res = await axios.get(
+      `https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`,
+      config
+    );
+    setPosts(res.data);
    
-    const getPosts = async (id) => {
-      const res = await axios.get(
-        `https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`,
-        config
-      );
-      setPosts(res.data);
-      console.log(posts.length);
-      setLoading(false);
-    };
-    getPosts(user._id);
+    setLoading(false);
+  };
+  useEffect(() => {
+  getPosts(user._id);
+    console.log(
+      "user posts",
+    );
+ 
   }, []);
+  useEffect(() => {
+    if(isModalVisible === false){
+      const res = getPosts(user._id);
+      setPosts(res.data)
+    }
+  },[isModalVisible])
+  
+  const handleDeleteUserClick = (id) => {
+        
+    Modal.confirm({
+        title: "¿Estas seguro de borrar tu post?",
+        content: " Esta acción no se puede deshacer! No podrás revertirlo!",
+        okText: "SI",
+        okType: "danger",
+        cancelText: "No",
+        onOk() {
+            console.log('soy id del post', id);
+            deletePost(id);
+            message.success(' BORRASTE EL POST');
+            getPosts(user._id);
+        },
+        onCancel() {
+            message.error('NO BORRASTE EL POST');
+            console.log("Cancel");
+        },
+    });
+    }
+
   return (
     <>
       <Spin size='large' spinning={loading}>
@@ -52,7 +86,6 @@ const UsersPosts = () => {
           </h3>
         </div>
         <div className='posts-container-profiles'>
-          {console.log(posts)}
           {posts &&
             posts.map((post) => {
               const likes = post.likes.length;
@@ -93,20 +126,20 @@ const UsersPosts = () => {
                     <Button
                       type='primary'
                       size='small'
-                      onClick={() => console.log("borra")}
+                      onClick={() => handleDeleteUserClick(post._id)}
                     >
                       Delete
                     </Button>
                     <Button  size='small' type='primary' onClick={() => {
-                      setSelectedPostId(post._id);
+                      setSelectedPost(post);
                       showEditModal(post._id);
-                      console.log("editando", post._id);
+                      console.log("editando", post);
                     } }>Editar</Button>
-                    <EditPostProfile content={post.content} title={post.title} visible={isModalVisible} setVisible={setIsModalVisible}/>
                   </div>
                 </Card>
               );
             })}
+            <EditPostProfile  selectedPost={selectedPost} visible={isModalVisible} setVisible={setIsModalVisible}/>
         </div>
       </Spin>
     </>

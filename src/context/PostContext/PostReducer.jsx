@@ -13,7 +13,7 @@ export const PostReducer = (state,action) => {
       case "DELETE_POST":
     return {
       ...state,
-      posts: state.posts
+      post: state.post
     };
     case "GET_POST_BY_ID":
       return {

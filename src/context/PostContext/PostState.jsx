@@ -13,7 +13,7 @@ const initialState = {
 
 export const PostProvider = ({ children }) => {
   const [state, dispatch] = useReducer(PostReducer, initialState);
-  const { token } = useContext(GlobalContext);
+  const { token, user  } = useContext(GlobalContext);
 
   const getAllPost = async () => {
     try {
@@ -51,9 +51,21 @@ export const PostProvider = ({ children }) => {
       console.log(e.response.data);
     }
   };
+ 
+  const getPosts = async (id) => {
+
+    const res = await axios.get(
+      `https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`,
+      {
+        headers: {
+          'Authorization': token
+        }
+      }
+    );
+    return res.data;
+  }
   const editPost = async (id,post) => {
     const token = JSON.parse(localStorage.getItem("token"));
-     
       const res = await axios.put(`https://backend-nomadsociety-development.up.railway.app/post/${id}/`,post, {
         headers: {
           Authorization: token,
@@ -64,12 +76,13 @@ export const PostProvider = ({ children }) => {
         payload: res.data,
       });
       console.log(res.data , 'actualizado');
+      // getPosts(user._id);
       return res.data;
     }
     
   const deletePost = async (id) => {
     const token = JSON.parse(localStorage.getItem("token"));
-      const res = await axios.get(
+      const res = await axios.delete(
           `https://backend-nomadsociety-development.up.railway.app/post/${id}`,
           {
             headers: {
