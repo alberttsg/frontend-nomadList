@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { BadLanguage } from './BadLanguage'
 import './CreatePost.scss'
 import { PostCreated } from './PostCreated'
 import { PostEmpty } from './PostEmpty'
@@ -8,8 +9,8 @@ export const CreatePost = () => {
 
   const [formEpmty, setFormEmpty] = useState(false)
   const [modal, setModal] = useState(false)
- 
-  
+  const [modalLanguage, setModalLanguage] = useState(false)
+
   const handleForm = (e) => {
     e.preventDefault()
     const objectForm = new FormData(e.target)
@@ -22,6 +23,16 @@ export const CreatePost = () => {
       return
     }
     ServiceCreatePost(objectForm)
+
+    if(!ServiceCreatePost){
+
+      setModalLanguage(true)
+      setTimeout(()=>{
+      setModalLanguage(false)
+    }, 2000)
+      return
+    }
+
     setModal(true)
     document.getElementById('form').reset();
     setTimeout(()=>{
@@ -35,10 +46,11 @@ export const CreatePost = () => {
         <input placeholder='Title'  className='input-title' type='text' name='title'   />
         <textarea placeholder='Content' className='textArea' name='content' />
         <input type="file" name='image' id='image' />
-        <input className='input-submit' type='submit' value='Create'/>   
+        <input className='input-submit' type='submit' value='Create'/>
       </form>
       {modal && <PostCreated/>}
       {formEpmty && <PostEmpty/>}
+      {modalLanguage && <BadLanguage/>}
     </div>
   )
 }
