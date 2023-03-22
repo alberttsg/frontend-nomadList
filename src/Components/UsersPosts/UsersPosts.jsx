@@ -12,13 +12,13 @@ import { DateComponent } from "../DateComponent/DateComponent";
 import EditPostProfile from "../EditPostsProfile/EditPostProfile";
 
 const UsersPosts = () => {
+  const [selectedPostId, setSelectedPostId] = useState(null);
   const { editUser, user, getUserInfo, deleteUser } = useContext(GlobalContext);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const showEditModal = (post) => {
-    post
-    console.log('soy post', post)
+  const showEditModal = (id) => {
+    console.log('soy postId', id)
     setIsModalVisible(true);
   };
   const token = JSON.parse(localStorage.getItem("token"));
@@ -98,10 +98,11 @@ const UsersPosts = () => {
                       Delete
                     </Button>
                     <Button  size='small' type='primary' onClick={() => {
-                      showEditModal(post);
+                      setSelectedPostId(post._id);
+                      showEditModal(post._id);
                       console.log("editando", post._id);
                     } }>Editar</Button>
-                    <EditPostProfile post={post} visible={isModalVisible} setVisible={setIsModalVisible}/>
+                    <EditPostProfile content={post.content} title={post.title} visible={isModalVisible} setVisible={setIsModalVisible}/>
                   </div>
                 </Card>
               );

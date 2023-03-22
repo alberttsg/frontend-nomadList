@@ -4,29 +4,10 @@ import { Button, Modal, Form, Input, message } from "antd";
 import { GlobalContext } from "../../context/UsersState";
 import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
+import { PostContext } from "../../context/PostContext/PostState";
 
-const EditPostProfile = ({ visible, setVisible, post}) => {
-    const token = JSON.parse(localStorage.getItem("token"));
-    const config = {
-      headers: {
-        Authorization: token,
-      },
-    };
-    const editPost = async (id,post) => {
-       
-        const res = await axios.put(`https://backend-nomadsociety-development.up.railway.app/post/${id}/`,post, config);
-        console.log(res.data);
-        console.log(res.data , 'actualizado');
-        return res.data;
-      }
-    const deletePost = async (id) => {
-        const res = await axios.get(
-            `https://backend-nomadsociety-development.up.railway.app/post/${id}`,
-            config
-          );
-          return res.data;
-    }
-
+const EditPostProfile = ({ visible, setVisible, selectedPostId , content, title}) => {
+    const {editPost, deletePost, getPostById} = useContext(PostContext);
     const handleDeleteUserClick = (id) => {
         setVisible(false);
         Modal.confirm({
@@ -47,18 +28,23 @@ const EditPostProfile = ({ visible, setVisible, post}) => {
           });
         }
     const [form] = Form.useForm();
-
-
-    useEffect(() => {
-      form.setFieldsValue( {
-        title: post.title,
-        content: post.content,
-      } );
-      console.log('post values ', post.title, post.content)
-    }, [ post ])
-  
-    const onFinish = (values) => {
-      console.log('VALOREEEEES:', values);
+        form.setFieldsValue({
+            title: title,
+            content: content
+        });
+        console.log('titulooooooooooo',title)
+    // useEffect(() => {
+    //     if (selectedPostId) {
+    //         console.log(selectedPostId)
+    //        const post = getPostById(selectedPostId);
+    //         form.setFieldsValue({
+    //           title,
+    //           content 
+    //         });
+    //       }
+    //     }, [selectedPostId, form]);
+    const onFinish = (values, id  ) => {
+      console.log('VALOREEEEES:', values, 'id:', id);
       editPost(id, values);
       setVisible(false);
     };
@@ -69,7 +55,8 @@ const EditPostProfile = ({ visible, setVisible, post}) => {
           <Input placeholder='Editar titulo' />
         </Form.Item>
         <Form.Item  name='content'>
-            <TextArea
+            <TextArea 
+            value={content}
             showCount
             maxLength={200}
             style={{ height: 120, marginBottom: 24 }}
@@ -96,3 +83,4 @@ const EditPostProfile = ({ visible, setVisible, post}) => {
 };
 
 export default EditPostProfile;
+
