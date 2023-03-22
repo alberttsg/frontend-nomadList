@@ -14,7 +14,7 @@ const UserCard = () => {
   const [visible, setVisible] = useState(false);
   const [visiblers, setVisiblers] = useState(false);
 
-  const { getUserInfo, user, deleteUser, logOut, reset, getUserById } = useContext(GlobalContext);
+  const { getUserInfo, user} = useContext(GlobalContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showEditModal = () => {
     getUserInfo();

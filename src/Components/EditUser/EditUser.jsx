@@ -59,6 +59,9 @@ const EditUser = ({ visible, setVisible}) => {
         <Form.Item label='Apellidos' name='lastName'>
           <Input placeholder='Edite su nombre' />
         </Form.Item>
+        <Form.Item label='username' name='username'>
+          <Input placeholder='Edite su nombre de usuario' />
+        </Form.Item>
         <Form.Item label='email' name='email'>
           <Input placeholder='¿Desea cambiar su correo electronico?' />
         </Form.Item>

@@ -5,6 +5,21 @@ export const PostReducer = (state,action) => {
         ...state,
         posts: action.payload,
       };
+      case 'EDIT_POST': 
+      return {
+        ...state,
+        post: state.post
+      };
+      case "DELETE_POST":
+    return {
+      ...state,
+      post: state.post
+    };
+    case "GET_POST_BY_ID":
+      return {
+       ...state,
+        post: action.payload,
+      };
     default:
       return state;
   };
