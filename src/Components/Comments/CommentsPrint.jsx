@@ -41,16 +41,15 @@ const CommentsPrint = (props) => {
     updateComment()
     setVisibleForm(!visibleForm);
     setModalOpen(!modalOpen);
+    print()
   }
 
-  useEffect(() => {
+
     const print = async () => {
       const res = await getComments(postId);
       setComments(res);
     }
-    print()
-  }, [comments]);
-
+    
   return (
     <div>
       <CommentOutlined onClick={clickHandler} />
