@@ -10,7 +10,11 @@
     text-align: left;
 }
 .left-avatar{
- width: 25%;
+ display: flex;
+ align-items: center;
+    width: 35%;
+ justify-content: center;
+
 }
 .right-info{
    width: 55%;

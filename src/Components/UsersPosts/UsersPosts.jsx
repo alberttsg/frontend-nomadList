@@ -9,11 +9,18 @@ import { LikeButton } from "../LikeButton/LikeButton";
 import { CommentOutlined, ThunderboltFilled } from "@ant-design/icons";
 import CommentsPrint from "../Comments/CommentsPrint";
 import { DateComponent } from "../DateComponent/DateComponent";
+import EditPostProfile from "../EditPostsProfile/EditPostProfile";
 
 const UsersPosts = () => {
   const { editUser, user, getUserInfo, deleteUser } = useContext(GlobalContext);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showEditModal = (post) => {
+    post
+    console.log('soy post', post)
+    setIsModalVisible(true);
+  };
   const token = JSON.parse(localStorage.getItem("token"));
 
   const config = {
@@ -22,7 +29,7 @@ const UsersPosts = () => {
     },
   };
   useEffect(() => {
-    console.log(user._id);
+   
     const getPosts = async (id) => {
       const res = await axios.get(
         `https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`,
@@ -71,9 +78,9 @@ const UsersPosts = () => {
                   <div className="orginze-buttons">
                     <div>
                       <LikeButton id={post._id} likes={likes} />{" "}
-                      <CommentOutlined
+                      <CommentOutlined postid={post._id}
                         onClick={() => {
-                          return <CommentsPrint postId={post._id} />;
+                          return <CommentsPrint postid={post._id} />;
                         }}
                       ></CommentOutlined>
                     </div>
@@ -90,13 +97,11 @@ const UsersPosts = () => {
                     >
                       Delete
                     </Button>
-                    <Button
-                      type='primary'
-                      size='small'
-                      onClick={() => console.log("edit")}
-                    >
-                      Edit
-                    </Button>
+                    <Button  size='small' type='primary' onClick={() => {
+                      showEditModal(post);
+                      console.log("editando", post._id);
+                    } }>Editar</Button>
+                    <EditPostProfile post={post} visible={isModalVisible} setVisible={setIsModalVisible}/>
                   </div>
                 </Card>
               );
