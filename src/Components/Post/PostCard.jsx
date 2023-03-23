@@ -7,10 +7,9 @@ export function PostCard(props) {
   const { post, forwardedRef } = props;
 
   return (
-    <Card hoverable className="post-content">
+    <Card hoverable className="post-content" title={<h3>{post?.title}</h3>}>
+      {post?.author?.displayName}
       <div ref={forwardedRef} style={{ width: '100%' }}>
-        <h3>{post?.title}</h3>
-        {post?.author?.displayName}
         <Carousel>
           {post?.imagePost?.map(img =>
             <img className='post-img' key={img} src={img} alt="Resource not found" />

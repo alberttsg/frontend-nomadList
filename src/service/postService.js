@@ -55,7 +55,6 @@ export function paginatePostsByUser(pageNumber, id) {
       headers: { Authorization: token },
       cancelToken: new axios.CancelToken(c => cancel = c)
     }).then(res => {
-      console.log(res)
       if (res.data.posts.length > 0) {
         setPosts(prevPosts => {
           return [...new Set([...prevPosts, ...res.data.posts])]
