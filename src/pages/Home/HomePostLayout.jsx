@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react'
-import { paginatePosts } from './Pagination';
+import { paginatePosts } from '../../service/postService';
 import { PostCard } from '../../Components/Post/PostCard';
-import { Spin, Alert } from 'antd';
+import { Row, Col, Spin, Alert } from 'antd';
 
 export const HomePostLayout = () => {
   const [page, setPage] = useState(1)
@@ -20,7 +20,7 @@ export const HomePostLayout = () => {
   }, [loading, hasMore]);
 
   return (
-    <div style={{ display: 'flex', flexFlow: 'column nowrap', gap: '30px' }}>
+    <div style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexFlow: 'column nowrap', gap: '30px', width: '100%', padding: '10px' }}>
       {posts && posts.map((post, index) => {
         if (posts.length === index + 1) {
           return <PostCard post={post} key={index} forwardedRef={lastPostElementRef} />

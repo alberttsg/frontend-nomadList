@@ -1,8 +1,8 @@
 import { CheckCircleTwoTone, DeleteTwoTone, EditOutlined, SettingFilled } from '@ant-design/icons';
 import { Avatar, Button, Card, Modal } from 'antd';
 import React, { useContext,useEffect, useState } from 'react';
-import { GlobalContext } from "../../context/GlobalState";
-import EditUser from "../../Components/EditUser/EditUser";
+import { UserContext } from "../../context/UserState";
+import EditUser from "../EditUser/EditUser";
 import { useNavigate } from 'react-router';
 import './UserCard.scss';
 import FollowersModal from '../FollowersModal/FollowersModal';
@@ -14,26 +14,23 @@ const UserCard = () => {
   const [visible, setVisible] = useState(false);
   const [visiblers, setVisiblers] = useState(false);
 
-  const { getUserInfo, user, deleteUser, logOut, reset, getUserById } = useContext(GlobalContext);
+  const { getUserInfo, user, logout } = useContext(UserContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showEditModal = () => {
     getUserInfo();
   setIsModalVisible(true);
 };
 const handleShowFollowers = async () => {
-  console.log('kndakdhik')
     setVisible(true);
   
 };
 const handleShowFollowed = async () => {
- console.log('juujujujujujuujuu')
     setVisiblers(true);
   
 };
     return (
  
       <div className='card-info-container'>
-        {console.log(user)}
          <div className='left-avatar'><Avatar size={158}
             src={user.avatar}/>
             </div>

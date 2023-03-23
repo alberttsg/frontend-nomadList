@@ -1,0 +1,22 @@
+.nav-bar {
+  width: 100%;
+  position: sticky;
+  top: 10px;
+  padding-right: 10px;
+}
+
+.nav-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  padding: 5px;
+  margin: 10px 0;
+  font-family: "Tilt Neon";
+  font-size: 20px;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(205, 205, 205, 0.183);
+    border-radius: 10px;
+  }
+}

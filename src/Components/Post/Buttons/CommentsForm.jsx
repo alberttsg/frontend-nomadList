@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
 import { createComment, getComments } from './ServiceCommentCreate';
-import { GlobalContext } from '../../../../context/GlobalState';
+import { UserContext } from '../../../context/UserState';
 
 
 const CommentsForm = (props) => {
   const [form] = Form.useForm();
-  const { user } = useContext(GlobalContext);
+  const { user } = useContext(UserContext);
   const { postId, comments, setComments } = props;
 
   const onFinish = async (values) => {

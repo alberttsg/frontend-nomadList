@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Button, Modal, Form, Input, Select, message } from "antd";
-import { GlobalContext } from "../../context/GlobalState";
+import { UserContext } from "../../context/UserState";
 import './EditUser.scss'
 import { UploadAvatar } from "./UploadAvatar";
 
 
 const EditUser = ({ visible, setVisible}) => {
-  const { editUser, user, getUserInfo, deleteUser} = useContext(GlobalContext);
+  const { editUser, user, getUserInfo, deleteUser} = useContext(UserContext);
 
   const handleDeleteUserClick = (id) => {
     setVisible(false);

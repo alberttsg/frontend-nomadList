@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import { Avatar, Button, Modal } from 'antd';
-import { GlobalContext } from '../../context/GlobalState';
+import { UserContext } from '../../context/UserState';
 import { useNavigate } from 'react-router';
 
 const FollowersModal = ({  visible, onClose }) => {
-    const {user} = useContext(GlobalContext)
+    const {user} = useContext(UserContext)
     const navigate = useNavigate();
   return (
     <Modal

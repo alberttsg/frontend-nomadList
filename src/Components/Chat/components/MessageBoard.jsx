@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../context/GlobalState';
+import { UserContext } from '../../../context/UserState';
 import { ChatContext } from '../context/ChatProvider';
 import { List, ConfigProvider } from 'antd';
 import '../styles/chatStyles.scss';
 
 export function MessageBoard() {
-  const { user } = useContext(GlobalContext);
+  const { user } = useContext(UserContext);
   const { socket } = useContext(ChatContext)
   const [events, setEvents] = useState([]);
 

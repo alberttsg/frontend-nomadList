@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import CommentsForm from './Comments/CommentsForm';
-import { deleteComments, getComments, updateComments } from './Comments/ServiceCommentCreate';
+import CommentsForm from './CommentsForm';
+import { deleteComments, getComments, updateComments } from './ServiceCommentCreate';
 import { CommentOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { GlobalContext } from '../../../context/GlobalState';
+import { UserContext } from '../../../context/UserState';
 import { DateComponent } from '../../DateComponent/DateComponent';
 import { Modal, Input, Form, Button } from 'antd'
 
@@ -13,7 +13,7 @@ const CommentsPrint = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [click, setClick] = useState(false);
   const [idToUpdate,setIdToUpdate] = useState('');
-  const { user } = useContext(GlobalContext);
+  const { user } = useContext(UserContext);
 
   const clickHandler = () => {
     setClick(!click)

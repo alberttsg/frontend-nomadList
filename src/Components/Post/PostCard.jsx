@@ -1,5 +1,5 @@
-import { LikeButton } from '../LikeButton/LikeButton.jsx'
-import CommentsPrint from '../Comments/CommentsPrint.jsx';
+import { LikeButton } from './buttons/LikeButton.jsx'
+import CommentsPrint from './buttons/CommentsPrint.jsx';
 import { DateComponent } from '../DateComponent/DateComponent.jsx';
 import { Card, Carousel } from 'antd';
 

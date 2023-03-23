@@ -4,14 +4,10 @@ import './ProfileUserId.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { GlobalContext } from '../../context/GlobalState';
 import { Avatar, Button, Card, Spin } from 'antd';
 import { CheckCircleTwoTone, CommentOutlined, ThunderboltFilled } from '@ant-design/icons';
 import Meta from 'antd/es/card/Meta';
-import { LikeButton } from '../LikeButton/LikeButton';
 import { DateComponent } from '../DateComponent/DateComponent';
-import FollowersModal from '../FollowersModal/FollowersModal';
-import FollowedModal from '../FollowedModal/FollowedModal';
 import FollowedModalById from '../FollowedModalById/FollowedModalById';
 import FollowersModalById from '../FollowersModalByid/FollowersModalById';
 

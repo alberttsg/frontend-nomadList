@@ -1,17 +1,16 @@
 import React from "react";
 import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../../context/GlobalState";
+import { UserContext } from "../../context/UserState";
 import axios from "axios";
-import "./UserPosts.scss";
 import { Button, Card, Spin } from "antd";
 import Meta from "antd/es/card/Meta";
 import { LikeButton } from "../Post/Buttons/LikeButton";
 import { CommentOutlined, ThunderboltFilled } from "@ant-design/icons";
-import CommentsPrint from "../Post/Buttons/CommentsPrint";
+import CommentsPrint from "../../components/Post/Buttons/CommentsPrint";
 import { DateComponent } from "../DateComponent/DateComponent";
 
 const UsersPosts = () => {
-  const { editUser, user, getUserInfo, deleteUser } = useContext(GlobalContext);
+  const { editUser, user, getUserInfo, deleteUser } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const token = JSON.parse(localStorage.getItem("token"));
@@ -22,14 +21,12 @@ const UsersPosts = () => {
     },
   };
   useEffect(() => {
-    console.log(user._id);
     const getPosts = async (id) => {
       const res = await axios.get(
         `https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`,
         config
       );
       setPosts(res.data);
-      console.log(posts.length);
       setLoading(false);
     };
     getPosts(user._id);
@@ -45,7 +42,6 @@ const UsersPosts = () => {
           </h3>
         </div>
         <div className='posts-container-profiles'>
-          {console.log(posts)}
           {posts &&
             posts.map((post) => {
               const likes = post.likes.length;

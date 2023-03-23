@@ -7,7 +7,7 @@ const token = await userService.validateToken();
 const initialState = {
   token: token,
   user: token ? await userService.getUserInfo(false, false, false) : null,
- };
+};
 
 export const UserContext = createContext(initialState);
 
@@ -19,12 +19,14 @@ export const UsersProvider = ({ children }) => {
       const token = await userService.login(user);
       dispatch({
         type: "SET_TOKEN",
-        payload: token
+        payload: token,
       });
       localStorage.setItem("token", JSON.stringify(token));
-      getUserInfo(0, 0, 0);
+      getUserInfo(true, true, true);
+      return true;
     } catch (error) {
       console.error(error);
+      return false;
     };
   }
 
@@ -33,12 +35,14 @@ export const UsersProvider = ({ children }) => {
       const token = await userService.register(user);
       dispatch({
         type: "SET_TOKEN",
-        payload: token
+        payload: token,
       });
       localStorage.setItem("token", JSON.stringify(token));
-      getUserInfo(0, 0, 0);
+      getUserInfo(false, false, false);
+      return true;
     } catch (error) {
       console.error(error);
+      return false;
     };
   }
 
@@ -64,7 +68,7 @@ export const UsersProvider = ({ children }) => {
   };
 
   return (
-    <GlobalContext.Provider
+    <UserContext.Provider
       value={{
         token: state.token,
         user: state.user,
@@ -75,6 +79,6 @@ export const UsersProvider = ({ children }) => {
       }}
     >
       {children}
-    </GlobalContext.Provider>
+    </UserContext.Provider>
   )
 }
