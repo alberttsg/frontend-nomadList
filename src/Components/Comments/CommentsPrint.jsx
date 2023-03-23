@@ -6,18 +6,23 @@ import { GlobalContext } from '../../context/UsersState';
 import { DateComponent } from '../DateComponent/DateComponent';
 import { Modal, Input, Form, Button } from 'antd'
 
-const CommentsPrint = (props) => {
+const CommentsprintComments = (props) => {
   const { postId } = props;
   const [comments, setComments] = useState([]);
   const [visibleForm, setVisibleForm] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [click, setClick] = useState(false);
-  const [idToUpdate,setIdToUpdate] = useState('');
+  const [idToUpdate, setIdToUpdate] = useState('');
   const { user } = useContext(GlobalContext);
+
+  const printComments = async () => {
+    const res = await getComments(postId);
+    setComments(res);
+  }
 
   const clickHandler = () => {
     setClick(!click)
-    print()
+    printComments();
   }
 
   const deletehandler = (commentId) => {
@@ -34,22 +39,20 @@ const CommentsPrint = (props) => {
     setModalOpen(!modalOpen);
   }
 
-  function onFinishEdit(e){
+  function onFinishEdit(e) {
     const updateComment = async () => {
-      await updateComments(idToUpdate,e);
+      await updateComments(idToUpdate, e);
     }
     updateComment()
     setVisibleForm(!visibleForm);
     setModalOpen(!modalOpen);
-    print()
+    printComments()
   }
 
+  useEffect(() => {
+    printComments()
+  }, [comments])
 
-    const print = async () => {
-      const res = await getComments(postId);
-      setComments(res);
-    }
-    
   return (
     <div>
       <CommentOutlined onClick={clickHandler} />
@@ -83,7 +86,7 @@ const CommentsPrint = (props) => {
             style={{ maxWidth: 600 }}
             initialValues={{ remember: true }}
             autoComplete="off"
-            onFinish={(e)=>onFinishEdit(e)}
+            onFinish={(e) => onFinishEdit(e)}
           >
             <Form.Item
               name="content"
@@ -105,4 +108,4 @@ const CommentsPrint = (props) => {
   )
 }
 
-export default CommentsPrint
+export default CommentsprintComments
