@@ -3,7 +3,6 @@ import { Button, Form, Input } from 'antd';
 import { createComment, getComments } from './ServiceCommentCreate';
 import { GlobalContext } from '../../context/UsersState';
 
-
 const CommentsForm = (props) => {
   const [form] = Form.useForm();
   const { user } = useContext(GlobalContext);
@@ -19,7 +18,7 @@ const CommentsForm = (props) => {
     }
 
     const commentary = {
-      author: {displayName: user.displayName},
+      author: { displayName: user.displayName },
       post: postId,
       content: content,
     }
@@ -41,14 +40,14 @@ const CommentsForm = (props) => {
         }}
         onFinish={onFinish}
       >
-        <Form.Item 
-        name='content'
-        rules={[
-          {
-            required: true,
-            message: 'Please put a message',
-          },
-        ]}>
+        <Form.Item
+          name='content'
+          rules={[
+            {
+              required: true,
+              message: 'Please put a message',
+            },
+          ]}>
           <Input placeholder="Leave your comments" />
         </Form.Item>
         <Form.Item >
