@@ -13,69 +13,65 @@ import EditPostProfile from "../EditPostsProfile/EditPostProfile";
 import { PostContext } from "../../context/PostContext/PostState";
 
 const UsersPosts = () => {
-
+  const [posts, setPosts] = useState([]);
   const {getPostById, post, deletePost } = useContext(PostContext);
   const [selectedPost, setSelectedPost] = useState(null);
   const { editUser, user, getUserInfo, deleteUser } = useContext(GlobalContext);
-  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const showEditModal = (id) => {
-    console.log('soy postId', id)
-    setIsModalVisible(true);
-  };
   const token = JSON.parse(localStorage.getItem("token"));
-
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
-  // useEffect( () => {
-    
-    // }, []);
-    const getPosts = async (id) => {
-      const res = await axios.get(
-        `https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`,
-        config
-      );
-      console.log(res.data)
-      setPosts(res.data);
-      setLoading(false);
-        return res.data;
-      
-    };
-    useEffect( () => {
-    const data = getPosts(user._id);
-    console.log(data)
-    if(isModalVisible === false){
-      const res = getPosts(user._id);
-      setPosts(res.data)
-    }
-  },[isModalVisible])
   
-  const handleDeleteUserClick = (id) => {
-        
-    Modal.confirm({
+  const config = {headers: {Authorization: token}};
+  
+  const getPosts = async (id) => {
+    const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`, config);
+      return res.data;
+    };
+    
+    const showEditModal = () => {
+      setIsModalVisible(true);
+    };
+    
+    const handleDeleteUserClick = (id) => {
+      Modal.confirm({
         title: "¿Estas seguro de borrar tu post?",
         content: " Esta acción no se puede deshacer! No podrás revertirlo!",
         okText: "SI",
         okType: "danger",
         cancelText: "No",
-        onOk() {
-            console.log('soy id del post', id);
-            deletePost(id);
-            message.success(' BORRASTE EL POST');
-            getPosts(user._id);
-            setPosts(posts.filter(post => post._id!== id));
-        },
-        onCancel() {
-            message.error('NO BORRASTE EL POST');
-            console.log("Cancel");
-        },
-    });
-    }
 
+        onOk() {
+          deletePost(id);
+          message.success(' BORRASTE EL POST');
+          getPosts(user._id);
+          setPosts(posts.filter(post => post._id!== id));
+        },
+
+        onCancel() {
+          message.error('NO BORRASTE EL POST');
+        },
+    })}
+
+    useEffect(() => {
+      const id = user._id;
+      getPosts(id)
+      .then((res) => {
+        setPosts(res.posts);
+        setLoading(false);
+      })
+    }, []);
+
+    useEffect( () => {
+    if(isModalVisible === false){
+      const id = user._id;
+      getPosts(id)
+      .then((res) => {
+        setPosts(res.posts);
+        setLoading(false);
+      })
+    }
+  },[isModalVisible])
+   
   return (
     <>
       <Spin size='large' spinning={loading}>
@@ -87,9 +83,8 @@ const UsersPosts = () => {
           </h3>
         </div>
         <div className='posts-container-profiles'>
-          {/* {console.log(posts)} */}
-          {posts && posts.length > 0 &&
-            posts.map((post) => {
+
+          {posts && posts.length > 0 && posts.map((post) => {
               const likes = post.likes.length;
               return (
                 <Card
@@ -107,8 +102,6 @@ const UsersPosts = () => {
                   }
                 >
                   <Meta title={post.title} description={post.content} />
-                  {/* <p>{post.content}</p> */}
-                  {/* <img src={'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png'} alt="img" /> */}
                   <br />
                   <div className="orginze-buttons">
                     <div>
@@ -135,7 +128,6 @@ const UsersPosts = () => {
                     <Button  size='small' type='primary' onClick={() => {
                       setSelectedPost(post);
                       showEditModal(post._id);
-                      console.log("editando", post);
                     } }>Editar</Button>
                     
                   </div>
