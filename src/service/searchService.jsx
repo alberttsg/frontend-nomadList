@@ -1,11 +1,12 @@
 import { URL } from './endpoints';
 import axios from 'axios';
+import { Avatar } from 'antd';
 
 export async function searchService(input) {
   try {
     const res = await axios.get(URL + 'search/' + input);
     const users = res.data.users.length > 0 ? res.data.users.map(item => {
-      return { key: 'profile/' + item._id, label: item.displayName }
+      return { key: 'profile/' + item._id, label: <><Avatar src={item.avatar} size='small' />{item.displayName}</> }
     }) : [{ key: 'users0', label: 'No results', disabled: true }];
     const posts = res.data.posts.length > 0 ? res.data.posts.map(item => {
       return { key: 'post/' + item._id, label: item.title }

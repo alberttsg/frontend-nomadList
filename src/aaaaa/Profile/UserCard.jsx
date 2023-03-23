@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserState';
-import { Avatar, Button, Descriptions, Row, Col } from 'antd';
+import { Avatar, Button, Descriptions, Row, Col, Collapse } from 'antd';
 import { EditOutlined, SettingFilled } from '@ant-design/icons';
 
 export function UserCard(props) {
@@ -43,17 +43,21 @@ export function UserCard(props) {
         }}
       >
         <Row>
-          <Descriptions title='User information' extra={
-            <>
-              {canEdit && <Button type='primary' onClick={() => console.log('hola')}><EditOutlined />Edit profile</Button>}
-            </>
-          }>
-            <Descriptions.Item label='Name'>{user?.displayName}</Descriptions.Item>
-            <Descriptions.Item label='Gender'>{user?.gender}</Descriptions.Item>
-            <Descriptions.Item label='Age'>{calculateAge(user?.birthdate)}</Descriptions.Item>
-            <Descriptions.Item label='City'>{user?.city}</Descriptions.Item>
-            <Descriptions.Item label='Nationality'>{user?.nationality}</Descriptions.Item>
-          </Descriptions>
+          <Collapse>
+            <Collapse.Panel>
+              <Descriptions title='User information' extra={
+                <>
+                  {canEdit && <Button type='primary' onClick={() => console.log('hola')}><EditOutlined />Edit profile</Button>}
+                </>
+              }>
+                <Descriptions.Item label='Name'>{user?.displayName}</Descriptions.Item>
+                <Descriptions.Item label='Gender'>{user?.gender}</Descriptions.Item>
+                <Descriptions.Item label='Age'>{calculateAge(user?.birthdate)}</Descriptions.Item>
+                <Descriptions.Item label='City'>{user?.city}</Descriptions.Item>
+                <Descriptions.Item label='Nationality'>{user?.nationality}</Descriptions.Item>
+              </Descriptions>
+            </Collapse.Panel>
+          </Collapse>
         </Row>
         <Row>
           <Descriptions title='About me'>
