@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { UserContext } from '../../context/UserState';
 import { getUserById } from '../../service/userService';
-import { UserCard } from '../../components/Profile/UserCard';
-import UsersPosts from '../../Components/UsersPosts/UsersPosts';
-import { Row } from 'antd';
+import { UserCard } from '../../aaaaa/Profile/UserCard';
+import { UserProfileLayout } from '../../aaaaa/Profile/UserProfileLayout';
+import { Row, Divider } from 'antd';
 import './Profile.scss';
 
 export const Profile = () => {
@@ -28,8 +28,9 @@ export const Profile = () => {
       <Row>
         <UserCard user={userData} />
       </Row>
+      <Divider type='horizontal' />
       <Row>
-        <UsersPosts />
+        <UserProfileLayout user={userData} />
       </Row>
     </>
   );

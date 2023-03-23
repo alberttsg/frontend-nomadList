@@ -3,9 +3,6 @@ import { HomePostLayout } from '../pages/Home/HomePostLayout';
 import { Profile } from '../pages/Profile/Profile';
 import { NotFound } from '../pages/NotFound/NotFound';
 
-import { CreatePost } from '../Components/CreatePost/CreatePost';
-import ProfileUserId from '../Components/ProfileUserId/ProfileUserId';
-
 export const Routes = () => {
   return useRoutes(
     [

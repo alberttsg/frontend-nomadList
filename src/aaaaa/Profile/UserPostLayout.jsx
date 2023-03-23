@@ -1,11 +1,12 @@
 import React, { useCallback, useRef, useState } from 'react'
-import { paginatePosts } from '../../service/postService';
-import { PostCard } from '../../Components/Post/PostCard';
+import { paginatePostsByUser } from '../../service/postService';
+import { PostCard } from '../../components/Post/PostCard';
 import { Spin, Alert } from 'antd';
 
-export const HomePostLayout = () => {
+export function UserPostLayout(props) {
+  const { user } = props;
   const [page, setPage] = useState(1);
-  const { posts, hasMore, loading, error } = paginatePosts(page);
+  const { posts, hasMore, loading, error } = paginatePostsByUser(page, user?.id);
   const observer = useRef();
 
   const lastPostElementRef = useCallback(node => {
