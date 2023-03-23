@@ -1,13 +1,12 @@
 import axios from 'axios'
 
 export const ServiceCreatePost = async (body) => {
+  // const validation = await badLanguage(body)
+  // console.log(validation.classification, 6666)
 
-  const validation = await badLanguage(body)
-  console.log(validation.classification, 6666)
-
-  if(validation.classification !== 4){
-    return false
-  }
+  // if(validation.classification !== 4){
+  //   return false
+  // }
 
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {

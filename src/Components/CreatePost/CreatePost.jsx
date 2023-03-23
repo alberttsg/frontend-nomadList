@@ -15,6 +15,7 @@ export const CreatePost = () => {
     e.preventDefault()
     const objectForm = new FormData(e.target)
     const formObj = Object.fromEntries(objectForm)
+
     if(formObj.title == '' || formObj.content == '' || formObj.image.name == ''){
       setFormEmpty(true)
       setTimeout(()=>{
@@ -22,10 +23,10 @@ export const CreatePost = () => {
       }, 2000)
       return
     }
+    
     ServiceCreatePost(objectForm)
 
     if(!ServiceCreatePost){
-
       setModalLanguage(true)
       setTimeout(()=>{
       setModalLanguage(false)
