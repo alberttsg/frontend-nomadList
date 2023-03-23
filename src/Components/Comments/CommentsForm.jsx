@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Button, Form, Input } from 'antd';
-import { createComment, getComments } from './ServiceCommentCreate';
+import { createComment } from './ServiceCommentCreate';
 import { GlobalContext } from '../../context/UsersState';
 
 const CommentsForm = (props) => {
@@ -10,23 +10,26 @@ const CommentsForm = (props) => {
 
   const onFinish = async (values) => {
     const content = values.content;
+    const currentDate = new Date();
+    const formatDate = currentDate.toISOString();
 
     const newComment = {
       author: user._id,
       post: postId,
       content: content,
+      createdAt:  formatDate,
     }
 
     const commentary = {
       author: { displayName: user.displayName },
       post: postId,
       content: content,
+      createdAt:  formatDate,
     }
 
     await createComment(newComment, postId);
     const update = [...comments, commentary];
     setComments(update)
-    console.log(update)
     form.resetFields();
   }
 

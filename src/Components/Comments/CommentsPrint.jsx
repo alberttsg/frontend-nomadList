@@ -46,7 +46,6 @@ const CommentsprintComments = (props) => {
     updateComment()
     setVisibleForm(!visibleForm);
     setModalOpen(!modalOpen);
-    printComments()
   }
 
   useEffect(() => {
@@ -57,7 +56,7 @@ const CommentsprintComments = (props) => {
     <div>
       <CommentOutlined onClick={clickHandler} />
       <div>
-        {click === true && comments && comments.map((comment) => {
+        {click === true && comments.map((comment) => {
           return (
             <div key={comment._id + 1}>
               <p>{comment.author.displayName}</p>
