@@ -29,3 +29,13 @@ export async function getUserInfo(followers, followed, likedPosts) {
   const response = await axios.get(URL + 'users/info' + query, { headers: { Authorization: token } });
   return response.data;
 }
+
+export async function getUserById(id) {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const response = await axios.get(URL + 'users/id/' + id, { headers: { Authorization: token } });
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+}

@@ -28,8 +28,8 @@ export const App = () => {
   return (
     <BrowserRouter>
       {!token ? <Login /> :
-        <Layout>
-          <Header style={{ background: 'white' }}>
+        <Layout style={{ minHeight: '100%' }}>
+          <Header style={{ background: 'white', position: 'sticky', top: '10px', zIndex: 1, paddingTop: '15px' }}>
             <Row style={{ display: 'flex', flexFlow: 'row nowrap' }}>
               {collapsedSider && <Logo size={30} />}
               <CollapseSiderButton handle={siderCollapse} sider={collapsedSider} />

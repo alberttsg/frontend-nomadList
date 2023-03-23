@@ -15,7 +15,7 @@ export const NavBar = () => {
       <div className='nav-button' onClick={() => navigate('/')}>
         <HomeFilled />Home
       </div>
-      <div className='nav-button' onClick={() => navigate('/profile')}>
+      <div className='nav-button' onClick={() => navigate('/profile/')}>
         <UserOutlined />Profile
       </div>
       <div className='nav-button' onClick={() => navigate('/createpost')} >

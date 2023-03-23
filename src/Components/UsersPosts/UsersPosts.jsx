@@ -9,8 +9,8 @@ import { CommentOutlined, ThunderboltFilled } from "@ant-design/icons";
 import CommentsPrint from "../../components/Post/Buttons/CommentsPrint";
 import { DateComponent } from "../DateComponent/DateComponent";
 
-const UsersPosts = () => {
-  const { editUser, user, getUserInfo, deleteUser } = useContext(UserContext);
+const UsersPosts = (props) => {
+  const { user } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const token = JSON.parse(localStorage.getItem("token"));
@@ -23,7 +23,7 @@ const UsersPosts = () => {
   useEffect(() => {
     const getPosts = async (id) => {
       const res = await axios.get(
-        `https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`,
+        `https://backend-nomadsociety-development.up.railway.app/post/userPosts/640b4ced35fe3ca735760e17`,
         config
       );
       setPosts(res.data);
