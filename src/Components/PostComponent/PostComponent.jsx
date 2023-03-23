@@ -1,54 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import './PostComponent.scss'
-import { LikeButton } from '../LikeButton/LikeButton'
-import CommentsPrint from '../Comments/CommentsPrint';
-import { DateComponent } from '../DateComponent/DateComponent';
-import { Card } from 'antd';
-const { Meta } = Card;
-
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import getPosts from './Pagination';
+import { PostCard } from './PostCard';
+import { Spin, Alert } from 'antd';
 
 export const PostComponent = () => {
-  const [posts, setPosts] = useState([])
-  const token = JSON.parse(localStorage.getItem("token"));
-  const headerAxios = {
-    headers: {
-      Authorization: token
-    }
-  }
-
-  useEffect(() => {
-    const getPost = async () => {
-      const res = await axios.get('https://backend-nomadsociety-development.up.railway.app/post/all', headerAxios);
-      setPosts(res.data)
-    }
-    getPost()
-  }, [])
-
+  const [page, setPage] = useState(1)
+  const { posts, hasMore, loading, error } = getPosts(page);
+  const observer = useRef();
+  
+  const lastPostElementRef = useCallback(node => {
+    if (loading) return;
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPage(prev => prev + 1)
+      };
+    }, { root: null })
+    if (node) observer.current.observe(node);
+  }, [loading, hasMore]);
 
   return (
-    <>
-      {posts && posts.map((post) => {
-        const likes = post.likes.length
-        return (
-          <Card  hoverable className="post-content" key={post._id}>
-            <div >
-              <p>{post.title}</p>
-              {<img className='post-img' src='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' alt="" />}
-            </div>
-              <p>{post.content}</p>
-
-            <div className="btn-like-coment">
-              <LikeButton id={post._id} likes={likes} />
-            </div>
-            <div>
-              <CommentsPrint postId={post._id} />
-            </div>
-             <DateComponent datePost={post.createdAt}/>
-          </Card>
-        )
+    <div style={{display: 'flex', flexFlow: 'column nowrap', gap: '30px'}}>
+      {posts && posts.map((post, index) => {
+        if (posts.length === index + 1) {
+          return <PostCard post={post} key={index} forwardedRef={lastPostElementRef} />
+        } else {
+          return <PostCard post={post} key={index} />
+        }
       })}
-
-    </>
+      {loading && <Spin tip='Loading posts...' />}
+      {error && <Alert type='error' message="Couldn't load more posts" banner />}
+    </div>
   )
 }

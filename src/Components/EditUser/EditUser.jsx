@@ -59,6 +59,9 @@ const EditUser = ({ visible, setVisible}) => {
         <Form.Item label='Apellidos' name='lastName'>
           <Input placeholder='Edite su nombre' />
         </Form.Item>
+        <Form.Item label='username' name='username'>
+          <Input placeholder='Edite su nombre de usuario' />
+        </Form.Item>
         <Form.Item label='email' name='email'>
           <Input placeholder='¿Desea cambiar su correo electronico?' />
         </Form.Item>
@@ -82,6 +85,12 @@ const EditUser = ({ visible, setVisible}) => {
         </Form.Item>
         <Form.Item label='Hobbie' name='hobbie'>
           <Input placeholder='¿Qué te apasiona?' />
+        </Form.Item>
+        <Form.Item label=' Otro Hobbie ' name='hobbie2'>
+          <Input placeholder='¿Qué te apasiona?' />
+        </Form.Item>
+        <Form.Item label=' Lugar de Preferencia ' name='prefLocation'>
+          <Input placeholder=' Cuentanos tu lugar preferido?' />
         </Form.Item>
         <Form.Item label='Foto de Perfil' name='avatar'>
         <UploadAvatar />

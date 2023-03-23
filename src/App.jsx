@@ -7,7 +7,6 @@ import { GlobalContext } from './context/UsersState'
 import { Login } from './Components/Auth/Login/Login'
 import { useContext, useEffect } from 'react'
 import { notification } from 'antd'
-import { ChatLayout } from './Components/Chat/components/ChatLayout'
 
 export const App = () => {
 
@@ -35,7 +34,6 @@ export const App = () => {
               </div>
             </>
         }
-        <ChatLayout />
       </BrowserRouter>
 
     </div>

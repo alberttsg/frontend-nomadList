@@ -14,7 +14,7 @@ const UserCard = () => {
   const [visible, setVisible] = useState(false);
   const [visiblers, setVisiblers] = useState(false);
 
-  const { getUserInfo, user, deleteUser, logOut, reset, getUserById } = useContext(GlobalContext);
+  const { getUserInfo, user } = useContext(GlobalContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showEditModal = () => {
     getUserInfo();
@@ -35,7 +35,7 @@ const handleShowFollowed = async () => {
       <div className='card-info-container'>
         {console.log(user)}
          <div className='left-avatar'><Avatar size={158}
-            src={user.avatar[0]}/>
+            src={user.avatar}/>
             </div>
            <div className='right-info'>
 
@@ -64,8 +64,9 @@ const handleShowFollowed = async () => {
              
               <div> <b>Profesión:</b> {' ' +  user.profesion }</div>
              
-              <div><b>Hobbie:</b> { ' ' + user.hobbie}</div>
-           
+              <div><b>Hobbie:</b> { ' ' + user.hobbie}, {' ' + user.hobbie2}</div>
+              <div>Lugar de preferencia: {' ' + user.prefLocation}</div>
+
             </div>
 
            </div>

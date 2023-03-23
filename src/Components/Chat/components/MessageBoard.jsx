@@ -17,8 +17,6 @@ export function MessageBoard() {
   }
 
   function onMessage(value, type) {
-    console.log(value, type)
-    console.log(user.id)
     if (type == 'warning') return setEvents([{ type: 'warning', value }]);
     if (type == user.id) {
       return setEvents(prev => [...prev, { type: 'message', value }]);
