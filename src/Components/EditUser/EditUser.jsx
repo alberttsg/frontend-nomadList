@@ -86,6 +86,12 @@ const EditUser = ({ visible, setVisible}) => {
         <Form.Item label='Hobbie' name='hobbie'>
           <Input placeholder='¿Qué te apasiona?' />
         </Form.Item>
+        <Form.Item label=' Otro Hobbie ' name='hobbie2'>
+          <Input placeholder='¿Qué te apasiona?' />
+        </Form.Item>
+        <Form.Item label=' Lugar de Preferencia ' name='prefLocation'>
+          <Input placeholder=' Cuentanos tu lugar preferido?' />
+        </Form.Item>
         <Form.Item label='Foto de Perfil' name='avatar'>
         <UploadAvatar />
         </Form.Item>
