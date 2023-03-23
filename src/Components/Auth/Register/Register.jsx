@@ -3,7 +3,6 @@ import { useContext, useEffect } from 'react'
 import { GlobalContext } from '../../../context/UsersState'
 import './Register.scss'
 
-
 export const Register = ({ onCancel }) => {
   const { register, reset, isErrorRegister } = useContext(GlobalContext);
   const [form] = Form.useForm();
@@ -27,7 +26,6 @@ export const Register = ({ onCancel }) => {
   const options = countriesArray.map((e) => (
     { value: `${e}`, label: `${e}` }
   ))
-
 
   return (
     <div className='register-container'>
