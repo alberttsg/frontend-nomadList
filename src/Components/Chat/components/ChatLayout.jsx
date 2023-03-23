@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { UserContext } from '../../../context/UserState';
+import { GlobalContext } from '../../../context/UsersState';
 import { ChatProvider } from '../context/ChatProvider';
 import { RoomSelector } from './RoomSelector';
 import { ActiveRoom } from './ActiveRoom';
@@ -8,7 +8,7 @@ import { ChatInput } from './ChatInput';
 import { Affix, Collapse, Col, Row, Divider } from 'antd';
 
 export function ChatLayout() {
-  const { token } = useContext(UserContext);
+  const { token } = useContext(GlobalContext);
 
   if (!token) return;
 
@@ -16,7 +16,7 @@ export function ChatLayout() {
     <ChatProvider>
       <Affix
         offsetBottom={10}
-        style={{ position: 'fixed', right: '10px', minWidth: '100px' }}
+        style={{ position: 'fixed', right: '10px', bottom: '10px', minWidth: '100px' }}
       >
         <Collapse
           expandIconPosition='end'
