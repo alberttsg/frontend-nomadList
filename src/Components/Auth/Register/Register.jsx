@@ -17,7 +17,7 @@ export const Register = ({ onCancel }) => {
   useEffect(()=>{
     if (isErrorRegister) {
       return notification.error({
-        message: "Existe un usuario registrado con este correo. Por favor, logueate o usa otro e-mail",
+        message: "Ya existe este correo registrado. Por favor, logueate o utiliza otro e-mail",
       });
     }
       reset()
