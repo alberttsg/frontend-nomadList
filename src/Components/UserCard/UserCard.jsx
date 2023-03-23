@@ -64,8 +64,9 @@ const handleShowFollowed = async () => {
              
               <div> <b>Profesión:</b> {' ' +  user.profesion }</div>
              
-              <div><b>Hobbie:</b> { ' ' + user.hobbie}</div>
-           
+              <div><b>Hobbie:</b> { ' ' + user.hobbie}, {' ' + user.hobbie2}</div>
+              <div>Lugar de preferencia: {' ' + user.prefLocation}</div>
+
             </div>
 
            </div>

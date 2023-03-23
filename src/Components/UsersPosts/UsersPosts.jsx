@@ -31,23 +31,23 @@ const UsersPosts = () => {
       Authorization: token,
     },
   };
-  const getPosts = async (id) => {
-    const res = await axios.get(
-      `https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`,
-      config
-    );
-    setPosts(res.data);
-   
-    setLoading(false);
-  };
-  useEffect(() => {
-  getPosts(user._id);
-    console.log(
-      "user posts",
-    );
- 
-  }, []);
-  useEffect(() => {
+  // useEffect( () => {
+    
+    // }, []);
+    const getPosts = async (id) => {
+      const res = await axios.get(
+        `https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`,
+        config
+      );
+      console.log(res.data)
+      setPosts(res.data);
+      setLoading(false);
+        return res.data;
+      
+    };
+    useEffect( () => {
+    const data = getPosts(user._id);
+    console.log(data)
     if(isModalVisible === false){
       const res = getPosts(user._id);
       setPosts(res.data)
@@ -67,6 +67,7 @@ const UsersPosts = () => {
             deletePost(id);
             message.success(' BORRASTE EL POST');
             getPosts(user._id);
+            setPosts(posts.filter(post => post._id!== id));
         },
         onCancel() {
             message.error('NO BORRASTE EL POST');
@@ -82,11 +83,12 @@ const UsersPosts = () => {
           <h3>
             {" "}
             <ThunderboltFilled spin={false} style={{ color: "#F0C311" }} />{" "}
-            {posts && posts.length} PUBLICACIONES{" "}
+            {posts && posts.length > 0} PUBLICACIONES{" "}
           </h3>
         </div>
         <div className='posts-container-profiles'>
-          {posts &&
+          {/* {console.log(posts)} */}
+          {posts && posts.length > 0 &&
             posts.map((post) => {
               const likes = post.likes.length;
               return (
@@ -135,13 +137,14 @@ const UsersPosts = () => {
                       showEditModal(post._id);
                       console.log("editando", post);
                     } }>Editar</Button>
+                    
                   </div>
                 </Card>
               );
             })}
             <EditPostProfile  selectedPost={selectedPost} visible={isModalVisible} setVisible={setIsModalVisible}/>
-        </div>
-      </Spin>
+              </div>
+              </Spin>
     </>
   );
 };
