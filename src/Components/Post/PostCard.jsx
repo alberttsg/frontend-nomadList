@@ -1,4 +1,4 @@
-import { LikeButton } from './buttons/LikeButton.jsx'
+import { PostLikeButton } from './PostLikeButton.jsx'
 import CommentsPrint from './buttons/CommentsPrint.jsx';
 import { DateComponent } from '../DateComponent/DateComponent.jsx';
 import { Card, Carousel } from 'antd';
@@ -20,7 +20,7 @@ export function PostCard(props) {
         </div>
       </div>
       <div style={{ width: '100%' }}>
-        <LikeButton id={post?._id} likes={post?.likesCount} />
+        {/* <PostLikeButton id={post?._id} likes={post?.likesCount} /> */}
         <CommentsPrint postId={post?._id} />
         <DateComponent datePost={post?.createdAt} />
       </div>

@@ -22,7 +22,7 @@ export const UsersProvider = ({ children }) => {
         payload: token,
       });
       localStorage.setItem("token", JSON.stringify(token));
-      getUserInfo(true, true, true);
+      getUserInfo(false, false, false);
       return true;
     } catch (error) {
       console.error(error);
