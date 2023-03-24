@@ -4,20 +4,28 @@ import { deleteComments, getComments, updateComments } from './ServiceCommentCre
 import { CommentOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { GlobalContext } from '../../context/UsersState';
 import { DateComponent } from '../DateComponent/DateComponent';
-import { Modal, Input, Form, Button } from 'antd'
+import { Modal, Input, Form, Button, Avatar, Spin } from 'antd'
+import './Comments.scss'
 
-const CommentsPrint = (props) => {
+const CommentsprintComments = (props) => {
   const { postId } = props;
   const [comments, setComments] = useState([]);
   const [visibleForm, setVisibleForm] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [click, setClick] = useState(false);
-  const [idToUpdate,setIdToUpdate] = useState('');
+  const [idToUpdate, setIdToUpdate] = useState('');
   const { user } = useContext(GlobalContext);
+  const [currentCommentEdit, setCurrentCommentEdit] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const printComments = async () => {
+    const res = await getComments(postId);
+    setComments(res);
+  }
 
   const clickHandler = () => {
     setClick(!click)
-    print()
+    printComments();
   }
 
   const deletehandler = (commentId) => {
@@ -26,45 +34,65 @@ const CommentsPrint = (props) => {
       setComments(comments.filter(comment => comment._id !== commentId));
     }
     deleteComment();
+    setLoading(true);
   }
 
   const updateHandler = (id) => {
     setIdToUpdate(id);
+    setCurrentCommentEdit((comments.filter(comment => comment._id === id))[0].content);
     setVisibleForm(!visibleForm);
     setModalOpen(!modalOpen);
   }
 
-  function onFinishEdit(e){
+  function onFinishEdit(e) {
     const updateComment = async () => {
-      await updateComments(idToUpdate,e);
+      await updateComments(idToUpdate, e);
     }
+    setLoading(true);
     updateComment()
     setVisibleForm(!visibleForm);
     setModalOpen(!modalOpen);
-    print()
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, [loading])
 
-    const print = async () => {
-      const res = await getComments(postId);
-      setComments(res);
-    }
-    
+
+  useEffect(() => {
+    printComments()
+  }, [comments])
+
   return (
     <div>
       <CommentOutlined onClick={clickHandler} />
+
       <div>
-        {click === true && comments && comments.map((comment) => {
+        {click === true && comments.map((comment) => {
           return (
             <div key={comment._id + 1}>
-              <p>{comment.author.displayName}</p>
-              <DateComponent datePost={comment.createdAt} />
-              <p>{comment.content}</p>
-              <div>
-                {user.displayName === comment.author.displayName && <div>
-                  <EditOutlined onClick={() => updateHandler(comment._id)} />
-                  <DeleteOutlined onClick={() => deletehandler(comment._id)} />
-                </div>}
+              <div className='commentBubble'>
+                <Avatar src={comment.author.avatar} size={50} />
+                <div className='commentContainer'>
+                  <div className='commentInfo'>
+                    <h3>{comment.author.displayName}</h3>
+                    <span>{comment.content}</span>
+                  </div>
+                  <div className='commentEdit'>
+                    <DateComponent datePost={comment.createdAt} />
+                    {user.displayName === comment.author.displayName &&
+                      <div className='showHover'>
+                        <div className='hide'>
+                          <EditOutlined onClick={() => updateHandler(comment._id)} />
+                          <DeleteOutlined onClick={() => deletehandler(comment._id)} />
+                          {loading && <Spin size="small" tip='Loading' />}
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
               </div>
             </div>
           )
@@ -81,9 +109,9 @@ const CommentsPrint = (props) => {
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
             style={{ maxWidth: 600 }}
-            initialValues={{ remember: true }}
+            initialValues={{ content: currentCommentEdit }}
             autoComplete="off"
-            onFinish={(e)=>onFinishEdit(e)}
+            onFinish={(e) => onFinishEdit(e)}
           >
             <Form.Item
               name="content"
@@ -105,4 +133,4 @@ const CommentsPrint = (props) => {
   )
 }
 
-export default CommentsPrint
+export default CommentsprintComments

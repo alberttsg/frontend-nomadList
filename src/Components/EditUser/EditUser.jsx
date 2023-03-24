@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Button, Modal, Form, Input, Select, message } from "antd";
+import { Button, Modal, Form, Input, Select, message, Row, Col } from "antd";
 import { GlobalContext } from "../../context/UsersState";
 import './EditUser.scss'
 import { UploadAvatar } from "./UploadAvatar";
@@ -51,54 +51,85 @@ const EditUser = ({ visible, setVisible}) => {
     setVisible(false);
   };
   return (
-    <Modal title='EDITAR USUARIO' open={visible} onCancel={() => setVisible(false)} footer={[]}>
-      <Form form={form} onFinish={onFinish} >
-        <Form.Item label='Nombre' name='firstName'>
-          <Input placeholder='Edite su nombre' />
-        </Form.Item>
-        <Form.Item label='Apellidos' name='lastName'>
-          <Input placeholder='Edite su nombre' />
-        </Form.Item>
-        <Form.Item label='username' name='username'>
-          <Input placeholder='Edite su nombre de usuario' />
-        </Form.Item>
-        <Form.Item label='email' name='email'>
-          <Input placeholder='¿Desea cambiar su correo electronico?' />
-        </Form.Item>
-        <Form.Item
-          name="nationality"
-          label="Nationality"
-          rules={[
-            {
-              required: true,
-              message: 'Please select your Nationality!',
-            },
-          ]}
-        >
-          <Select placeholder="select your country" options={[{ options }]} />
-        </Form.Item>
-        <Form.Item label='BIO' name='bio'>
-          <Input placeholder='¿Qué estas pensando?' />
-        </Form.Item>
-        <Form.Item label='Profesion' name='profesion'>
-          <Input placeholder='Cuentanos de que estas trabajando!' />
-        </Form.Item>
-        <Form.Item label='Hobbie' name='hobbie'>
-          <Input placeholder='¿Qué te apasiona?' />
-        </Form.Item>
-        <Form.Item label='Foto de Perfil' name='avatar'>
-        <UploadAvatar />
-        </Form.Item>
-        <Form.Item >
-          <div className="handle-user-actions">
-
-          <Button onClick={()=>handleDeleteUserClick(user._id)} style={{background: "#F23F42"}} type='primary' htmlType=''>
+    <Modal
+    title={<h3 style={{ textAlign: 'center' }}>EDITAR USUARIO</h3>}
+    open={visible}
+    onCancel={() => setVisible(false)}
+    footer={[]}
+    width={800} 
+  >
+    <Form form={form} onFinish={onFinish}>
+      <Row gutter={[16, 16]}>
+        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+          <Form.Item label='Nombre' name='firstName'>
+            <Input placeholder='Edite su nombre' />
+          </Form.Item>
+          <Form.Item label='Apellidos' name='lastName'>
+            <Input placeholder='Edite su apellido' />
+          </Form.Item>
+          <Form.Item label='username' name='username'>
+            <Input placeholder='Edite su nombre de usuario' />
+          </Form.Item>
+          <Form.Item label='email' name='email'>
+            <Input placeholder='¿Desea cambiar su correo electrónico?' />
+          </Form.Item>
+          <Form.Item
+            name='nationality'
+            label='Nationality'
+            rules={[
+              {
+                required: true,
+                message: 'Please select your Nationality!',
+              },
+            ]}
+          >
+            <Select placeholder='select your country' options={[{ options }]} />
+          </Form.Item>
+          <Form.Item label='BIO' name='bio'>
+            <Input placeholder='¿Qué estas pensando?' />
+          </Form.Item>
+          <Form.Item label='Profesion' name='profesion'>
+            <Input placeholder='Cuentanos de que estas trabajando!' />
+          </Form.Item>
+        </Col>
+        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+          <Form.Item label='Hobbie' name='hobbie'>
+            <Input placeholder='¿Qué te apasiona?' />
+          </Form.Item>
+          <Form.Item label='Otro Hobbie' name='hobbie2'>
+            <Input placeholder='¿Qué te apasiona?' />
+          </Form.Item>
+          <Form.Item label='Lugar de Preferencia' name='prefLocation'>
+            <Input placeholder='Cuentanos tu lugar preferido?' />
+          </Form.Item>
+          <Form.Item label='Linkedin' name='linkedin'>
+            <Input placeholder='@linkedin' />
+          </Form.Item>
+          <Form.Item label='Twitter' name='twitter'>
+            <Input placeholder='@twitter' />
+          </Form.Item>
+          <Form.Item label='Instagram' name='instagram'>
+            <Input placeholder='@instagram' />
+          </Form.Item>
+          <Form.Item label='Foto de Perfil' name='avatar'>
+            <UploadAvatar />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Form.Item>
+        <div className='handle-user-actions'>
+          <Button
+            onClick={() => handleDeleteUserClick(user._id)}
+            style={{ background: '#F23F42' }}
+            type='primary'
+            htmlType=''
+          >
             Eliminar Cuenta
           </Button>
-          <Button onClick={()=>setVisible(false)} style={{background: "gray"}} type='primary'>
+          <Button onClick={() => setVisible(false)} style={{ background: 'gray' }} type='primary'>
             Cancelar
           </Button>
-          <Button type='primary'htmlType="submit" >
+          <Button type='primary' htmlType='submit'>
             Enviar
           </Button>
           </div>

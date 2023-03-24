@@ -1,0 +1,34 @@
+.commentBubble{
+  display: flex;
+  .commentContainer{
+    display: flex;
+    flex-direction: column;
+  }
+  .commentInfo{
+    display: flex;
+    gap: 0.5rem;
+    .span{
+      font-weight: lighter;
+    }
+  }
+
+  .commentEdit{
+    display: flex;
+    gap: 0.5rem;
+
+  }
+}
+
+.showHover{
+  width: 60px;
+}
+
+.showHover:hover{
+  .hide {
+    display: block;
+  }
+}
+
+.hide {
+  display: none;
+}

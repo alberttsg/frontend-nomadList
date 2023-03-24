@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/UsersState";
 import axios from "axios";
 import "./UserPosts.scss";
-import { Button, Card, message, Modal, Spin } from "antd";
+import { Avatar, Button, Card, Divider, Image, message, Modal, Spin } from "antd";
 import Meta from "antd/es/card/Meta";
 import { LikeButton } from "../LikeButton/LikeButton";
 import { CommentOutlined, ThunderboltFilled } from "@ant-design/icons";
@@ -13,68 +13,65 @@ import EditPostProfile from "../EditPostsProfile/EditPostProfile";
 import { PostContext } from "../../context/PostContext/PostState";
 
 const UsersPosts = () => {
-
+  const [posts, setPosts] = useState([]);
   const {getPostById, post, deletePost } = useContext(PostContext);
   const [selectedPost, setSelectedPost] = useState(null);
   const { editUser, user, getUserInfo, deleteUser } = useContext(GlobalContext);
-  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const showEditModal = (id) => {
-    console.log('soy postId', id)
-    setIsModalVisible(true);
-  };
   const token = JSON.parse(localStorage.getItem("token"));
-
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
-  const getPosts = async (id) => {
-    const res = await axios.get(
-      `https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`,
-      config
-    );
-    setPosts(res.data);
-   
-    setLoading(false);
-  };
-  useEffect(() => {
-  getPosts(user._id);
-    console.log(
-      "user posts",
-    );
- 
-  }, []);
-  useEffect(() => {
-    if(isModalVisible === false){
-      const res = getPosts(user._id);
-      setPosts(res.data)
-    }
-  },[isModalVisible])
   
-  const handleDeleteUserClick = (id) => {
-        
-    Modal.confirm({
+  const config = {headers: {Authorization: token}};
+  
+  const getPosts = async (id) => {
+    const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/post/userPosts/${id}`, config);
+      return res.data;
+    };
+    
+    const showEditModal = () => {
+      setIsModalVisible(true);
+    };
+    
+    const handleDeleteUserClick = (id) => {
+      Modal.confirm({
         title: "¿Estas seguro de borrar tu post?",
         content: " Esta acción no se puede deshacer! No podrás revertirlo!",
         okText: "SI",
         okType: "danger",
         cancelText: "No",
-        onOk() {
-            console.log('soy id del post', id);
-            deletePost(id);
-            message.success(' BORRASTE EL POST');
-            getPosts(user._id);
-        },
-        onCancel() {
-            message.error('NO BORRASTE EL POST');
-            console.log("Cancel");
-        },
-    });
-    }
 
+        onOk() {
+          deletePost(id);
+          message.success(' BORRASTE EL POST');
+          getPosts(user._id);
+          setPosts(posts.filter(post => post._id!== id));
+        },
+
+        onCancel() {
+          message.error('NO BORRASTE EL POST');
+        },
+    })}
+
+    useEffect(() => {
+      const id = user._id;
+      getPosts(id)
+      .then((res) => {
+        setPosts(res.posts);
+        setLoading(false);
+      })
+    }, []);
+
+    useEffect( () => {
+    if(isModalVisible === false){
+      const id = user._id;
+      getPosts(id)
+      .then((res) => {
+        setPosts(res.posts);
+        setLoading(false);
+      })
+    }
+  },[isModalVisible])
+   
   return (
     <>
       <Spin size='large' spinning={loading}>
@@ -82,31 +79,48 @@ const UsersPosts = () => {
           <h3>
             {" "}
             <ThunderboltFilled spin={false} style={{ color: "#F0C311" }} />{" "}
-            {posts && posts.length} PUBLICACIONES{" "}
+            {posts && posts.length > 0}{posts.length} PUBLICACIONES{" "}
           </h3>
         </div>
+        <Divider/>
         <div className='posts-container-profiles'>
-          {posts &&
-            posts.map((post) => {
+
+          {posts && posts.length > 0 && posts.map((post) => {
+            console.log(post.author.firstName)
               const likes = post.likes.length;
               return (
                 <Card
                   key={post._id}
                   className='post-container-uni'
                   hoverable
-                  style={{ width: 250 }}
+                  style={
+                    {
+                      height:600,
+                      width:750, 
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center", 
+                    }}
                   cover={
-                    <img
-                      alt='example'
-                      src={
-                        "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png"
-                      }
-                    />
+                    <Image
+                    style={{
+                      borderRadius: "1%",
+                      width: 750,
+                      height: 400,
+                      objectFit: "cover",
+                    }}
+                  src={post.image || 'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
+                    alt='example2'
+                    // src={'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
+                  />
                   }
-                >
-                  <Meta title={post.title} description={post.content} />
-                  {/* <p>{post.content}</p> */}
-                  {/* <img src={'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png'} alt="img" /> */}
+                  >
+                    <p><Avatar size={15} src={post.author.avatar} alt="" />{' '}{' '}{post.author.displayName}</p>
+            
+                  
+                  
+                  <Meta title={post.title} description={post.content}  />
                   <br />
                   <div className="orginze-buttons">
                     <div>
@@ -133,15 +147,15 @@ const UsersPosts = () => {
                     <Button  size='small' type='primary' onClick={() => {
                       setSelectedPost(post);
                       showEditModal(post._id);
-                      console.log("editando", post);
                     } }>Editar</Button>
+                    
                   </div>
                 </Card>
               );
             })}
             <EditPostProfile  selectedPost={selectedPost} visible={isModalVisible} setVisible={setIsModalVisible}/>
-        </div>
-      </Spin>
+              </div>
+              </Spin>
     </>
   );
 };

@@ -8,7 +8,6 @@ export const createComment = async (newComment, postId) => {
     }
   }
   const res = await axios.post(`https://backend-nomadsociety-development.up.railway.app/post/${postId}/comments`, newComment, config);
-  console.log(newComment);
   return res.data;
 }
 
@@ -43,7 +42,5 @@ export const updateComments = async (commentId,comment) => {
     }
   }
   const res = await axios.put(`https://backend-nomadsociety-development.up.railway.app/comments/${commentId}/`,comment, config);
-  console.log(res.data);
-  console.log('nfaskl');
   return res.data;
 }

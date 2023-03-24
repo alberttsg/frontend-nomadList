@@ -3,7 +3,6 @@ import { useContext, useEffect } from 'react'
 import { GlobalContext } from '../../../context/UsersState'
 import './Register.scss'
 
-
 export const Register = ({ onCancel }) => {
   const { register, reset, isErrorRegister } = useContext(GlobalContext);
   const [form] = Form.useForm();
@@ -17,7 +16,7 @@ export const Register = ({ onCancel }) => {
   useEffect(()=>{
     if (isErrorRegister) {
       return notification.error({
-        message: "Existe un usuario registrado con este correo. Por favor, logueate o usa otro e-mail",
+        message: "Ya existe este correo registrado. Por favor, logueate o utiliza otro e-mail",
       });
     }
       reset()
@@ -27,7 +26,6 @@ export const Register = ({ onCancel }) => {
   const options = countriesArray.map((e) => (
     { value: `${e}`, label: `${e}` }
   ))
-
 
   return (
     <div className='register-container'>

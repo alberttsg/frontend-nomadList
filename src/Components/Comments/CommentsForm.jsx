@@ -1,38 +1,50 @@
-import React, { useContext, useEffect } from 'react';
-import { Button, Form, Input } from 'antd';
-import { createComment, getComments } from './ServiceCommentCreate';
+import React, { useContext, useEffect, useState } from 'react';
+import { Button, Form, Input, Spin } from 'antd';
+import { createComment } from './ServiceCommentCreate';
 import { GlobalContext } from '../../context/UsersState';
-
 
 const CommentsForm = (props) => {
   const [form] = Form.useForm();
   const { user } = useContext(GlobalContext);
   const { postId, comments, setComments } = props;
+  const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
     const content = values.content;
+    const currentDate = new Date();
+    const formatDate = currentDate.toISOString();
 
     const newComment = {
       author: user._id,
       post: postId,
       content: content,
+      createdAt: formatDate,
     }
 
     const commentary = {
-      author: {displayName: user.displayName},
+      author: { displayName: user.displayName },
       post: postId,
       content: content,
+      createdAt: formatDate,
     }
 
     await createComment(newComment, postId);
     const update = [...comments, commentary];
     setComments(update)
-    console.log(update)
     form.resetFields();
+    setLoading(true);
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+      console.log(loading)
+    }, 500);
+  }, [loading]);
 
   return (
     <div>
+      {loading && <Spin size="small" tip='Loading' />}
       <Form
         layout='vertical'
         form={form}
@@ -41,14 +53,14 @@ const CommentsForm = (props) => {
         }}
         onFinish={onFinish}
       >
-        <Form.Item 
-        name='content'
-        rules={[
-          {
-            required: true,
-            message: 'Please put a message',
-          },
-        ]}>
+        <Form.Item
+          name='content'
+          rules={[
+            {
+              required: true,
+              message: 'Please put a message',
+            },
+          ]}>
           <Input placeholder="Leave your comments" />
         </Form.Item>
         <Form.Item >
