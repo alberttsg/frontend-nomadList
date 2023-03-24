@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalContext } from '../../context/UsersState';
-import { Avatar, Button, Card, Spin } from 'antd';
+import { Avatar, Button, Card, Descriptions, Row, Spin} from 'antd';
 import { CheckCircleTwoTone, CommentOutlined, ThunderboltFilled } from '@ant-design/icons';
 import Meta from 'antd/es/card/Meta';
 import { LikeButton } from '../LikeButton/LikeButton';
@@ -71,6 +71,18 @@ const navigate = useNavigate();
       setVisiblers(true);
     
   };
+  function LinkButton({ text, to }) {
+    return (
+      <Button
+        type='link'
+        size='small'
+        target='_blank'
+        href={to}
+      >
+        {text}
+      </Button>
+    )
+  }
     return (
         <>
         <br />
@@ -83,7 +95,8 @@ const navigate = useNavigate();
            <div className='right-info'>
 
             <div className='first-line'>
-              <span>{user.username || user.firstName}{' '}<CheckCircleTwoTone  style={{fontSize: '12px'}} twoToneColor={'#3797F0'} /></span>
+              <span style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center',}}>{user.username || user.firstName}{'  '}<CheckCircleTwoTone  style={{fontSize: '12px'
+            }} twoToneColor={'#3797F0'} /></span>
               <Button style={{backgroundColor: '#3797F0'}} type='primary '>Siguiendo</Button>
               <Button style={{backgroundColor: '#3797F0'}} type='primary '>Enviar mensaje</Button>
               {/* <Button type='primary' onClick={() => {
@@ -101,15 +114,32 @@ const navigate = useNavigate();
 
             </div>
             <br />
-            <div className='third-line'>
-              <div ><b>Bio: </b> {user.bio}</div>
-             
-              <div> <b>Profesión:</b> {' ' +  user.profesion }</div>
-             
-              <div><b>Hobbie:</b> { ' ' + user.hobbie}</div>
-           
-            </div> 
+            <Row>
 
+            <Descriptions title='Info'style={{
+              display: 'flex',
+              justifyContent: 'start',
+              flexDirection: 'column',
+              alignItems: 'start',
+              width: '100%'
+            }}>
+              <Descriptions.Item ><b>Bio: </b> {user?.bio}</Descriptions.Item>
+             
+              <Descriptions.Item> <b>Profesión:{' '}</b> {' ' +  user?.profesion }</Descriptions.Item>
+             
+              <Descriptions.Item><b>Hobbie:</b> { ' ' + user?.hobbie}, {' ' + user?.hobbie2 }</Descriptions.Item>
+           
+            </Descriptions> 
+            </Row>
+           <Row>
+            <Descriptions title='Social networks'>
+              <Descriptions.Item label={<LinkButton text='Website' to={user?.website} />}>{user?.website}</Descriptions.Item>
+              <Descriptions.Item label={<LinkButton text='Facebook' to={user?.facebook} />}>{user?.facebook}</Descriptions.Item>
+              <Descriptions.Item label={<LinkButton text='Twitter' to={user?.twitter} />}>{user?.twitter}</Descriptions.Item>
+            </Descriptions>
+           </Row>
+            
+           
            </div>
          
        </div>
