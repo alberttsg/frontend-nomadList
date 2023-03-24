@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/UsersState";
 import axios from "axios";
 import "./UserPosts.scss";
-import { Button, Card, message, Modal, Spin } from "antd";
+import { Avatar, Button, Card, Divider, Image, message, Modal, Spin } from "antd";
 import Meta from "antd/es/card/Meta";
 import { LikeButton } from "../LikeButton/LikeButton";
 import { CommentOutlined, ThunderboltFilled } from "@ant-design/icons";
@@ -79,12 +79,14 @@ const UsersPosts = () => {
           <h3>
             {" "}
             <ThunderboltFilled spin={false} style={{ color: "#F0C311" }} />{" "}
-            {posts && posts.length > 0} PUBLICACIONES{" "}
+            {posts && posts.length > 0}{posts.length} PUBLICACIONES{" "}
           </h3>
         </div>
+        <Divider/>
         <div className='posts-container-profiles'>
 
           {posts && posts.length > 0 && posts.map((post) => {
+            console.log(post.author.firstName)
               const likes = post.likes.length;
               return (
                 <Card
@@ -93,19 +95,30 @@ const UsersPosts = () => {
                   hoverable
                   style={
                     {
-                       width:750, 
+                      height:600,
+                      width:750, 
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "center",
                       alignItems: "center", 
                     }}
-                  // cover={
-                  // }
-                  >
-                  <img
+                  cover={
+                    <Image
+                    style={{
+                      borderRadius: "1%",
+                      width: 750,
+                      height: 400,
+                      objectFit: "cover",
+                    }}
+                  src={post.image || 'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
                     alt='example2'
-                    src={'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
+                    // src={'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
                   />
+                  }
+                  >
+                    <p><Avatar size={15} src={post.author.avatar} alt="" />{' '}{' '}{post.author.displayName}</p>
+            
+                  
                   
                   <Meta title={post.title} description={post.content}  />
                   <br />

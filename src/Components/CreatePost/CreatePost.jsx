@@ -35,7 +35,7 @@ export const CreatePost = () => {
     }
 
     setModal(true)
-    document.getElementById('form').reset();
+    document.getElementById('form').reset()
     setTimeout(()=>{
       setModal(false)
     }, 3000)
