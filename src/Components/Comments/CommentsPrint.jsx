@@ -5,7 +5,7 @@ import { CommentOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons
 import { GlobalContext } from '../../context/UsersState';
 import { DateComponent } from '../DateComponent/DateComponent';
 import { Modal, Input, Form, Button, Avatar, Spin } from 'antd'
-import './Comments.scss'
+import './comments.scss'
 
 const CommentsprintComments = (props) => {
   const { postId } = props;
