@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import getPosts from './Pagination';
 import { PostCard } from './PostCard';
 import { Spin, Alert } from 'antd';

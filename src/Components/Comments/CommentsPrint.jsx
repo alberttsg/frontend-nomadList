@@ -4,7 +4,7 @@ import { deleteComments, getComments, updateComments } from './ServiceCommentCre
 import { CommentOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { GlobalContext } from '../../context/UsersState';
 import { DateComponent } from '../DateComponent/DateComponent';
-import { Modal, Input, Form, Button, Avatar } from 'antd'
+import { Modal, Input, Form, Button, Avatar, Spin } from 'antd'
 import './Comments.scss'
 
 const CommentsprintComments = (props) => {
@@ -16,6 +16,7 @@ const CommentsprintComments = (props) => {
   const [idToUpdate, setIdToUpdate] = useState('');
   const { user } = useContext(GlobalContext);
   const [currentCommentEdit, setCurrentCommentEdit] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const printComments = async () => {
     const res = await getComments(postId);
@@ -33,6 +34,7 @@ const CommentsprintComments = (props) => {
       setComments(comments.filter(comment => comment._id !== commentId));
     }
     deleteComment();
+    setLoading(true);
   }
 
   const updateHandler = (id) => {
@@ -46,10 +48,18 @@ const CommentsprintComments = (props) => {
     const updateComment = async () => {
       await updateComments(idToUpdate, e);
     }
+    setLoading(true);
     updateComment()
     setVisibleForm(!visibleForm);
     setModalOpen(!modalOpen);
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, [loading])
+
 
   useEffect(() => {
     printComments()
@@ -58,6 +68,7 @@ const CommentsprintComments = (props) => {
   return (
     <div>
       <CommentOutlined onClick={clickHandler} />
+
       <div>
         {click === true && comments.map((comment) => {
           return (
@@ -76,6 +87,7 @@ const CommentsprintComments = (props) => {
                         <div className='hide'>
                           <EditOutlined onClick={() => updateHandler(comment._id)} />
                           <DeleteOutlined onClick={() => deletehandler(comment._id)} />
+                          {loading && <Spin size="small" tip='Loading' />}
                         </div>
                       </div>
                     }
@@ -97,7 +109,7 @@ const CommentsprintComments = (props) => {
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
             style={{ maxWidth: 600 }}
-            initialValues={{content:currentCommentEdit}}
+            initialValues={{ content: currentCommentEdit }}
             autoComplete="off"
             onFinish={(e) => onFinishEdit(e)}
           >
