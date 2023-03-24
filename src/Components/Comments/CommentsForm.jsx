@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Button, Form, Input } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
+import { Button, Form, Input, Spin } from 'antd';
 import { createComment } from './ServiceCommentCreate';
 import { GlobalContext } from '../../context/UsersState';
 
@@ -7,6 +7,7 @@ const CommentsForm = (props) => {
   const [form] = Form.useForm();
   const { user } = useContext(GlobalContext);
   const { postId, comments, setComments } = props;
+  const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
     const content = values.content;
@@ -17,24 +18,33 @@ const CommentsForm = (props) => {
       author: user._id,
       post: postId,
       content: content,
-      createdAt:  formatDate,
+      createdAt: formatDate,
     }
 
     const commentary = {
       author: { displayName: user.displayName },
       post: postId,
       content: content,
-      createdAt:  formatDate,
+      createdAt: formatDate,
     }
 
     await createComment(newComment, postId);
     const update = [...comments, commentary];
     setComments(update)
     form.resetFields();
+    setLoading(true);
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+      console.log(loading)
+    }, 500);
+  }, [loading]);
 
   return (
     <div>
+      {loading && <Spin size="small" tip='Loading' />}
       <Form
         layout='vertical'
         form={form}
