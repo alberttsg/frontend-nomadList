@@ -1,18 +1,14 @@
 import {
   CheckCircleTwoTone,
-  DeleteTwoTone,
-  EditOutlined,
-  FacebookFilled,
   InstagramFilled,
   LinkedinFilled,
   SettingFilled,
   TwitterCircleFilled,
 } from "@ant-design/icons";
-import { Avatar, Button, Card, Col, Descriptions, Modal, Row } from "antd";
-import React, { useContext, useEffect, useState } from "react";
+import { Avatar, Button, Col, Descriptions, Row } from "antd";
+import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../context/UsersState";
 import EditUser from "../../Components/EditUser/EditUser";
-import { useNavigate } from "react-router";
 import "./UserCard.scss";
 import FollowersModal from "../FollowersModal/FollowersModal";
 import FollowedModal from "../FollowedModal/FollowedModal";
@@ -44,10 +40,9 @@ const UserCard = () => {
   }
   return (
     <div className='card-info-container'>
-      {console.log(user)}
       <Col xs={0} lg={3}></Col>
       <Col xs={24} lg={6} className='left-avatar'>
-        <Avatar size={158} src={user.avatar} />
+        <Avatar size={130} src={user.avatar} />
       </Col>
       <Col xs={24} lg={16} className='right-info'>
         <div className='first-line'>
@@ -105,7 +100,7 @@ const UserCard = () => {
               label={
                 <LinkButton
                   text={<LinkedinFilled />}
-                  to={"https://" + user?.linkedin}
+                  to={"https://linkedin.com/in/" + user?.linkedin}
                 />
               }
             >
@@ -115,7 +110,7 @@ const UserCard = () => {
               label={
                 <LinkButton
                   text={<TwitterCircleFilled />}
-                  to={"https://" + user?.twitter}
+                  to={"https://twitter.com/" + user?.twitter}
                 />
               }
             >
@@ -125,7 +120,7 @@ const UserCard = () => {
               label={
                 <LinkButton
                   text={<InstagramFilled />}
-                  to={"https://" + user?.instagram}
+                  to={"https://instagram.com/" + user?.instagram}
                 />
               }
             >
