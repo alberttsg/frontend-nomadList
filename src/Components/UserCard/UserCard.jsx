@@ -131,10 +131,11 @@ const UserCard = () => {
           </Descriptions>
         </Row>
       </Col>
-      <Col xs={2} lg={6}></Col>
+      <Col xs={2} lg={2}></Col>
+      <EditUser visible={isModalVisible} setVisible={setIsModalVisible} />
       </Row>
 
-              </>
+ </>
   );
 };
 

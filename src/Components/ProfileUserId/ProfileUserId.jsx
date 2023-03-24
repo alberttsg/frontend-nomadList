@@ -161,7 +161,7 @@ const ProfileUserId = () => {
               label={
                 <LinkButton
                 text={<LinkedinFilled />}
-                to={"https://" + user?.linkedin}
+                to={"https://linkedin.com/in/" + user?.linkedin}
                 />
               }
               >
@@ -171,7 +171,7 @@ const ProfileUserId = () => {
               label={
                 <LinkButton
                 text={<TwitterCircleFilled/>}
-                to={"https://" + user?.twitter}
+                to={"https://twitter.com/" + user?.twitter}
                 />
               }
               >
@@ -181,7 +181,7 @@ const ProfileUserId = () => {
               label={
                 <LinkButton
                 text={<InstagramFilled />}
-                to={"https://" + user?.instagram}
+                to={"https://instagram.com/" + user?.instagram}
                 />
               }
               >
