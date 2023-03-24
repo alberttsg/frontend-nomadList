@@ -42,32 +42,24 @@ export const Login = () => {
 
   return (
     <div className='container'>
-      <Row className='carousel-container' align='middle' justify='end' style={{ height: '100%', width: '100%'}}>
-        <Col xs={{ span: 22 }} md={{ span: 12 }} lg={{ span: 8 }}>
+      <Row align='middle' justify='end' style={{ height: '100%' }}>
+        <Col className='carousel-container' xs={{ span: 22 }} md={{ span: 12 }} lg={{ span: 12 }}>
           <div className='logo-login' onClick={() => navigate('/')}>nomad</div>
-          <Carousel autoplay>
+          <Carousel autoplay >
             <img className="image" src="https://res.cloudinary.com/lauradohle/image/upload/v1678500629/nomad-socialNetwork/pexels-shaan-johari-2405041_dv31xq.jpg" />
             <img className="image" src="https://res.cloudinary.com/lauradohle/image/upload/v1678500630/nomad-socialNetwork/pexels-kyle-roxas-2187629_kob09h.jpg" />
             <img className="image" src="https://res.cloudinary.com/lauradohle/image/upload/v1678500630/nomad-socialNetwork/pexels-ma%C3%ABl-balland-2076968_dmncwo.jpg" />
           </Carousel>
         </Col>
-       
       </Row>
-      <div className='login-container'>
+      <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} style={{display:"flex", flexDirection:"column", justifyContent:"center"}}>
         <Form
           name="basic"
-          labelCol={{
-            span: 8,
-          }}
-          wrapperCol={{
-            span: 16,
-          }}
-          style={{
-            maxWidth: 600,
-          }}
-          initialValues={{
-            remember: true,
-          }}
+          align='center'
+          labelCol={{ span: 8, }}
+          wrapperCol={{ span: 16 }}
+          style={{ padding: '20px', width: '100%' }}
+          initialValues={{ remember: true }}
           onFinish={onFinish}
           autoComplete="off"
           form={form}
@@ -75,9 +67,7 @@ export const Login = () => {
           <div className='title-login'>
             <h2>Login</h2>
           </div>
-          <Form.Item
-            label="E-mail"
-            name="email"
+          <Form.Item label="E-mail" name="email"
             rules={[
               {
                 required: true,
@@ -89,9 +79,7 @@ export const Login = () => {
             <Input />
           </Form.Item>
 
-          <Form.Item
-            label="Password"
-            name="password"
+          <Form.Item label="Password" name="password"
             rules={[
               {
                 required: true,
@@ -101,12 +89,7 @@ export const Login = () => {
           >
             <Input.Password />
           </Form.Item>
-          <Form.Item
-            wrapperCol={{
-              offset: 8,
-              span: 16,
-            }}
-          >
+          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
               Login
             </Button>
@@ -119,7 +102,9 @@ export const Login = () => {
         <Modal title="Register" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={[]}>
           <Register onCancel={handleCancel} />
         </Modal>
-      </div>
+      </Col>
+      <Col xs={{ span: 0 }} md={{ span: 0 }} lg={{ span: 4 }}></Col>
+      <Col xs={{ span: 0 }} md={{ span: 0 }} lg={{ span: 2 }}></Col>
     </div>
   )
 }
