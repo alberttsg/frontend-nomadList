@@ -14,7 +14,7 @@ export const NavBar = () => {
       <div className='container-nav'>
         <div className='home' onClick={() => navigate('/')}><HomeFilled className='iconHome' /><div className='divHome'>Home</div> </div>
         <div className='profile' onClick={() => navigate('/profile')}><UserOutlined className='iconProfile' /><div className='divProfile'>Profile</div></div>
-        <div className='create' onClick={() => navigate('/createpost')} ><PlusCircleFilled className='iconCreate' /><div className='divCreate'>Crear</div></div>
+        <div className='create' onClick={() => navigate('/createpost')} ><PlusCircleFilled className='iconCreate' /><div className='divCreate'>Create</div></div>
         <div className='logout' 
         onClick={()=>{
           logOut(),
