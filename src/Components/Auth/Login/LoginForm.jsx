@@ -30,7 +30,7 @@ const LoginForm = () => {
       align='center'
       labelCol={{ span: 8, }}
       wrapperCol={{ span: 16 }}
-      style={{ width: '80%' }}
+      style={{ padding: '20px', width: '100%' }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
       autoComplete="off"
