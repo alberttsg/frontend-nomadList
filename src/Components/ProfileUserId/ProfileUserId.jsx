@@ -10,7 +10,10 @@ import {
   CommentOutlined,
   InstagramFilled,
   LinkedinFilled,
+  MessageFilled,
+  MessageTwoTone,
   SettingFilled,
+  StarFilled,
   ThunderboltFilled,
   TwitterCircleFilled,
 } from "@ant-design/icons";
@@ -106,10 +109,22 @@ const ProfileUserId = () => {
           {/* <button>siguiendo</button>
               <button>enviar mensaje</button> */}
           <Button
+          style={{background: '#769299' }}
             type='primary'
             >
-            <SettingFilled />
+           <StarFilled style={{
+       
+            color: '#F5D200'}} />
             Seguir
+          </Button>
+          <Button
+          style={{background: '#1777FF' }}
+            type='primary'
+            >
+           <MessageTwoTone  style={{
+            color: '#F5D200'}} />
+            Enviar mensaje
+            
           </Button>
         </div>
         <div className='second-line'>
