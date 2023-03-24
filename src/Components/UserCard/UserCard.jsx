@@ -2,10 +2,10 @@ import {
   CheckCircleTwoTone,
   InstagramFilled,
   LinkedinFilled,
-  SettingFilled,
   TwitterCircleFilled,
+  SettingFilled,
 } from "@ant-design/icons";
-import { Avatar, Button, Col, Descriptions, Row } from "antd";
+import { Avatar, Button, Col, Descriptions, Divider, Row } from "antd";
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../context/UsersState";
 import EditUser from "../../Components/EditUser/EditUser";
@@ -39,10 +39,12 @@ const UserCard = () => {
     );
   }
   return (
+    <>
+    <Divider plain/>
     <Row>
-      <Col xs={0} lg={3}></Col>
+      <Col xs={0} lg={1}></Col>
       <Col xs={24} lg={6} className='left-avatar'>
-        <Avatar size={130} src={user.avatar} />
+        <Avatar size={180} src={user.avatar} />
       </Col>
       <Col xs={22} lg={14} className='right-info'>
         <div className='first-line'>
@@ -51,7 +53,7 @@ const UserCard = () => {
             <CheckCircleTwoTone
               style={{ fontSize: "12px" }}
               twoToneColor={"#3797F0"}
-            />
+              />
           </h4>
           {/* <button>siguiendo</button>
               <button>enviar mensaje</button> */}
@@ -61,7 +63,7 @@ const UserCard = () => {
               showEditModal();
               console.log("editando");
             }}
-          >
+            >
             <SettingFilled />
             Editar Perfil
           </Button>
@@ -78,7 +80,7 @@ const UserCard = () => {
           <FollowedModal
             visiblers={visiblers}
             onClosers={() => setVisiblers(false)}
-          />
+            />
         </div>
         <br />
         <Row>
@@ -99,31 +101,31 @@ const UserCard = () => {
             <Descriptions.Item
               label={
                 <LinkButton
-                  text={<LinkedinFilled />}
-                  to={"https://linkedin.com/in/" + user?.linkedin}
+                text={<LinkedinFilled />}
+                to={"https://linkedin.com/in/" + user?.linkedin}
                 />
               }
-            >
+              >
               {user?.linkedin}
             </Descriptions.Item>
             <Descriptions.Item
               label={
                 <LinkButton
-                  text={<TwitterCircleFilled />}
-                  to={"https://twitter.com/" + user?.twitter}
+                text={<TwitterCircleFilled />}
+                to={"https://twitter.com/" + user?.twitter}
                 />
               }
-            >
+              >
               {user?.twitter}
             </Descriptions.Item>
             <Descriptions.Item
               label={
                 <LinkButton
-                  text={<InstagramFilled />}
-                  to={"https://instagram.com/" + user?.instagram}
+                text={<InstagramFilled />}
+                to={"https://instagram.com/" + user?.instagram}
                 />
               }
-            >
+              >
               {user?.instagram}
             </Descriptions.Item>
           </Descriptions>
@@ -133,6 +135,7 @@ const UserCard = () => {
       <EditUser visible={isModalVisible} setVisible={setIsModalVisible} />
       </Row>
 
+ </>
   );
 };
 
