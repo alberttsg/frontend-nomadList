@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal, notification } from 'antd';
+import { Button, Form, Input, Modal, notification, Row, Col, Carousel } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../../context/UsersState';
@@ -42,40 +42,16 @@ export const Login = () => {
 
   return (
     <div className='container'>
-      {/* <div className='primary-container'>
+      <Row className='carousel-container' align='middle' justify='end' style={{ height: '100%', width: '100%'}}>
+        <Col xs={{ span: 22 }} md={{ span: 12 }} lg={{ span: 8 }}>
           <div className='logo-login' onClick={() => navigate('/')}>nomad</div>
-          <div className="carousel-container">
-            <div className="carousel-box">
-              <div className="carousel-element">
-                <img className="image" src="https://res.cloudinary.com/lauradohle/image/upload/v1678500630/nomad-socialNetwork/pexels-ma%C3%ABl-balland-2076968_dmncwo.jpg" />
-              </div>
-              <div className="carousel-element">
-                <img className="image" src="https://res.cloudinary.com/lauradohle/image/upload/v1678500630/nomad-socialNetwork/pexels-kyle-roxas-2187629_kob09h.jpg" />
-              </div>
-              <div className="carousel-element">
-                <img className="image" src="https://res.cloudinary.com/lauradohle/image/upload/v1678500629/nomad-socialNetwork/pexels-shaan-johari-2405041_dv31xq.jpg" />
-              </div>
-            </div>
-          </div>
-        </div> */}
-      <Row align='middle' justify='center' style={{ padding: '20px', height: '100%' }}>
-        <Col xs={{ span: 0 }} md={{ span: 0 }} lg={{ span: 4 }}></Col>
-        <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }}>
-          <Logo size={40} width={100} />
           <Carousel autoplay>
             <img className="image" src="https://res.cloudinary.com/lauradohle/image/upload/v1678500629/nomad-socialNetwork/pexels-shaan-johari-2405041_dv31xq.jpg" />
             <img className="image" src="https://res.cloudinary.com/lauradohle/image/upload/v1678500630/nomad-socialNetwork/pexels-kyle-roxas-2187629_kob09h.jpg" />
             <img className="image" src="https://res.cloudinary.com/lauradohle/image/upload/v1678500630/nomad-socialNetwork/pexels-ma%C3%ABl-balland-2076968_dmncwo.jpg" />
           </Carousel>
         </Col>
-        <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }}>
-          <LoginForm />
-          <div className='register'>
-            Don't have an account?
-            <RegisterModal />
-          </div>
-        </Col>
-        <Col xs={{ span: 0 }} md={{ span: 0 }} lg={{ span: 4 }}></Col>
+       
       </Row>
       <div className='login-container'>
         <Form
