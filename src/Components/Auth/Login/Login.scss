@@ -26,7 +26,7 @@
 }
 
 .title-login {
-  padding-bottom: 20%;
+  padding: 5% 0;
   display: flex;
   justify-content: center;
 }
@@ -61,39 +61,19 @@
 
 @media (max-width: 1024px) {
   .logo-login {
-    width: 40% !important;
-    height: auto !important;
-    font: 400 4vh "Monoton" !important;
-  }
-
-  .carousel-container {
-    width: 50%;
+    font: 400 5vh "Monoton" !important;
   }
 }
 
 @media (max-width: 670px) {
 
-  .container {
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-
-    .primary-container {
-      position: absolute;
-      top: 120px;
-      width: auto;
-      margin: 5px;
-    }
-
-    .login-container {
-      height: 50vh;
-      margin-left: 0;
-    }
+  .login-container {
+    height: 50vh;
+    margin-left: 0;
   }
 
   .logo-login {
     font: 400 6vh "Monoton" !important;
-    width: 85% !important;
     margin: 20px;
     align-items: center;
   }
