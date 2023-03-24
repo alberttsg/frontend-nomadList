@@ -91,17 +91,23 @@ const UsersPosts = () => {
                   key={post._id}
                   className='post-container-uni'
                   hoverable
-                  style={{ width: 250 }}
-                  cover={
-                    <img
-                      alt='example'
-                      src={
-                        "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png"
-                      }
-                    />
-                  }
-                >
-                  <Meta title={post.title} description={post.content} />
+                  style={
+                    {
+                       width:750, 
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center", 
+                    }}
+                  // cover={
+                  // }
+                  >
+                  <img
+                    alt='example2'
+                    src={'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
+                  />
+                  
+                  <Meta title={post.title} description={post.content}  />
                   <br />
                   <div className="orginze-buttons">
                     <div>
