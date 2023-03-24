@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { GlobalContext } from "../../context/UsersState";
-import { Avatar, Button, Card, Col, Descriptions, Row, Spin } from "antd";
+import { Avatar, Button, Card, Col, Descriptions, Divider, Row, Spin } from "antd";
 import {
   CheckCircleTwoTone,
   CommentOutlined,
@@ -89,13 +89,13 @@ const ProfileUserId = () => {
   }
   return (
     <>
-    <br />
+    <Divider/>
     <Row>
 
       {console.log(user)}
-      <Col xs={2} lg={2}></Col>
+      <Col xs={2} lg={1}></Col>
       <Col xs={22} lg={6} className='left-avatar'>
-        <Avatar size={158} src={user.avatar} />
+        <Avatar size={180} src={user.avatar} />
       </Col>
       <Col xs={22} lg={14} className='right-info'>
         <div className='first-line'>
@@ -190,8 +190,9 @@ const ProfileUserId = () => {
           </Descriptions>
         </Row>
       </Col>
-      <Col xs={2} lg={2}></Col>
+      <Col xs={2} lg={6}></Col>
               </Row>
+              <Divider plain/>
       <Spin size='large' spinning={loading}>
         <div className='publis'>
           <h3>
