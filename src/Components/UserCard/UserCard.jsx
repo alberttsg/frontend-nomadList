@@ -43,21 +43,22 @@ const UserCard = () => {
     );
   }
   return (
-    <div className='card-info-container'>
+    // <div className='card-info-container'>
+      <Row>
       {console.log(user)}
-      <Col xs={0} lg={3}></Col>
-      <Col xs={24} lg={6} className='left-avatar'>
+      <Col xs={2} lg={2}></Col>
+      <Col xs={22} lg={6} className='left-avatar'>
         <Avatar size={158} src={user.avatar} />
       </Col>
-      <Col xs={24} lg={16} className='right-info'>
+      <Col xs={22} lg={14} className='right-info'>
         <div className='first-line'>
-          <span>
-            {user.username}{" "}
+          <h4>
+            {user.username || user?.firstName}{" "}
             <CheckCircleTwoTone
               style={{ fontSize: "12px" }}
               twoToneColor={"#3797F0"}
             />
-          </span>
+          </h4>
           {/* <button>siguiendo</button>
               <button>enviar mensaje</button> */}
           <Button
@@ -134,9 +135,10 @@ const UserCard = () => {
           </Descriptions>
         </Row>
       </Col>
-      <Col xs={0} lg={3}></Col>
+      <Col xs={2} lg={2}></Col>
       <EditUser visible={isModalVisible} setVisible={setIsModalVisible} />
-    </div>
+      </Row>
+    // </div>
   );
 };
 
