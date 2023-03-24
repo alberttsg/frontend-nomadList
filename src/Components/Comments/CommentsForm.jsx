@@ -6,7 +6,7 @@ import { GlobalContext } from '../../context/UsersState';
 const CommentsForm = (props) => {
   const [form] = Form.useForm();
   const { user } = useContext(GlobalContext);
-  const { postId, comments, setComments } = props;
+  const { postId, comments, setComments, printComments } = props;
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
@@ -31,6 +31,7 @@ const CommentsForm = (props) => {
     await createComment(newComment, postId);
     const update = [...comments, commentary];
     setComments(update)
+    printComments();
     form.resetFields();
     setLoading(true);
   }
@@ -38,7 +39,6 @@ const CommentsForm = (props) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-      console.log(loading)
     }, 500);
   }, [loading]);
 

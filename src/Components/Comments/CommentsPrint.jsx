@@ -32,6 +32,7 @@ const CommentsprintComments = (props) => {
     const deleteComment = async () => {
       await deleteComments(commentId);
       setComments(comments.filter(comment => comment._id !== commentId));
+      printComments()
     }
     deleteComment();
     setLoading(true);
@@ -60,10 +61,9 @@ const CommentsprintComments = (props) => {
     }, 1500);
   }, [loading])
 
-
-  useEffect(() => {
+  useEffect(()=>{
     printComments()
-  }, [comments])
+  },[]);
 
   return (
     <div>
@@ -127,7 +127,7 @@ const CommentsprintComments = (props) => {
           </Form>
         </Modal>)}
       <div>
-        <CommentsForm postId={postId} comments={comments} setComments={setComments} />
+        <CommentsForm postId={postId} comments={comments} setComments={setComments} printComments={printComments} />
       </div>
     </div>
   )
