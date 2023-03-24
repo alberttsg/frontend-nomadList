@@ -10,8 +10,6 @@ import { CheckCircleTwoTone, CommentOutlined, ThunderboltFilled } from '@ant-des
 import Meta from 'antd/es/card/Meta';
 import { LikeButton } from '../LikeButton/LikeButton';
 import { DateComponent } from '../DateComponent/DateComponent';
-import FollowersModal from '../FollowersModal/FollowersModal';
-import FollowedModal from '../FollowedModal/FollowedModal';
 import FollowedModalById from '../FollowedModalById/FollowedModalById';
 import FollowersModalById from '../FollowersModalByid/FollowersModalById';
 
@@ -51,7 +49,7 @@ const navigate = useNavigate();
               }
             }
           );
-          setPosts(res.data);
+          setPosts(res.data.posts);
           setLoading(false);
       } catch (error) {
         console.error(error);

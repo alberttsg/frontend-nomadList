@@ -4,7 +4,8 @@ import { deleteComments, getComments, updateComments } from './ServiceCommentCre
 import { CommentOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { GlobalContext } from '../../context/UsersState';
 import { DateComponent } from '../DateComponent/DateComponent';
-import { Modal, Input, Form, Button } from 'antd'
+import { Modal, Input, Form, Button, Avatar } from 'antd'
+import './Comments.scss'
 
 const CommentsprintComments = (props) => {
   const { postId } = props;
@@ -14,6 +15,7 @@ const CommentsprintComments = (props) => {
   const [click, setClick] = useState(false);
   const [idToUpdate, setIdToUpdate] = useState('');
   const { user } = useContext(GlobalContext);
+  const [currentCommentEdit, setCurrentCommentEdit] = useState('');
 
   const printComments = async () => {
     const res = await getComments(postId);
@@ -35,6 +37,7 @@ const CommentsprintComments = (props) => {
 
   const updateHandler = (id) => {
     setIdToUpdate(id);
+    setCurrentCommentEdit((comments.filter(comment => comment._id === id))[0].content);
     setVisibleForm(!visibleForm);
     setModalOpen(!modalOpen);
   }
@@ -46,7 +49,6 @@ const CommentsprintComments = (props) => {
     updateComment()
     setVisibleForm(!visibleForm);
     setModalOpen(!modalOpen);
-    printComments()
   }
 
   useEffect(() => {
@@ -57,17 +59,28 @@ const CommentsprintComments = (props) => {
     <div>
       <CommentOutlined onClick={clickHandler} />
       <div>
-        {click === true && comments && comments.map((comment) => {
+        {click === true && comments.map((comment) => {
           return (
             <div key={comment._id + 1}>
-              <p>{comment.author.displayName}</p>
-              <DateComponent datePost={comment.createdAt} />
-              <p>{comment.content}</p>
-              <div>
-                {user.displayName === comment.author.displayName && <div>
-                  <EditOutlined onClick={() => updateHandler(comment._id)} />
-                  <DeleteOutlined onClick={() => deletehandler(comment._id)} />
-                </div>}
+              <div className='commentBubble'>
+                <Avatar src={comment.author.avatar} size={50} />
+                <div className='commentContainer'>
+                  <div className='commentInfo'>
+                    <h3>{comment.author.displayName}</h3>
+                    <span>{comment.content}</span>
+                  </div>
+                  <div className='commentEdit'>
+                    <DateComponent datePost={comment.createdAt} />
+                    {user.displayName === comment.author.displayName &&
+                      <div className='showHover'>
+                        <div className='hide'>
+                          <EditOutlined onClick={() => updateHandler(comment._id)} />
+                          <DeleteOutlined onClick={() => deletehandler(comment._id)} />
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
               </div>
             </div>
           )
@@ -84,7 +97,7 @@ const CommentsprintComments = (props) => {
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
             style={{ maxWidth: 600 }}
-            initialValues={{ remember: true }}
+            initialValues={{content:currentCommentEdit}}
             autoComplete="off"
             onFinish={(e) => onFinishEdit(e)}
           >
