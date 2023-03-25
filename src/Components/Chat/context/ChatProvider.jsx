@@ -18,8 +18,7 @@ export const ChatContext = createContext(initialState);
 export const ChatProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ChatReducer, initialState);
 
-  // const URL = 'https://nomadsocietychat.onrender.com/';
-  const URL = 'http://localhost:4000/';
+  const URL = 'https://nomadsocietychat.onrender.com/';
 
   useEffect(() => {
     newManager();

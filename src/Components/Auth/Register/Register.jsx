@@ -16,7 +16,7 @@ export const Register = ({ onCancel }) => {
   useEffect(()=>{
     if (isErrorRegister) {
       return notification.error({
-        message: "Ya existe este correo registrado. Por favor, logueate o utiliza otro e-mail",
+        message: "This email already exists. Please log in or use another email",
       });
     }
       reset()
@@ -80,6 +80,7 @@ export const Register = ({ onCancel }) => {
           rules={[
             {
               type: 'email',
+              pattern: /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/,
               message: 'The input is not valid E-mail!',
             },
             {

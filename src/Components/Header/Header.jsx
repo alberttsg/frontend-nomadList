@@ -26,11 +26,6 @@ export const Header = () => {
 
   },[search])
 
-  // const onBlur = (e) =>{
-  //   setDisplay('display')
-  //   e.target.value = ''
-  // }
-
   const resetInput = (e) => {
     setDisplay('display')
     setSearch('')
