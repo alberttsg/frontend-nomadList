@@ -44,12 +44,13 @@ const CommentsprintComments = (props) => {
     setVisibleForm(!visibleForm);
     setModalOpen(!modalOpen);
   }
-
+  
   function onFinishEdit(e) {
     const updateComment = async () => {
       await updateComments(idToUpdate, e);
+      setLoading(true);
+      printComments()
     }
-    setLoading(true);
     updateComment()
     setVisibleForm(!visibleForm);
     setModalOpen(!modalOpen);
