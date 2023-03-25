@@ -20,9 +20,9 @@ export function PostCard(props) {
         </div>
       </div>
       <div style={{ width: '100%' }}>
-        {/* <PostLikeButton id={post?._id} likes={post?.likesCount} /> */}
+        <PostLikeButton id={post?._id} likesCount={post?.likesCount} />
         <CommentsPrint postId={post?._id} />
-        <DateComponent datePost={post?.createdAt} />
+        {/* <DateComponent datePost={post?.createdAt} /> */}
       </div>
     </Card>
   )

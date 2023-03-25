@@ -1,9 +1,9 @@
+import { Logo } from '../../aaaaa/Header/Logo';
 import { images } from '../../resources/loginImages';
 import { LoginForm } from '../../aaaaa/Login/LoginForm';
 import { RegisterModal } from '../../aaaaa/Register/RegisterModal';
 import { Row, Col, Carousel } from 'antd';
 import './Login.scss';
-import { Logo } from '../../aaaaa/Header/Logo';
 
 export const Login = () => {
   return (

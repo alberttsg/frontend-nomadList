@@ -73,6 +73,7 @@ export function paginatePostsByUser(pageNumber, id) {
 }
 
 export async function toggleLike(postId) {
+  const token = JSON.parse(localStorage.getItem("token"));
   const res = await axios.put(URL + 'post/like/' + postId, {}, { headers: { Authorization: token } });
-  return res.data;
+  return res.data.likesCount;
 }
