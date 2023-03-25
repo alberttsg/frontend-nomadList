@@ -23,7 +23,7 @@ export const CreatePost = () => {
       }, 2000)
       return
     }
-    
+
     ServiceCreatePost(objectForm)
 
     if(!ServiceCreatePost){

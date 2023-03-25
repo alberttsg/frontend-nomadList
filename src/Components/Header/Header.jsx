@@ -31,8 +31,9 @@ export const Header = () => {
   //   e.target.value = ''
   // }
 
-  const resetInput = () => {
+  const resetInput = (e) => {
     setDisplay('display')
+    setSearch('')
   }
 
   const profileRoute = (element) => {
@@ -44,7 +45,7 @@ export const Header = () => {
   return (
     <div className='header'>
       <div className='divInput'>
-        <input type='text' placeholder='Busca gente en nomad' onChange={(e)=>setSearch(e.target.value)} onFocus={()=>setDisplay('x')}/>
+        <input id='input' type='text' placeholder='Busca gente en nomad' value={search} onChange={(e)=>setSearch(e.target.value)} onFocus={()=>setDisplay('x')}/>
         <CloseCircleOutlined className='closeBtn' onClick={resetInput} />
       </div>
       <div className='divSearch' id={display}>
