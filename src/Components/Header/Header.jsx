@@ -1,4 +1,4 @@
-import { CloseCircleOutlined, SearchOutlined } from '@ant-design/icons'
+import { CloseCircleOutlined } from '@ant-design/icons'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import './Header.scss'
