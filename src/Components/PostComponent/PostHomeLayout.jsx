@@ -1,13 +1,13 @@
 import React, { useCallback, useRef, useState } from 'react'
-import getPosts from './Pagination';
-import { PostCard } from './PostCard';
+import { paginatePosts } from '../../service/postService';
+import { PostCard } from './PostCard/PostCard';
 import { Spin, Alert } from 'antd';
 
-export const PostComponent = () => {
+export function PostHomeLayout() {
   const [page, setPage] = useState(1)
-  const { posts, hasMore, loading, error } = getPosts(page);
+  const { posts, hasMore, loading, error } = paginatePosts(page);
   const observer = useRef();
-  
+
   const lastPostElementRef = useCallback(node => {
     if (loading) return;
     if (observer.current) observer.current.disconnect();
@@ -20,7 +20,7 @@ export const PostComponent = () => {
   }, [loading, hasMore]);
 
   return (
-    <div style={{display: 'flex', flexFlow: 'column nowrap', gap: '30px'}}>
+    <div style={{ display: 'flex', flexFlow: 'column nowrap', gap: '30px' }}>
       {posts && posts.map((post, index) => {
         if (posts.length === index + 1) {
           return <PostCard post={post} key={index} forwardedRef={lastPostElementRef} />

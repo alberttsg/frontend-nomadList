@@ -18,7 +18,7 @@ export const ChatContext = createContext(initialState);
 export const ChatProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ChatReducer, initialState);
 
-  const URL = 'https://nomadsocietychat.onrender.com/';
+  const URL = import.meta.env.VITE_CHAT_URL;
 
   useEffect(() => {
     newManager();

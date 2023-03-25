@@ -1,7 +1,7 @@
 import './Content.scss'
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/UsersState";
-import { PostComponent } from '../PostComponent/PostComponent';
+import { PostHomeLayout } from '../PostComponent/PostHomeLayout';
 import { ChatLayout } from '../Chat/components/ChatLayout';
 export const Content = () => {
   const { getUserInfo } = useContext(GlobalContext);
@@ -11,7 +11,7 @@ export const Content = () => {
   },[])
   return (
     <div className='content'>
-      <PostComponent />
+      <PostHomeLayout />
       <ChatLayout/>
     </div>
   )

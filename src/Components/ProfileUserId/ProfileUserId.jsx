@@ -18,7 +18,7 @@ import {
   TwitterCircleFilled,
 } from "@ant-design/icons";
 import Meta from "antd/es/card/Meta";
-import { LikeButton } from "../LikeButton/LikeButton";
+import { LikeButton } from "../PostComponent/PostCard/components/LikeButton";
 import { DateComponent } from "../DateComponent/DateComponent";
 import FollowedModalById from "../FollowedModalById/FollowedModalById";
 import FollowersModalById from "../FollowersModalByid/FollowersModalById";
