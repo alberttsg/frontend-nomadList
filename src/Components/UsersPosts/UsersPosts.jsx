@@ -11,6 +11,7 @@ import CommentsPrint from "../Comments/CommentsPrint";
 import { DateComponent } from "../DateComponent/DateComponent";
 import EditPostProfile from "../EditPostsProfile/EditPostProfile";
 import { PostContext } from "../../context/PostContext/PostState";
+import { PostCard } from "../PostComponent/PostCard/PostCard";
 
 const UsersPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -85,71 +86,72 @@ const UsersPosts = () => {
         <Divider/>
         <div className='posts-container-profiles'>
 
-          {posts && posts.length > 0 && posts.map((post) => {
+          {posts && posts.length > 0 && posts.map((post, index) => {
               const likes = post.likes.length;
               return (
-                <Card
-                  key={post._id}
-                  className='post-container-uni'
-                  hoverable
-                  style={
-                    {
-                      height:600,
-                      width:750, 
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center", 
-                    }}
-                  cover={
-                    <Image
-                    style={{
-                      borderRadius: "1%",
-                      width: 750,
-                      height: 400,
-                      objectFit: "cover",
-                    }}
-                  src={post.imagePost || 'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
-                    alt='example2'
-                    // src={'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
-                  />
-                  }
-                  >
-                    <p><Avatar size={15} src={post.author.avatar} alt="" />{' '}{' '}{post.author.displayName}</p>
+                <PostCard post={post} key={index}/>
+              //   <Card
+              //     key={post._id}
+              //     className='post-container-uni'
+              //     hoverable
+              //     style={
+              //       {
+              //         height:600,
+              //         width:750, 
+              //         display: "flex",
+              //         flexDirection: "column",
+              //         justifyContent: "center",
+              //         alignItems: "center", 
+              //       }}
+              //     cover={
+              //       <Image
+              //       style={{
+              //         borderRadius: "1%",
+              //         width: 750,
+              //         height: 400,
+              //         objectFit: "cover",
+              //       }}
+              //     src={post.imagePost || 'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
+              //       alt='example2'
+              //       // src={'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
+              //     />
+              //     }
+              //     >
+              //       <p><Avatar size={15} src={post.author.avatar} alt="" />{' '}{' '}{post.author.displayName}</p>
             
                   
                   
-                  <Meta title={post.title} description={post.content}  />
-                  <br />
-                  <div className="orginze-buttons">
-                    <div>
-                      <LikeButton id={post._id} likes={likes} />{" "}
-                      <CommentOutlined postid={post._id}
-                        onClick={() => {
-                          return <CommentsPrint postid={post._id} />;
-                        }}
-                      ></CommentOutlined>
-                    </div>
-                    <div>
-                      <DateComponent datePost={post.createdAt} />
-                    </div>
-                  </div>
-                  <br />
-                  <div className='button-container-posts'>
-                    <Button
-                      type='primary'
-                      size='small'
-                      onClick={() => handleDeleteUserClick(post._id)}
-                    >
-                      Delete
-                    </Button>
-                    <Button  size='small' type='primary' onClick={() => {
-                      setSelectedPost(post);
-                      showEditModal(post._id);
-                    } }>Editar</Button>
+              //     <Meta title={post.title} description={post.content}  />
+              //     <br />
+              //     <div className="orginze-buttons">
+              //       <div>
+              //         <LikeButton id={post._id} likes={likes} />{" "}
+              //         <CommentOutlined postid={post._id}
+              //           onClick={() => {
+              //             return <CommentsPrint postid={post._id} />;
+              //           }}
+              //         ></CommentOutlined>
+              //       </div>
+              //       <div>
+              //         <DateComponent datePost={post.createdAt} />
+              //       </div>
+              //     </div>
+              //     <br />
+              //     <div className='button-container-posts'>
+              //       <Button
+              //         type='primary'
+              //         size='small'
+              //         onClick={() => handleDeleteUserClick(post._id)}
+              //       >
+              //         Delete
+              //       </Button>
+              //       <Button  size='small' type='primary' onClick={() => {
+              //         setSelectedPost(post);
+              //         showEditModal(post._id);
+              //       } }>Editar</Button>
                     
-                  </div>
-                </Card>
+              //     </div>
+              //   </Card>
               );
             })}
             <EditPostProfile  selectedPost={selectedPost} visible={isModalVisible} setVisible={setIsModalVisible}/>

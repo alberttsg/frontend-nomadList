@@ -18,10 +18,10 @@ import {
   TwitterCircleFilled,
 } from "@ant-design/icons";
 import Meta from "antd/es/card/Meta";
-import { LikeButton } from "../PostComponent/PostCard/components/LikeButton";
 import { DateComponent } from "../DateComponent/DateComponent";
 import FollowedModalById from "../FollowedModalById/FollowedModalById";
 import FollowersModalById from "../FollowersModalByid/FollowersModalById";
+import { PostCard } from "../PostComponent/PostCard/PostCard";
 
 const ProfileUserId = () => {
   const [visible, setVisible] = useState(false);
@@ -204,58 +204,58 @@ const ProfileUserId = () => {
         <div className='posts-container-profiles'>
           {console.log(posts)}
           {posts &&
-            posts.map((post) => {
+            posts.map((post, index) => {
               // const likes = post.likes.length;
               return (
-                <Card
-                  key={post._id}
-                  className='post-container-uni'
-                  hoverable
-                  style={{ width: 250 }}
-                  cover={
-                    <img
-                      alt='example'
-                      src={
-                        "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png"
-                      }
-                    />
-                  }
-                >
-                  <Meta title={post.title} description={post.content} />
-                  {/* <p>{post.content}</p> */}
-                  {/* <img src={'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png'} alt="img" /> */}
-                  <br />
-                  <div className='orginze-buttons'>
-                    <div>
-                      {/* <LikeButton id={post._id} likes={likes} />{" "} */}
-                      <CommentOutlined
-                        onClick={() => {
-                          return <CommentsPrint postId={post._id} />;
-                        }}
-                      ></CommentOutlined>
-                    </div>
-                    <div>
-                      <DateComponent datePost={post.createdAt} />
-                    </div>
-                  </div>
-                  <br />
-                  <div className='button-container-posts'>
-                    {/* <Button
-                        type='primary'
-                        size='small'
-                        onClick={() => console.log("borra")}
-                      >
-                        Seguir
-                      </Button>
-                      <Button
-                        type='primary'
-                        size='small'
-                        onClick={() => console.log("edit")}
-                      >
-                        Enviar
-                      </Button> */}
-                  </div>
-                </Card>
+                <PostCard post={post} key={index} />
+                // <Card
+                //   key={post._id}
+                //   className='post-container-uni'
+                //   hoverable
+                //   style={{ width: 250 }}
+                //   cover={
+                //     <img
+                //       alt='example'
+                //       src={
+                //         "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png"
+                //       }
+                //     />
+                //   }
+                // >
+                //   <Meta title={post.title} description={post.content} />
+                //   {/* <p>{post.content}</p> */}
+                //   {/* <img src={'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png'} alt="img" /> */}
+                //   <br />
+                //   <div className='orginze-buttons'>
+                //     <div>
+                //       <CommentOutlined
+                //         onClick={() => {
+                //           return <CommentsPrint postId={post._id} />;
+                //         }}
+                //       ></CommentOutlined>
+                //     </div>
+                //     <div>
+                //       <DateComponent datePost={post.createdAt} />
+                //     </div>
+                //   </div>
+                //   <br />
+                //   <div className='button-container-posts'>
+                //     {/* <Button
+                //         type='primary'
+                //         size='small'
+                //         onClick={() => console.log("borra")}
+                //       >
+                //         Seguir
+                //       </Button>
+                //       <Button
+                //         type='primary'
+                //         size='small'
+                //         onClick={() => console.log("edit")}
+                //       >
+                //         Enviar
+                //       </Button> */}
+                //   </div>
+                // </Card>
               );
             })}
         </div>
