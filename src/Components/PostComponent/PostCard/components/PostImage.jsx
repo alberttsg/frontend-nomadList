@@ -9,7 +9,12 @@ export function PostImage() {
   return (
     <Carousel>
       {post?.imagePost?.map(img =>
-        <img className='post-img' key={img} src={img} alt="Resource not found" onError={({ currentTarget }) => {
+        <img className='post-img' 
+        
+        key={img} 
+        src={img} 
+        alt="Resource not found" 
+        onError={({ currentTarget }) => {
           currentTarget.onerror = null;
           currentTarget.src = [defaultImage];
         }} />

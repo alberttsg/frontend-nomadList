@@ -21,7 +21,7 @@ export function PostCard({ post, forwardedRef }) {
           <Divider type='horizontal' />
           <div style={{display: 'flex', gap: '20px'}}>
           <LikeButton />
-          <CommentsPrint />
+          <CommentsButton />
           </div>
         </div>
 
