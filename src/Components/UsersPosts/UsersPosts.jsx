@@ -86,7 +86,6 @@ const UsersPosts = () => {
         <div className='posts-container-profiles'>
 
           {posts && posts.length > 0 && posts.map((post) => {
-            console.log(post.author.firstName)
               const likes = post.likes.length;
               return (
                 <Card
@@ -110,7 +109,7 @@ const UsersPosts = () => {
                       height: 400,
                       objectFit: "cover",
                     }}
-                  src={post.image || 'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
+                  src={post.imagePost || 'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
                     alt='example2'
                     // src={'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found.jpg'}
                   />
