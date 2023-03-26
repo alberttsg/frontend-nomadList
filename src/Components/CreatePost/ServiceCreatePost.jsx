@@ -24,7 +24,7 @@ export const ServiceCreatePost = async (body) => {
   }
 
   // body.append('sentiment', sentiment)
-  const res = await axios.post('https://backend-nomadsociety-production.up.railway.app/post/newpost', body, config)
+  const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/post/newpost', body, config)
 
   return res.data
 }
