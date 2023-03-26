@@ -1,0 +1,21 @@
+.ant-col{
+    margin: 20px;
+}
+.row-info-country{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 90%;
+    span{
+    width: 40%;
+    }
+
+}
+.ant-progress-text{
+    color:rgb(243, 240, 240) !important
+    }
+
+
+.progress-bar {
+        border-radius: 10px 0 0 10px;
+      }
