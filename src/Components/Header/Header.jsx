@@ -26,7 +26,7 @@ export const Header = () => {
 
   },[search])
 
-  const resetInput = (e) => {
+  const resetInput = () => {
     setDisplay('display')
     setSearch('')
   }
@@ -40,7 +40,7 @@ export const Header = () => {
   return (
     <div className='header'>
       <div className='divInput'>
-        <input id='input' type='text' placeholder='Busca gente en nomad' value={search} onChange={(e)=>setSearch(e.target.value)} onFocus={()=>setDisplay('x')}/>
+        <input id='input' type='text' placeholder='Find people in Nomad' value={search} onChange={(e)=>setSearch(e.target.value)} onFocus={()=>setDisplay('x')}/>
         <CloseCircleOutlined className='closeBtn' onClick={resetInput} />
       </div>
       <div className='divSearch' id={display}>
