@@ -5,13 +5,13 @@ import { PostCreated } from './PostCreated'
 import { PostEmpty } from './PostEmpty'
 import { ServiceCreatePost } from './ServiceCreatePost'
 
-export const CreatePost = () => {
+export const CreatePost = ()  => {
 
   const [formEpmty, setFormEmpty] = useState(false)
   const [modal, setModal] = useState(false)
   const [modalLanguage, setModalLanguage] = useState(false)
 
-  const handleForm = (e) => {
+  const handleForm = async(e) => {
     e.preventDefault()
     const objectForm = new FormData(e.target)
     const formObj = Object.fromEntries(objectForm)
@@ -24,9 +24,9 @@ export const CreatePost = () => {
       return
     }
 
-    ServiceCreatePost(objectForm)
+    const res = await ServiceCreatePost(objectForm)
 
-    if(!ServiceCreatePost){
+    if(!res){
       setModalLanguage(true)
       setTimeout(()=>{
       setModalLanguage(false)
