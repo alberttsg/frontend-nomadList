@@ -7,7 +7,6 @@ import { Avatar, Button, Card, Divider, Image, message, Modal, Spin } from "antd
 import Meta from "antd/es/card/Meta";
 import { LikeButton } from "../PostComponent/PostCard/components/LikeButton";
 import { CommentOutlined, ThunderboltFilled } from "@ant-design/icons";
-import CommentsPrint from "../Comments/CommentsPrint";
 import { DateComponent } from "../DateComponent/DateComponent";
 import EditPostProfile from "../EditPostsProfile/EditPostProfile";
 import { PostContext } from "../../context/PostContext/PostState";
