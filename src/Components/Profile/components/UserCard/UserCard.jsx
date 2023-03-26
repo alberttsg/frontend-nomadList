@@ -4,6 +4,7 @@ import { ProfileContext } from "../../Profile";
 import { EditUser } from "../EditUser/EditUser";
 import { FollowersModal } from "../FollowersModal/FollowersModal";
 import { FollowedModal } from "../FollowedModal/FollowedModal";
+import { FollowButton } from "../FollowButton/FollowButton";
 import { Avatar, Button, Col, Descriptions, Divider, Row } from "antd";
 import { CheckCircleTwoTone, InstagramFilled, LinkedinFilled, TwitterCircleFilled } from "@ant-design/icons";
 import "./UserCard.scss";
@@ -12,24 +13,6 @@ export const UserCard = () => {
   const { user } = useContext(GlobalContext);
   const { userData } = useContext(ProfileContext);
   const canEdit = user?._id === userData?._id;
-
-  function LinkButton({ logo, to }) {
-    const logos = {
-      twitter: <TwitterCircleFilled />,
-      linkedin: <LinkedinFilled />,
-      instagram: <InstagramFilled />,
-    };
-    const urls = {
-      twitter: 'https://twitter.com/',
-      linkedin: 'https://linkedin.com/in/',
-      instagram: 'https://instagram.com/',
-    };
-    return (
-      <Button type='link' size='small' target='_blank' href={urls[logo] + to}>
-        {logos[logo]}
-      </Button>
-    );
-  }
 
   return (
     <>
@@ -48,8 +31,8 @@ export const UserCard = () => {
                 twoToneColor={"#3797F0"}
               />
             </h4>
-            {/* <button>siguiendo</button>
-              <button>enviar mensaje</button> */}
+            {/* <button>Enviar mensaje Añadir contacto</button> */}
+            {!canEdit && <FollowButton />}
             {canEdit && <EditUser />}
           </Row>
 
@@ -94,3 +77,21 @@ export const UserCard = () => {
     </>
   );
 };
+
+function LinkButton({ logo, to }) {
+  const logos = {
+    twitter: <TwitterCircleFilled />,
+    linkedin: <LinkedinFilled />,
+    instagram: <InstagramFilled />,
+  };
+  const urls = {
+    twitter: 'https://twitter.com/',
+    linkedin: 'https://linkedin.com/in/',
+    instagram: 'https://instagram.com/',
+  };
+  return (
+    <Button type='link' size='small' target='_blank' href={urls[logo] + to}>
+      {logos[logo]}
+    </Button>
+  );
+}

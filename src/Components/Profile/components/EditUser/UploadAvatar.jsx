@@ -1,32 +1,26 @@
 import React from 'react'
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, message, Upload } from 'antd';
-import axios from 'axios';
+import { Button, Upload } from 'antd';
+import { uploadAvatar } from '../../../../service/userService';
 
 export const UploadAvatar = () => {
-  const token = JSON.parse(localStorage.getItem("token"));
+
   const uploadImage = async (options) => {
-    const { onSuccess, onError, file, onProgress } = options;
+    const { onSuccess, onError, onProgress, file } = options;
     const fmData = new FormData();
-    const config = {
-      headers: { Authorization: token},
-    }
     fmData.append("image", file);
     try {
-      const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/users/avatar/', fmData, config);
+      await uploadAvatar(fmData);
       onSuccess("Ok");
-      console.log("server res: ", res);
-    }catch(err){
-      console.log(err)
-      const error = new Error("Some error");
-      onError({ err });
+    } catch (err) {
+      const error = new Error(err.message);
+      onError({ error });
     }
   }
 
   return (
-    
     <Upload customRequest={uploadImage}>
-     <Button icon={<UploadOutlined />}>Click to Upload</Button>
+      <Button icon={<UploadOutlined />}>Click to Upload</Button>
     </Upload>
   )
 }
