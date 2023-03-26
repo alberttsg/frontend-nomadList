@@ -55,6 +55,8 @@
   height:500px;
   z-index: 50;
   background-color: rgb(255, 255, 255);
+  border:1px solid black;
+  border-radius: 5px;
   animation-name: divSearch;
   animation-duration: 1s;
 
@@ -63,7 +65,14 @@
     margin-top: 190px;
     font-family: "Tilt Neon";
     font-size: 16px;
+    animation-name: noFounds;
+    animation-duration: 5s;
   }
+}
+
+@keyframes noFounds {
+  from {opacity:0}
+  to {opacity:1}
 }
 
 @keyframes divSearch {
