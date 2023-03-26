@@ -18,7 +18,7 @@ const Countries = () => {
 const [hovered, setHovered] = useState(null);
 
 return (
-    <>
+    <div className='div-container'>
     
     <Divider/>
   <Row gutter={[16, 16]} style={{ marginBottom: '20px' }}>
@@ -66,7 +66,7 @@ return (
       </Col>
     ))}
   </Row>
-  </>
+  </div>
 );
 };
 
