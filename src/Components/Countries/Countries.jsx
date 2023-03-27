@@ -1,4 +1,4 @@
-import { CheckCircleTwoTone, UserOutlined } from '@ant-design/icons';
+import { CheckCircleTwoTone, PlusOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Card, Col, Divider, List, Modal, Row, Tooltip } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../context/UsersState';
@@ -106,15 +106,12 @@ return (
                 {display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}
                 >
                     {country.country }
-                    { user?.visited?.map(e => {
-                        if (e._id == country?._id) {
-                            return <CheckCircleTwoTone twoToneColor={'lightgreen'} style={{fontSize: '26px'}}/>
-                        }
-                        else {
-                            return null;
-                        }
-                })
-                }
+                    { user?.visited?.some((v) => v._id === country._id) ? (
+            <CheckCircleTwoTone twoToneColor="#52c41a" style={{fontSize: '26px'}}/>
+          ) : (
+            <Visited />
+          )}
+                
 
             </span>
             }
