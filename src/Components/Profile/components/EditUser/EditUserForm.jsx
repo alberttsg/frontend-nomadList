@@ -44,6 +44,7 @@ export function EditUserForm({ setModalOpen }) {
   return (
     <Form form={form} onFinish={onFinish}>
       <Row gutter={[16, 16]}>
+
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Form.Item label='Nombre' name='firstName'>
             <Input placeholder='Edite su nombre' />
@@ -76,6 +77,7 @@ export function EditUserForm({ setModalOpen }) {
             <Input placeholder='Cuentanos de que estas trabajando!' />
           </Form.Item>
         </Col>
+        
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Form.Item label='Hobbie' name='hobbie'>
             <Input placeholder='¿Qué te apasiona?' />
