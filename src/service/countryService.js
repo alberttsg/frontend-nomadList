@@ -7,9 +7,9 @@ export async function getCountries() {
     return res.data;
 
 }
-export async function addVisitor (countryId, userId) {
+export async function toggleVisited (countryId) {
     const token = JSON.parse(localStorage.getItem('token'));
-    const res = await axios.get(URL + `/${countryId}/users/${userId}`,  { headers: { Authorization: token } }); //Añade visitor al schema Country (*Id del usuario*)//
+    const res = await axios.post(URL + `addVisited/${countryId}`, {} ,{ headers: { Authorization: token } }); 
     console.log('no se que soy',res.data)
     return res.data;
 }
