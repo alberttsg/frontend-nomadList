@@ -1,30 +1,26 @@
-import { CheckCircleTwoTone, PlusOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Card, Col, Divider, List, Modal, Row, Tooltip } from 'antd';
+import { CheckCircleTwoTone, PlusCircleTwoTone } from '@ant-design/icons';
+import { Avatar, Card, Col, Divider, List, message, Modal, Row, Tooltip } from 'antd';
+import { useToken } from 'antd/es/theme/internal';
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../context/UsersState';
-import { getCountries } from '../../service/countryService';
-
-import Visited from './components/Visited';
+import { getCountries, toggleVisited} from '../../service/countryService';
 import './Countries.scss';
 import CountryData from './CountryData';
 
 const Countries = () => {
-    // const { getUserInfo , user  } = useContext(GlobalContext);
-    const user = JSON.parse(localStorage.getItem('user'));
+    const { getUserInfo , user  } = useContext(GlobalContext);
+    // const user = JSON.parse(localStorage.getItem('user'));
     // const [visited, setVisited] = useState(user?.visited?.some(e => e._id == country?._id))
     const [countries, setCountries] = useState([]);
-
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
-      
-       console.log(user)
-    async function bringcountries() {
+        console.log(user)
+      getCountries().then(res => {
+         setCountries(res)
+        setLoading(false)
+      }
+      );
 
-        const res = await getCountries();
-        setCountries(res);
-        console.log(countries);
-       
-    }
-    bringcountries();
 },[]);
 const [modalVisible, setModalVisible] = useState(false);
 const [hovered, setHovered] = useState(null);
@@ -34,32 +30,48 @@ const hideModal = () => {
   const showModal = () => {
     setModalVisible(true);
   };
-//   useEffect(()=>{
-//     const visitedStatus = user?.visited?.some(e => e._id == country?._id);
-//     setVisited(visitedStatus);
-//   },[user])
+const toggleVisit = (countryId) => {
+  console.log('go to checked')
+  console.log(countryId)
+  console.log(user._id)
+  const token = JSON.parse(localStorage.getItem('token'));
+  console.log(token)
+
+  toggleVisited(countryId).then(res => {
+    console.log(res)
+    setCountries(previousCountries =>{
+      const updatedCountries = previousCountries.map(country => {
+        if (country._id === res._id) {
+          return res;
+        } else {
+          return country;
+        }
+      });
+      return updatedCountries;
+    })   
+    getUserInfo()  
+})
+}
 return (
     <div className='div-container'>
     
     <Divider/>
-  <Row gutter={[16, 16]} style={{ marginBottom: '20px' }}>
-    {countries.map((country) => {
-
-        
+  <Row  style={{ marginBottom: '20px' }}>
+    {loading === false && countries?.map((country) => { 
         return (
       <Col key={country.country}>
         <Card
         style={
             {
-                width: '350px',
+                maxWidth: '90%',
                 borderRadius: '10px',
                 boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.2)',
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
                 flexWrap: 'wrap',
+              }
             }
-        }
           cover={
             <div
               style={{
@@ -107,12 +119,10 @@ return (
                 >
                     {country.country }
                     { user?.visited?.some((v) => v._id === country._id) ? (
-            <CheckCircleTwoTone twoToneColor="#52c41a" style={{fontSize: '26px'}}/>
+            <CheckCircleTwoTone twoToneColor="#52c41a" style={{fontSize: '26px'}} onClick={ ()=>toggleVisit(country._id)}/>
           ) : (
-            <Visited />
+            <PlusCircleTwoTone twoToneColor="lightgray" style={{fontSize: '26px'}} onClick={ ()=>toggleVisit(country._id)}/>
           )}
-                
-
             </span>
             }
            

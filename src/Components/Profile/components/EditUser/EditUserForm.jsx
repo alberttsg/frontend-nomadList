@@ -73,16 +73,16 @@ export function EditUserForm({ setModalOpen }) {
           <Form.Item label='BIO' name='bio'>
             <Input placeholder='What are you thinking?' />
           </Form.Item>
-          <Form.Item label='Profession' name='profesion'>
+          <Form.Item label='Profession' name='profession'>
             <Input placeholder='Tell us what you are working on!' />
           </Form.Item>
         </Col>
         
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-          <Form.Item label='Hobbie' name='hobbie'>
+          <Form.Item label='Hobbie' name='hobby'>
             <Input placeholder='What are you passionate about?' />
           </Form.Item>
-          <Form.Item label='Other Hobbie' name='hobbie2'>
+          <Form.Item label='Other Hobbie' name='hobby2'>
             <Input placeholder='What are you passionate about?' />
           </Form.Item>
           <Form.Item label='Preference place' name='prefLocation'>
