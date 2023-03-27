@@ -44,7 +44,7 @@ export const Header = () => {
         <CloseCircleOutlined className='closeBtn' onClick={resetInput} />
       </div>
       <div className='divSearch' id={display}>
-      {search.length == 0 && <div className='noFounds'>No se han encontrado resultados</div>}
+      {search.length == 0 && <div className='noFounds'>No results found</div>}
       {searched.map((element, index)=>(
         <div className='searched' key={`searched ${index}`} onClick={()=>profileRoute(element)}>
           <div className='divImg'>

@@ -50,10 +50,10 @@ const EditPostProfile = ({ visible, setVisible, selectedPost }) => {
             Eliminar publicación
           </Button> */}
           <Button onClick={()=>setVisible(false)} style={{background: "gray"}} type='primary'>
-            Cancelar
+            Cancel
           </Button>
           <Button type='primary'htmlType="submit" >
-            Hecho
+            Done
           </Button>
           </div>
         </Form.Item>

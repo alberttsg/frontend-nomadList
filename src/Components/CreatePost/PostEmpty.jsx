@@ -3,6 +3,6 @@ import './PostEmpty.scss'
 
 export const PostEmpty = () => {
   return (
-    <div className='formEmpty'>Por favor, rellena los campos</div>
+    <div className='formEmpty'>Please, fill in the filds</div>
   )
 }

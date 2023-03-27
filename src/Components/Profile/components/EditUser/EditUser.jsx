@@ -10,16 +10,16 @@ export const EditUser = () => {
   return (
     <>
       <Button type='primary' onClick={() => setOpen(true)}>
-        <SettingFilled />Editar Perfil
+        <SettingFilled />Edit Profile
       </Button>
 
       <Modal
-        title={<h3 style={{ textAlign: 'center' }}>EDITAR USUARIO</h3>}
+        title={<h3 style={{ textAlign: 'center' }}>EDIT USER</h3>}
         open={isOpen}
         onCancel={() => setOpen(false)}
         footer={
           <Button onClick={() => setOpen(false)} style={{ background: 'gray' }} type='primary'>
-            Cancelar
+            Cancel
           </Button>
         }
         width={800}
