@@ -44,18 +44,19 @@ export function EditUserForm({ setModalOpen }) {
   return (
     <Form form={form} onFinish={onFinish}>
       <Row gutter={[16, 16]}>
+
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-          <Form.Item label='Nombre' name='firstName'>
-            <Input placeholder='Edite su nombre' />
+          <Form.Item label='Name' name='firstName'>
+            <Input placeholder='Edit your name' />
           </Form.Item>
-          <Form.Item label='Apellidos' name='lastName'>
-            <Input placeholder='Edite su apellido' />
+          <Form.Item label='Last Name' name='lastName'>
+            <Input placeholder='Edit your lastname' />
           </Form.Item>
           <Form.Item label='username' name='username'>
-            <Input placeholder='Edite su nombre de usuario' />
+            <Input placeholder='Edit your username' />
           </Form.Item>
           <Form.Item label='email' name='email'>
-            <Input placeholder='¿Desea cambiar su correo electrónico?' />
+            <Input placeholder='Do you want to change your email?' />
           </Form.Item>
           <Form.Item
             name='nationality'
@@ -70,21 +71,22 @@ export function EditUserForm({ setModalOpen }) {
             <Select placeholder='select your country' showSearch="true" options={[{ options: countriesArray }]} />
           </Form.Item>
           <Form.Item label='BIO' name='bio'>
-            <Input placeholder='¿Qué estas pensando?' />
+            <Input placeholder='What are you thinking?' />
           </Form.Item>
-          <Form.Item label='Profesion' name='profesion'>
-            <Input placeholder='Cuentanos de que estas trabajando!' />
+          <Form.Item label='Profession' name='profesion'>
+            <Input placeholder='Tell us what you are working on!' />
           </Form.Item>
         </Col>
+        
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Form.Item label='Hobbie' name='hobbie'>
-            <Input placeholder='¿Qué te apasiona?' />
+            <Input placeholder='What are you passionate about?' />
           </Form.Item>
-          <Form.Item label='Otro Hobbie' name='hobbie2'>
-            <Input placeholder='¿Qué te apasiona?' />
+          <Form.Item label='Other Hobbie' name='hobbie2'>
+            <Input placeholder='What are you passionate about?' />
           </Form.Item>
-          <Form.Item label='Lugar de Preferencia' name='prefLocation'>
-            <Input placeholder='Cuentanos tu lugar preferido?' />
+          <Form.Item label='Preference place' name='prefLocation'>
+            <Input placeholder='What is your favorite place?' />
           </Form.Item>
           <Form.Item label='Linkedin' name='linkedin'>
             <Input placeholder='@linkedin' />
@@ -95,7 +97,7 @@ export function EditUserForm({ setModalOpen }) {
           <Form.Item label='Instagram' name='instagram'>
             <Input placeholder='@instagram' />
           </Form.Item>
-          <Form.Item label='Foto de Perfil' name='avatar'>
+          <Form.Item label='Profile photo' name='avatar'>
             <UploadAvatar />
           </Form.Item>
         </Col>

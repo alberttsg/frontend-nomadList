@@ -89,10 +89,10 @@ export function CommentsDisplay() {
                 <Form
                   onFinish={(value) => handleEdit(comment._id, value)}
                 >
-                  <Form.Item name='content'>
-                    <Input.TextArea defaultValue={comment?.content} />
+                  <Form.Item name='content' >
+                    <Input.TextArea showCount maxLength={500} defaultValue={comment?.content} style={{width: '180%'}} bordered={false}/>
                   </Form.Item>
-                  <Button htmlType='submit'>Update</Button>
+                  <Button  type="primary" size='small' htmlType='submit'>Update</Button>
                 </Form>
                 :
                 comment?.content

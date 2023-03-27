@@ -34,6 +34,7 @@ export const Profile = () => {
       <Spin spinning={isLoading}>
         <div className='profile-container'>
           <UserCard />
+          {console.log(userData)}
           <Divider plain />
           {/* <UsersPosts /> */}
         </div>

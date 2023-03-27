@@ -1,6 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 import { PrivateZone } from '../../guards/PrivateZone';
 import { Content } from '../Content/Content';
+import Countries from '../Countries/Countries';
 import { CreatePost } from '../CreatePost/CreatePost';
 import { Profile } from '../Profile/Profile';
 
@@ -27,6 +28,10 @@ export const Routes = () => {
               {
                 element:<PrivateZone><Profile/></PrivateZone> ,
                 path: '/profile/:userId'
+              },
+              {
+                element:<Countries/> ,
+                path: '/countries'
               },
         ]
         );

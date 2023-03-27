@@ -12,7 +12,7 @@ export const FollowersModal = () => {
     <>
       <Button onClick={() => setOpen(true)} type='secondary'>
         <span>
-          {userData?.followersCount} seguidores
+          {userData?.followersCount} followers
         </span>
       </Button>
       <Modal
