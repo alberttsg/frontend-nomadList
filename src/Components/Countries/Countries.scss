@@ -19,3 +19,8 @@
 .progress-bar {
         border-radius: 10px 0 0 10px;
       }
+      .ant-card-meta{
+        display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+      }
