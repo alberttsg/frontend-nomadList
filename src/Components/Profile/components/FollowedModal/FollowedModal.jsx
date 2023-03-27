@@ -12,7 +12,7 @@ export const FollowedModal = () => {
     <>
       <Button onClick={() => setOpen(true)} type='secondary'>
         <span>
-          {userData?.followedCount} seguidos
+          {userData?.followedCount} followed
         </span>
       </Button>
       <Modal
@@ -21,7 +21,7 @@ export const FollowedModal = () => {
         onCancel={() => setOpen(false)}
         footer={[
           <Button key="close" onClick={() => setOpen(false)}>
-            Cerrar
+            Close
           </Button>,
         ]}
       >

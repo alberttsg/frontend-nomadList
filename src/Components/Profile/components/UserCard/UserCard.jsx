@@ -48,7 +48,7 @@ export const UserCard = () => {
               <Descriptions.Item label={"Bio "}>
                 {userData?.bio}
               </Descriptions.Item>
-              <Descriptions.Item label={"Profesion "}>
+              <Descriptions.Item label={"Profession "}>
                 {userData?.profesion}
               </Descriptions.Item>
               <Descriptions.Item label={"Hobbies "}>

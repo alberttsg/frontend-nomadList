@@ -4,7 +4,7 @@ import './PostCreated.scss'
 export const PostCreated = () => {
   return (
     <div className='post-created'>
-      <div>Post creado</div>
+      <div>Post created</div>
     </div>
   )
 }

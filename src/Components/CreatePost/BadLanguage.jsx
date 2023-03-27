@@ -3,6 +3,6 @@ import './badLanguage.scss'
 
 export const BadLanguage = () => {
   return (
-    <div className='badLanguage'>En tu comentario hay lenguaje <br></br>ofensivo. Por favor, modifícalo</div>
+    <div className='badLanguage'>There is offensive lenguage in your <br></br>Comment. Please, change it!</div>
   )
 }
