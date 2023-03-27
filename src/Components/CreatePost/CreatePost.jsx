@@ -19,7 +19,7 @@ export const CreatePost = () => {
     const objectForm = new FormData(e.target)
     const formObj = Object.fromEntries(objectForm)
 
-    if(formObj.title == '' || formObj.content == '' || formObj.image.name == ''){
+    if(formObj.title == '' || formObj.content == '' || formObj.image?.name == ''){
       setFormEmpty(true)
       setTimeout(()=>{
         setFormEmpty(false)
