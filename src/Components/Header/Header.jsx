@@ -17,7 +17,7 @@ export const Header = () => {
     setDropdownOpen(true);
     setIsLoading(false);
   }
-
+console.log(0)
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '20px', borderBottom: '1px solid #efefef' }} onMouseLeave={() => setDropdownOpen(false)}>
       <Dropdown
