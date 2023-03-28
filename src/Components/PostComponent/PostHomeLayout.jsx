@@ -20,7 +20,7 @@ export function PostHomeLayout() {
   }, [loading, hasMore]);
 
   return (
-    <div style={{ display: 'flex', flexFlow: 'column nowrap', gap: '30px', padding: '10px' }}>
+    <div style={{ display: 'flex', boxSizing: 'border-box', flexFlow: 'column nowrap', width: '100%', alignItems: 'center', padding: '10px', gap:'20px' }}>
       {posts && posts.map((post, index) => {
         if (posts.length === index + 1) {
           return <PostCard post={post} key={index} forwardedRef={lastPostElementRef} />

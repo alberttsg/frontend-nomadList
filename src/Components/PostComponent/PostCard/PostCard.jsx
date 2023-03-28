@@ -16,7 +16,7 @@ export function PostCard({ post, forwardedRef }) {
 
   return (
     <PostContext.Provider value={{ post: postData, setPostData }}>
-      <Card hoverable title={<PostHeader />} style={{width: '100%'}}>
+      <Card hoverable title={<PostHeader />} style={{ width: '100%', maxWidth: '600px' }}>
         <div ref={forwardedRef}>
           <PostImage />
           <PostContent />

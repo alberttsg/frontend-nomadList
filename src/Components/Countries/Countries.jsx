@@ -33,7 +33,7 @@ const Countries = () => {
 
   return (
     <>
-      <Row gutter={[16, 16]} justify='space-evenly' style={{ padding: '10px' }}>
+      <Row gutter={[16, 16]} justify='space-evenly' style={{ padding: '10px', margin: 0 }}>
         {!loading && countries?.map((country) => {
           return (
             <Col key={country.country} xs={{ span: 24 }} lg={{ span: 8 }} xl={{ span: 6 }}>
