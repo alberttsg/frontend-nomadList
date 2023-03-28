@@ -22,8 +22,8 @@ export const ServiceCreatePost = async (body) => {
       'Authorization': token,
     }
   }
-
   body.append('sentiment', sentiment.data.sentiment)
+
   const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/post/newpost', body, config)
 
   return res.data
@@ -39,7 +39,7 @@ const badLanguage = async (body) => {
 
 const sentimentAnalysis = async (body) => {
   const content = {text:body.get('content')}
-
+  
   const validation = await axios.post('https://flask-production-782a.up.railway.app/sentiment', content)
   return validation
 }
