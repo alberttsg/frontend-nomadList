@@ -40,8 +40,8 @@ export const Header = () => {
   return (
     <div className='header'>
       <div className='divInput'>
-        <input id='input' type='text' placeholder='Find people in Nomad' value={search} onChange={(e)=>setSearch(e.target.value)} onFocus={()=>setDisplay('x')}/>
-        <CloseCircleOutlined className='closeBtn' onClick={resetInput} />
+          <input id='input' type='text' placeholder='Find people in Nomad' value={search} onChange={(e)=>setSearch(e.target.value)} onFocus={()=>setDisplay('x')}/>
+          <CloseCircleOutlined className='closeBtn' onClick={resetInput} />
       </div>
       <div className='divSearch' id={display}>
       {search.length == 0 && <div className='noFounds'>No results found</div>}
