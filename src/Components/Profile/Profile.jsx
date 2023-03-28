@@ -3,10 +3,10 @@ import { useContext, useEffect, useState, createContext } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { GlobalContext } from '../../context/UsersState';
 import { UserCard } from './components/UserCard/UserCard';
-import UsersPosts from '../UsersPosts/UsersPosts';
+import { UserContent } from './components/UserContent/UserContent';
 import { getUserById } from '../../service/userService';
-import { Spin } from 'antd';
-import './Profile.scss';
+import CountryUser from './components/CountryUser/CountryUser';
+import { Spin, Row } from 'antd';
 
 export const ProfileContext = createContext();
 
@@ -32,12 +32,14 @@ export const Profile = () => {
   return (
     <ProfileContext.Provider value={{ userData, setUserData }}>
       <Spin spinning={isLoading}>
-        <div className='profile-container'>
+        <Row>
           <UserCard />
-          {console.log(userData)}
+        </Row>
+        <Row>
           <Divider plain />
-          {/* <UsersPosts /> */}
-        </div>
+          <CountryUser />
+          <UserContent />
+        </Row>
       </Spin>
     </ProfileContext.Provider>
   );

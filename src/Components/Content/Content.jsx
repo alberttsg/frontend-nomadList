@@ -1,8 +1,7 @@
-import './Content.scss'
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/UsersState";
 import { PostHomeLayout } from '../PostComponent/PostHomeLayout';
-import { ChatLayout } from '../Chat/components/ChatLayout';
+
 export const Content = () => {
   const { getUserInfo } = useContext(GlobalContext);
   useEffect(()=>{
@@ -12,7 +11,6 @@ export const Content = () => {
   return (
     <div className='content'id='content'>
       <PostHomeLayout />
-      <ChatLayout/>
     </div>
   )
 }

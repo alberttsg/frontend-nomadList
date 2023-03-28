@@ -2,6 +2,24 @@ import axios from 'axios';
 
 const URL = import.meta.env.VITE_DEV_URL;
 
+export async function validateToken() {
+  const token = JSON.parse(localStorage.getItem("token"));
+  if (!token) return null;
+  try {
+    axios.get(URL + 'token', { headers: { Authorization: token } });
+    return token;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function getUserInfo(followers, followed, likedPosts, visited) {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const config = { headers: { authorization: token } };
+  const res = await axios.get(URL + `users/info?populateFollowers=${followers}&populateFollowed=${followed}&populatedLikedPosts=${likedPosts}&visited=${visited}`, config);
+  return res.data;
+}
+
 export async function getUserById(userId) {
   const token = JSON.parse(localStorage.getItem('token'));
   const config = { headers: { Authorization: token } };

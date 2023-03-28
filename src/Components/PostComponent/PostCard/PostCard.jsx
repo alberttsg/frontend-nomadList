@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { PostHeader } from './components/PostHeader';
 import { PostImage } from './components/PostImage';
 import { PostContent } from './components/PostContent';
@@ -16,9 +16,7 @@ export function PostCard({ post, forwardedRef }) {
 
   return (
     <PostContext.Provider value={{ post: postData, setPostData }}>
-      <Card hoverable style={{ maxWidth: '95vw' }}
-        title={<PostHeader />}>
-
+      <Card hoverable title={<PostHeader />} style={{width: '100%'}}>
         <div ref={forwardedRef}>
           <PostImage />
           <PostContent />
@@ -36,14 +34,7 @@ export function PostCard({ post, forwardedRef }) {
             </>
           }
         </div>
-
       </Card>
     </PostContext.Provider>
   )
 }
-
-
-
-
-
-
