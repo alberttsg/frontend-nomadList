@@ -85,8 +85,19 @@ export async function getCommentsByPostId(postId) {
 export async function createComment(content, postId) {
   const token = JSON.parse(localStorage.getItem('token'));
   const config = { headers: { Authorization: token } };
+  const contentValue = content.content;
+ 
+  //API BAD LENGUAGE
+  const validation = await badLanguage(contentValue)
+  console.log(validation.data.classification)
+
+  if(validation.data.classification == 1 || validation.data.classification == 2 || validation.data.classification == 3){
+    return false;
+  }
+  
   const res = await axios.post(import.meta.env.VITE_DEV_URL + 'post/createcomment/' + postId, content, config);
   return res.data;
+  
 }
 
 export async function deleteComment(commentId) {
@@ -102,3 +113,17 @@ export async function editComment(commentId, content) {
   const res = await axios.put(import.meta.env.VITE_DEV_URL + 'comments/' + commentId, content, config);
   return res.data;
 }
+
+//APIS PETITION DATA
+const badLanguage = async (contentValue) => {
+  const content = {text: contentValue}
+  const validation = await axios.post('https://flask-production-782a.up.railway.app/bad-language', content)
+  return validation
+}
+
+// const sentimentAnalysis = async (body) => {
+//   const content = {text:body.get('content')}
+
+//   const validation = await axios.post('https://flask-production-782a.up.railway.app/sentiment', content)
+//   return validation
+// }

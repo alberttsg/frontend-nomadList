@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { PostContext } from '../../PostCard';
 import { createComment } from '../../../../../service/postService';
-import { Form, Spin, Button, Input } from 'antd';
+import { Form, Spin, Button, Input, message } from 'antd';
 
 export function CommentsInputForm() {
   const { post, setPostData } = useContext(PostContext);
@@ -11,8 +11,19 @@ export function CommentsInputForm() {
   const onFinish = async (values) => {
     setLoading(true);
     const res = await createComment(values, post._id);
-    setPostData(res);
+
+    if(!res) {
+      setLoading(true);
+      setLoading(false);
+      form.resetFields();
+      return message.warning ({
+        content: 'Your comment contains bad lenguage.Try again',
+        style: {marginTop: '20vh'}
+      })
+    }
+
     form.resetFields();
+    setPostData(res);
     setLoading(false);
   }
 
