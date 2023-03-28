@@ -44,13 +44,13 @@ export function CommentsDisplay() {
   return (
     <Space direction='vertical' style={{ width: '100%' }}>
       <List
-        split={true}
+        itemLayout='vertical'
+        style={{ maxHeight: '250px', overflowY: 'auto', overflowX: 'hidden' }}
         bordered={true}
         loading={isLoading}
         dataSource={comments}
         renderItem={(comment) =>
-          <>
-            <Divider type='horizontal' />
+          <div style={{ border: '1px solid #efefef' }}>
             <Row
               align='middle'
               style={{
@@ -90,15 +90,15 @@ export function CommentsDisplay() {
                   onFinish={(value) => handleEdit(comment._id, value)}
                 >
                   <Form.Item name='content' >
-                    <Input.TextArea showCount maxLength={500} defaultValue={comment?.content} style={{width: '180%'}} bordered={false}/>
+                    <Input.TextArea showCount maxLength={500} defaultValue={comment?.content} style={{ width: '180%' }} bordered={false} />
                   </Form.Item>
-                  <Button  type="primary" size='small' htmlType='submit'>Update</Button>
+                  <Button type="primary" size='small' htmlType='submit'>Update</Button>
                 </Form>
                 :
                 comment?.content
               }
             </Row>
-          </>
+          </div>
         }
       />
     </Space>

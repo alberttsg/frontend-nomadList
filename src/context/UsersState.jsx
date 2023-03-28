@@ -1,13 +1,13 @@
 import React, { createContext, useReducer } from 'react'
+import * as userService from '../service/userService'
 import AppReducer from './UserReducer.js'
 import axios from 'axios'
 
-const token = JSON.parse(localStorage.getItem("token"));
-const user = JSON.parse(localStorage.getItem('user'));
+const token = userService.validateToken();
 
 const initialState = {
-  token: token ? token : null,
-  user: user ? user : null,
+  token: token,
+  user: token ? await userService.getUserInfo(1, 1, 1, 1) : null,
   isSuccess: false,
   isError: false,
   isErrorRegister: false,

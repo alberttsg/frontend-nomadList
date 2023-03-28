@@ -1,5 +1,5 @@
-.ant-col{
-    margin: 20px;
+.ant-progress-text {
+  color: white !important;
 }
 .row-info-country{
     display: flex;
@@ -10,16 +10,4 @@
     width: 40%;
     }
 
-}
-.ant-progress-text{
-    color:rgb(243, 240, 240) !important
-    }
-
-
-.progress-bar {
-        border-radius: 10px 0 0 10px;
-      }
-
-.div-container {
-    overflow-y: scroll;
 }

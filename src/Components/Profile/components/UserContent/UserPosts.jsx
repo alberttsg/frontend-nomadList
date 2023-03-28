@@ -1,11 +1,13 @@
-import React, { useCallback, useRef, useState } from 'react'
-import { paginatePosts } from '../../service/postService';
-import { PostCard } from './PostCard/PostCard';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { ProfileContext } from '../../Profile';
+import { paginatePostsByUser } from '../../../../service/postService';
+import { PostCard } from '../../../PostComponent/PostCard/PostCard';
 import { Spin, Alert } from 'antd';
 
-export function PostHomeLayout() {
-  const [page, setPage] = useState(1)
-  const { posts, hasMore, loading, error } = paginatePosts(page);
+export function UserPosts() {
+  const { userData } = useContext(ProfileContext);
+  const [page, setPage] = useState(1);
+  const { posts, hasMore, loading, error } = paginatePostsByUser(page, userData?.id, );
   const observer = useRef();
 
   const lastPostElementRef = useCallback(node => {
@@ -20,7 +22,7 @@ export function PostHomeLayout() {
   }, [loading, hasMore]);
 
   return (
-    <div style={{ display: 'flex', boxSizing: 'border-box', flexFlow: 'column nowrap', width: '100%', alignItems: 'center', padding: '10px', gap:'20px' }}>
+    <div style={{ display: 'flex', boxSizing: 'border-box', flexFlow: 'column nowrap', width: '100%', alignItems: 'center', padding: '10px', gap: '20px' }}>
       {posts && posts.map((post, index) => {
         if (posts.length === index + 1) {
           return <PostCard post={post} key={index} forwardedRef={lastPostElementRef} />

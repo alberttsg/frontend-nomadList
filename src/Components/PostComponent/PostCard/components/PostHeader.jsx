@@ -1,10 +1,14 @@
 import { useContext } from 'react';
+import { GlobalContext } from '../../../../context/UsersState.jsx';
 import { PostContext } from '../PostCard.jsx';
+import { EditPostButton } from './EditPostButton.jsx';
 import { DateComponent } from '../../../DateComponent/DateComponent.jsx';
 import { Row, Avatar } from 'antd';
 
 export function PostHeader() {
+  const { user } = useContext(GlobalContext);
   const { post } = useContext(PostContext);
+  const canEdit = user?._id === post?.author?._id;
 
   return (
     <Row justify='start'>
@@ -19,13 +23,14 @@ export function PostHeader() {
         <Avatar size={20} src={post?.author?.avatar} />
         <span>{post?.author?.displayName}</span>
         <DateComponent datePost={post?.createdAt} />
+        {canEdit && <EditPostButton />}
       </Row>
       <Row
         align='middle'
         style={{
           width: '100%',
           fontWeight: 'bold',
-          fontSize: '20px',
+          fontSize: '18px',
           boxSizing: 'content-box',
           whiteSpace: 'pre-wrap',
           wordBreak: 'normal',

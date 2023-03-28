@@ -41,20 +41,27 @@ export function paginatePostsByUser(pageNumber, id) {
   const [hasMore, setHasMore] = useState(false)
   const token = JSON.parse(localStorage.getItem("token"));
 
+  if (posts.some(e => e.author._id !== id)) {
+    setLoading(false);
+    setError(false);
+    setPosts([]);
+    setHasMore(false);
+  }
+
   useEffect(() => {
     setLoading(true);
     setError(false);
     let cancel;
     axios({
       method: 'GET',
-      url: URL + 'post/userPosts/' + id,
+      url: import.meta.env.VITE_DEV_URL + 'post/userPosts/' + id,
       params: { page: pageNumber },
       headers: { Authorization: token },
       cancelToken: new axios.CancelToken(c => cancel = c)
     }).then(res => {
       if (res.data.posts.length > 0) {
         setPosts(prevPosts => {
-          return [...new Set([...prevPosts, ...res.data.posts])]
+          return [...new Set([...prevPosts, ...res.data.posts])];
         })
       }
       setHasMore(posts.length < res.data.totalPosts)
@@ -85,8 +92,18 @@ export async function getCommentsByPostId(postId) {
 export async function createComment(content, postId) {
   const token = JSON.parse(localStorage.getItem('token'));
   const config = { headers: { Authorization: token } };
+  const contentValue = content.content;
+ 
+  //API BAD LENGUAGE
+  const validation = await badLanguage(contentValue)
+
+  if(validation.data.classification == 1 || validation.data.classification == 2 || validation.data.classification == 3){
+    return false;
+  }
+  
   const res = await axios.post(import.meta.env.VITE_DEV_URL + 'post/createcomment/' + postId, content, config);
   return res.data;
+  
 }
 
 export async function deleteComment(commentId) {
@@ -101,4 +118,11 @@ export async function editComment(commentId, content) {
   const config = { headers: { Authorization: token } };
   const res = await axios.put(import.meta.env.VITE_DEV_URL + 'comments/' + commentId, content, config);
   return res.data;
+}
+
+//APIS PETITION DATA
+const badLanguage = async (contentValue) => {
+  const content = {text: contentValue}
+  const validation = await axios.post('https://flask-production-782a.up.railway.app/bad-language', content)
+  return validation
 }

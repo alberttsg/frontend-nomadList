@@ -1,145 +1,220 @@
-import { CheckCircleTwoTone, PlusOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Card, Col, Divider, List, Modal, Row, Tooltip } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
-import { GlobalContext } from '../../context/UsersState';
-import { getCountries } from '../../service/countryService';
-
-import Visited from './components/Visited';
-import './Countries.scss';
-import CountryData from './CountryData';
+import { CheckCircleTwoTone, PlusCircleTwoTone } from "@ant-design/icons";
+import {
+  Avatar,
+  Card,
+  Col,
+  Space,
+  List,
+  Modal,
+  Row,
+  Tooltip,
+  Skeleton,
+  Spin,
+  Divider,
+} from "antd";
+import React, { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../../context/UsersState";
+import { getCountries, toggleVisited } from "../../service/countryService";
+import CountryData from "./CountryData";
 
 const Countries = () => {
-    // const { getUserInfo , user  } = useContext(GlobalContext);
-    const user = JSON.parse(localStorage.getItem('user'));
-    // const [visited, setVisited] = useState(user?.visited?.some(e => e._id == country?._id))
-    const [countries, setCountries] = useState([]);
+  const { getUserInfo, user } = useContext(GlobalContext);
+  const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [hovered, setHovered] = useState(null);
 
-    useEffect(() => {
-      
-       console.log(user)
-    async function bringcountries() {
+  useEffect(() => {
+    setLoading(true);
+    getCountries().then((res) => {
+      setCountries(res);
+      setLoading(false);
+    });
+  }, []);
 
-        const res = await getCountries();
-        setCountries(res);
-        console.log(countries);
-       
-    }
-    bringcountries();
-},[]);
-const [modalVisible, setModalVisible] = useState(false);
-const [hovered, setHovered] = useState(null);
-const hideModal = () => {
-    setModalVisible(false);
-  };
-  const showModal = () => {
-    setModalVisible(true);
-  };
-//   useEffect(()=>{
-//     const visitedStatus = user?.visited?.some(e => e._id == country?._id);
-//     setVisited(visitedStatus);
-//   },[user])
-return (
-    <div className='div-container'>
-    
-    <Divider/>
-  <Row gutter={[16, 16]} style={{ marginBottom: '20px' }}>
-    {countries.map((country) => {
-
-        
-        return (
-      <Col key={country.country}>
-        <Card
-        style={
-            {
-                width: '350px',
-                borderRadius: '10px',
-                boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.2)',
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                flexWrap: 'wrap',
-            }
-        }
-          cover={
-            <div
-              style={{
-                backgroundImage: `url(${country.image})`,
-                height: '250px',
-                width: '100%',
-                borderRadius: '5px',
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                position: 'relative',
-              }}
-              onMouseEnter={() => setHovered(country)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              {hovered === country && (
-                <CountryData country={country}/>
-              )}
-            </div>
+  const toggleVisit = (countryId) => {
+    toggleVisited(countryId).then((res) => {
+      setCountries((previousCountries) =>
+        previousCountries.map((country) => {
+          if (country._id === res._id) {
+            return res;
+          } else {
+            return country;
           }
-          hoverable
-        
+        })
+      );
+    });
+    getUserInfo();
+  };
+
+  return (
+    <>
+      {loading ? (
+        <div
+          style={{
+            margin: "25px",
+            width: "90%",
+          }}
         >
-            <Modal open={modalVisible} onCancel={hideModal}>
-  <List
-    dataSource={country.visitors}
-    renderItem={visitor => (
-      <List.Item>
-        <List.Item.Meta
-          avatar={
-            <Tooltip title={visitor.firstName} placement="top">
-              <Avatar src={visitor.avatar || <UserOutlined />} />
-            </Tooltip>
-          }
-          title={visitor.firstName}
-        />
-      </List.Item>
-    )}
-  />
-</Modal>
-
-          <Card.Meta key={country._id}
-            title={
-            <span style={
-                {display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}
-                >
-                    {country.country }
-                    { user?.visited?.some((v) => v._id === country._id) ? (
-            <CheckCircleTwoTone twoToneColor="#52c41a" style={{fontSize: '26px'}}/>
-          ) : (
-            <Visited />
-          )}
-                
-
-            </span>
-            }
-           
-            avatar={<Avatar.Group
-            maxCount={1}
-            onMaxPopoverVisibleChange={showModal}
-            maxPopoverTrigger="click"
-            size="small"
-            maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
-          >
-            {country?.visitors.map((visitorAvatar, index) => (
-                < span key={visitorAvatar._id + index} >
-            <Tooltip title={visitorAvatar.firstName} placement="top">
-            <Avatar key={visitorAvatar._id + index} src={ visitorAvatar.avatar || <UserOutlined/>}/>
-            </Tooltip>
-                </span >
-
-))}
-          </Avatar.Group>}
-            
+          <Skeleton
+            round={true}
+            avatar
+            paragraph={{
+              rows: 10,
+            }}
+            active
           />
-        </Card>
-      </Col>
-    )})}
-  </Row>
-  </div>
-);
+          <Divider />
+          <Skeleton
+            round={true}
+            avatar
+            paragraph={{
+              rows: 10,
+            }}
+            active
+          />
+          <Divider />
+          <Skeleton
+            round={true}
+            avatar
+            paragraph={{
+              rows: 10,
+            }}
+            active
+          />
+          <Divider />
+          <Skeleton
+            round={true}
+            avatar
+            paragraph={{
+              rows: 10,
+            }}
+            active
+          />
+        </div>
+      ) : (
+        <Row
+          gutter={[16, 16]}
+          justify='space-evenly'
+          style={{ padding: "10px", margin: 0 }}
+        >
+          {!loading &&
+            countries?.map((country) => {
+              return (
+                <Col
+                  key={country.country}
+                  xs={{ span: 24 }}
+                  lg={{ span: 8 }}
+                  xl={{ span: 6 }}
+                >
+                  <Card
+                    hoverable
+                    cover={
+                      <div
+                        style={{
+                          backgroundImage: `url(${country.image})`,
+                          backgroundPosition: "center",
+                          backgroundSize: "cover",
+                          aspectRatio: 1,
+                          borderRadius: "5px",
+                        }}
+                        onMouseEnter={() => setHovered(country)}
+                        onMouseLeave={() => setHovered(null)}
+                      >
+                        {hovered === country && (
+                          <CountryData country={country} />
+                        )}
+                      </div>
+                    }
+                  >
+                    <Card.Meta
+                      key={country._id}
+                      title={
+                        <Space direction='horizontal' align='baseline'>
+                          <span style={{ fontSize: "18px" }}>
+                            {country.country}
+                          </span>
+                          {user?.visited?.some(
+                            (user) => user._id === country._id
+                          ) ? (
+                            <CheckCircleTwoTone
+                              twoToneColor='#52c41a'
+                              style={{ fontSize: "22px" }}
+                              onClick={() => toggleVisit(country._id)}
+                            />
+                          ) : (
+                            <PlusCircleTwoTone
+                              twoToneColor='lightgray'
+                              style={{ fontSize: "22px" }}
+                              onClick={() => toggleVisit(country._id)}
+                            />
+                          )}
+                        </Space>
+                      }
+                      avatar={
+                        <Avatar.Group
+                          maxCount={1}
+                          onMaxPopoverVisibleChange={() =>
+                            setModalVisible(true)
+                          }
+                          maxPopoverTrigger='click'
+                          size='small'
+                          maxStyle={{
+                            color: "#f56a00",
+                            backgroundColor: "#fde3cf",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {country?.visitors.map((visitorAvatar, index) => (
+                            <span key={visitorAvatar._id + index}>
+                              <Tooltip
+                                title={visitorAvatar.firstName}
+                                placement='top'
+                              >
+                                <Avatar
+                                  key={visitorAvatar._id + index}
+                                  src={visitorAvatar.avatar || <UserOutlined />}
+                                />
+                              </Tooltip>
+                            </span>
+                          ))}
+                        </Avatar.Group>
+                      }
+                    />
+                  </Card>
+
+                  <Modal
+                    open={modalVisible}
+                    onCancel={() => setModalVisible(false)}
+                  >
+                    <List
+                      dataSource={country.visitors}
+                      renderItem={(visitor) => (
+                        <List.Item>
+                          <List.Item.Meta
+                            title={visitor.firstName}
+                            avatar={
+                              <Tooltip
+                                title={visitor.firstName}
+                                placement='top'
+                              >
+                                <Avatar
+                                  src={visitor.avatar || <UserOutlined />}
+                                />
+                              </Tooltip>
+                            }
+                          />
+                        </List.Item>
+                      )}
+                    />
+                  </Modal>
+                </Col>
+              );
+            })}
+        </Row>
+      )}
+    </>
+  );
 };
 
 export default Countries;

@@ -9,8 +9,8 @@ export const EditUser = () => {
 
   return (
     <>
-      <Button type='primary' onClick={() => setOpen(true)}>
-        <SettingFilled />Edit Profile
+      <Button type='primary' style={{border: '0.7px solid black',backgroundColor: '#5f8c8a', color: 'white'}} onClick={() => setOpen(true)}>
+        <SettingFilled style={{display: 'flex', alignItems:'center', fontSize: '18px', color: 'white'}}/>
       </Button>
 
       <Modal

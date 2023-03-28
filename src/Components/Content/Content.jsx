@@ -1,18 +1,18 @@
-import './Content.scss'
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/UsersState";
-import { PostHomeLayout } from '../PostComponent/PostHomeLayout';
 import { ChatLayout } from '../Chat/components/ChatLayout';
-export const Content = () => {
-  const { getUserInfo } = useContext(GlobalContext);
-  useEffect(()=>{
-    getUserInfo()
 
-  },[])
+export const Content = ({ children }) => {
+  const { getUserInfo } = useContext(GlobalContext);
+
+  useEffect(() => {
+    getUserInfo()
+  }, [])
+
   return (
     <div className='content'>
-      <PostHomeLayout />
-      <ChatLayout/>
+      {children}
+      <ChatLayout />
     </div>
   )
 }
