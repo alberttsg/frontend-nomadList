@@ -21,8 +21,9 @@ export function EditPostButton() {
       <Tooltip title={!editing && 'Edit post'} placement='left'>
         <Button
           type='primary'
+          size='small'
           onClick={() => setEditing(!editing)}
-          style={{ position: 'absolute', right: '10px', top: '10px', padding: '0 10px' }}
+          style={{ position: 'absolute', right: '10px', top: '10px' }}
         >
           <EditOutlined />
         </Button>
