@@ -15,66 +15,62 @@ export const UserCard = () => {
   const canEdit = user?._id === userData?._id;
 
   return (
-    <>
-      <Divider plain />
-      <Row>
-        <Col xs={0} lg={1}></Col>
-        <Col xs={24} lg={6} className='left-avatar'>
-          <Avatar size={180} src={userData?.avatar} />
-        </Col>
-        <Col xs={22} lg={14} className='right-info'>
-          <Row justify='space-between'>
-            <h4>
-              {userData?.username || userData?.firstName}{" "}
-              <CheckCircleTwoTone
-                style={{ fontSize: "12px" }}
-                twoToneColor={"#3797F0"}
-              />
-            </h4>
-            {/* <button>Enviar mensaje Añadir contacto</button> */}
-            {!canEdit && <FollowButton />}
-            {canEdit && <EditUser />}
-          </Row>
+    <Row style={{ padding: '10px' }}>
+      <Col xs={0} lg={1}></Col>
+      <Col xs={24} lg={6} className='left-avatar'>
+        <Avatar size={180} src={userData?.avatar} />
+      </Col>
+      <Col xs={22} lg={14} className='right-info'>
+        <Row justify='space-between'>
+          <h4>
+            {userData?.username || userData?.firstName}{" "}
+            <CheckCircleTwoTone
+              style={{ fontSize: "12px" }}
+              twoToneColor={"#3797F0"}
+            />
+          </h4>
+          {/* <button>Enviar mensaje Añadir contacto</button> */}
+          {!canEdit && <FollowButton />}
+          {canEdit && <EditUser />}
+        </Row>
 
-          <Row>
-            <div className='second-line'>
-              <FollowersModal />
-              <FollowedModal />
-            </div>
-          </Row>
+        <Row>
+          <div className='second-line'>
+            <FollowersModal />
+            <FollowedModal />
+          </div>
+        </Row>
 
-          <Row>
-            <Descriptions title='Info'>
-              <Descriptions.Item label={"Bio "}>
-                {userData?.bio}
-              </Descriptions.Item>
-              <Descriptions.Item label={"Profession "}>
-                {userData?.profession}
-              </Descriptions.Item>
-              <Descriptions.Item label={"Hobbies "}>
-                {userData?.hobby},{userData?.hobby2}
-              </Descriptions.Item>
-            </Descriptions>
-          </Row>
+        <Row>
+          <Descriptions title='Info'>
+            <Descriptions.Item label={"Bio "}>
+              {userData?.bio}
+            </Descriptions.Item>
+            <Descriptions.Item label={"Profession "}>
+              {userData?.profession}
+            </Descriptions.Item>
+            <Descriptions.Item label={"Hobbies "}>
+              {userData?.hobby},{userData?.hobby2}
+            </Descriptions.Item>
+          </Descriptions>
+        </Row>
 
-          <Row>
-            <Descriptions title='Social networks'>
-              <Descriptions.Item label={<LinkButton logo='linkedin' to={userData?.linkedin}/>}>
-                {userData?.linkedin}
-              </Descriptions.Item>
-              <Descriptions.Item label={<LinkButton logo='twitter' to={userData?.twitter}/>}>
-                {userData?.twitter}
-              </Descriptions.Item>
-              <Descriptions.Item label={<LinkButton logo='instagram' to={userData?.instagram}/>}>
-                {userData?.instagram}
-              </Descriptions.Item>
-            </Descriptions>
-          </Row>
-        </Col>
-        <Col xs={2} lg={2}></Col>
-      </Row>
-
-    </>
+        <Row>
+          <Descriptions title='Social networks'>
+            <Descriptions.Item label={<LinkButton logo='linkedin' to={userData?.linkedin} />}>
+              {userData?.linkedin}
+            </Descriptions.Item>
+            <Descriptions.Item label={<LinkButton logo='twitter' to={userData?.twitter} />}>
+              {userData?.twitter}
+            </Descriptions.Item>
+            <Descriptions.Item label={<LinkButton logo='instagram' to={userData?.instagram} />}>
+              {userData?.instagram}
+            </Descriptions.Item>
+          </Descriptions>
+        </Row>
+      </Col>
+      <Col xs={2} lg={2}></Col>
+    </Row>
   );
 };
 
