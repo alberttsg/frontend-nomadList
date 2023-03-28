@@ -62,7 +62,12 @@ const LoginForm = () => {
         <Input.Password />
       </Form.Item>
 
-      <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'center' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexFlow: 'row nowrap',
+          justifyContent: 'center'
+        }}>
         <Button type="primary" htmlType="submit">
           Login
         </Button>
