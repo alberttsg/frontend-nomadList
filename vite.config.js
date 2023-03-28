@@ -1,16 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import fs from 'fs/promises';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  optimizeDeps: { exclude: ["fsevents"] },
+  plugins: [react()],
   esbuild: {
-    supported: {
-      'top-level-await': true //browsers can handle top-level-await features
+    loader: 'jsx',
+  },
+  resolve: {
+    alias: {
+      './runtimeConfig': './runtimeConfig.browser',
     },
   },
-
-  plugins: [react()],
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
 })
-
-
