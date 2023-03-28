@@ -1,6 +1,6 @@
 import React from 'react';
 import { Progress, Row, Col } from 'antd';
-import './countries.scss'
+import './Countries.scss'
 
 const CountryData = ({ country }) => {
   const getProgressColor = (percent) => {
