@@ -1,13 +1,9 @@
 import {
   Avatar,
-  Card,
-  Carousel,
-  Col,
-  Image,
-  List,
+  Divider,
   Modal,
   Progress,
-  Row,
+
 } from "antd";
 import Meta from "antd/es/card/Meta";
 import React, { useContext, useEffect, useState } from "react";
@@ -36,7 +32,6 @@ const CountryUser = () => {
   const getFormattedPercent = (percent) => {
     return percent.toFixed(1);
   };
-  const gradient = 'linear-gradient(to right, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)';
   const styles = {
     border: '1.3px solid black',
     boxShadow: `0 0 0 3px #fff, 0 0 0 2px #ccc}`,
@@ -55,6 +50,7 @@ const CountryUser = () => {
               alignItems: "center",
               cursor: "pointer",
               transition: "transform 0.2s ease-in-out",
+              margin: "10px",
             }}
             onClick={() => mostrarModal(country)}
           >
@@ -66,8 +62,11 @@ const CountryUser = () => {
               src={country.image}
             />
             <h3 className='avatar-name'>{country.country}</h3>
+            {/* <Divider plain={'true'}/> */}
+            
           </div>
         ))}
+        
       </div>
       {selectedCountry && (
         <Modal
