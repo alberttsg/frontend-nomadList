@@ -19,14 +19,11 @@ export const Header = () => {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: '20px', borderBottom: '1px solid #efefef' }} onBlur={() => setDropdownOpen(false)}>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '20px', borderBottom: '1px solid #efefef' }} onMouseLeave={() => setDropdownOpen(false)}>
       <Dropdown
         menu={{
           items: searchResult,
-          onClick: (item) => {
-            navigate(item.key);
-            setDropdownOpen(false);
-          },
+          onClick: (item) => navigate(item.key)
         }}
         open={isDropdownOpen}
         destroyPopupOnHide={true}

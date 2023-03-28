@@ -41,6 +41,13 @@ export function paginatePostsByUser(pageNumber, id) {
   const [hasMore, setHasMore] = useState(false)
   const token = JSON.parse(localStorage.getItem("token"));
 
+  if (posts.some(e => e.author._id !== id)) {
+    setLoading(false);
+    setError(false);
+    setPosts([]);
+    setHasMore(false);
+  }
+
   useEffect(() => {
     setLoading(true);
     setError(false);
@@ -54,7 +61,7 @@ export function paginatePostsByUser(pageNumber, id) {
     }).then(res => {
       if (res.data.posts.length > 0) {
         setPosts(prevPosts => {
-          return [...new Set([...prevPosts, ...res.data.posts])]
+          return [...new Set([...prevPosts, ...res.data.posts])];
         })
       }
       setHasMore(posts.length < res.data.totalPosts)

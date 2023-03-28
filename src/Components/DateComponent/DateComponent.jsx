@@ -11,7 +11,7 @@ export const DateComponent = ({ datePost, datePost2 }) => {
   return (
     <>
       <span style={{ fontStyle: 'italic', fontWeight: 'normal' }} >{time1}</span>
-      {datePost2 && <span style={{ fontStyle: 'italic', fontWeight: 'normal' }} >(updated {time2})</span>}
+      {datePost2 && datePost2 !== datePost && <span style={{ fontStyle: 'italic', fontWeight: 'normal' }} >(updated {time2})</span>}
     </>
   )
 }
