@@ -1,5 +1,5 @@
 import { CheckCircleTwoTone, PlusCircleTwoTone } from '@ant-design/icons';
-import { Avatar, Card, Col, Space, List, Modal, Row, Tooltip } from 'antd';
+import { Avatar, Card, Col, Space, List, Modal, Row, Tooltip, Skeleton, Spin, Divider } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../context/UsersState';
 import { getCountries, toggleVisited } from '../../service/countryService';
@@ -12,11 +12,14 @@ const Countries = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [hovered, setHovered] = useState(null);
 
+  
   useEffect(() => {
     setLoading(true);
     getCountries().then(res => {
       setCountries(res);
       setLoading(false);
+     
+
     });
   }, []);
 
@@ -33,14 +36,36 @@ const Countries = () => {
 
   return (
     <>
+      {loading? (
+      <div style={{ 
+        margin: '25px',  width: '90%' }}>
+      
+      <Skeleton round={true} avatar  paragraph={{
+      rows: 10,
+    }} active/>
+    <Divider/>
+    <Skeleton round={true} avatar  paragraph={{
+      rows: 10,
+    }} active/>
+        <Divider/>
+    <Skeleton round={true} avatar  paragraph={{
+      rows: 10,
+    }} active/>
+        <Divider/>
+    <Skeleton round={true} avatar  paragraph={{
+      rows: 10,
+    }} active/>
+      </div>
+      ) :
       <Row gutter={[16, 16]} justify='space-evenly' style={{ padding: '10px', margin: 0 }}>
         {!loading && countries?.map((country) => {
+          
           return (
             <Col key={country.country} xs={{ span: 24 }} lg={{ span: 8 }} xl={{ span: 6 }}>
-
               <Card
                 hoverable
                 cover={
+                 
                   <div
                     style={{
                       backgroundImage: `url(${country.image})`,
@@ -58,6 +83,7 @@ const Countries = () => {
                   </div>
                 }
               >
+              
                 <Card.Meta key={country._id}
                   title={
                     <Space direction='horizontal' align='baseline'>
@@ -111,6 +137,8 @@ const Countries = () => {
           )
         })}
       </Row>
+}
+    
     </>
   );
 };
