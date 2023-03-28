@@ -1,12 +1,25 @@
 import './NavBar.scss'
 import { HomeFilled, PlusCircleFilled, UserOutlined, UnlockFilled, EnvironmentOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import { Button, Modal } from 'antd';
 import { GlobalContext } from '../../context/UsersState'
+import { CreatePostNew } from '../CreatePostNew/CreatePostNew';
 
 export const NavBar = () => {
-  const { reset, logOut } = useContext(GlobalContext);
   const navigate = useNavigate()
+  const { reset, logOut } = useContext(GlobalContext);
+  const [openModalCreate, setOpenModalCreate] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className='navbar'>
@@ -14,7 +27,7 @@ export const NavBar = () => {
       <div className='container-nav'>
         <div className='home' onClick={() => navigate('/')}><HomeFilled className='iconHome' /><div className='divHome'>Home</div> </div>
         <div className='profile' onClick={() => navigate('/profile')}><UserOutlined className='iconProfile' /><div className='divProfile'>Profile</div></div>
-        <div className='create' onClick={() => navigate('/CreatePost')} ><PlusCircleFilled className='iconCreate' /><div className='divCreate'>Post</div></div>
+        <div className='create' onClick={() => setIsModalOpen(!isModalOpen)} ><PlusCircleFilled className='iconCreate' /><div className='divCreate'>Post</div></div>
         <div className='logout' onClick={() => navigate('/countries')}>
           <EnvironmentOutlined className='iconlogout' /> <div className='divLogout'>Countries</div>
         </div>
@@ -27,6 +40,9 @@ export const NavBar = () => {
           <UnlockFilled className='iconlogout' /><div className='divLogout'>Log out</div></div>
 
       </div>
+      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <CreatePostNew />
+      </Modal>
     </div>
   )
 }
