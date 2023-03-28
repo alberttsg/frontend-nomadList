@@ -1,3 +1,4 @@
+import { Card } from 'antd';
 import { useContext } from 'react';
 import { PostContext } from '../PostCard.jsx';
 
@@ -7,16 +8,11 @@ export function PostContent() {
   if (!post?.content) return null;
 
   return (
-    <div
-      style={{
-        border: '1px solid lightgrey',
-        borderRadius: '5px',
-        padding: '5px',
-        whiteSpace: 'pre-wrap',
-        wordBreak: 'normal',
-        minHeight: '20px',
-      }}>
-      {post?.content}
-    </div>
+    <>
+    <Card bordered={true} style={{ width: '100%', border:'0.1px solid lightgray' }}>
+    <p>{post?.content}</p>
+    
+  </Card>
+        </>
   )
 }
