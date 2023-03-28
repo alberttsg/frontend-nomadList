@@ -1,10 +1,10 @@
 import axios from 'axios'
-
 export const ServiceCreatePost = async (body) => {
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
     headers:{
       'Authorization': token,
+      'Content-Type': 'multipart/form-data'
     }
   }
 
@@ -22,7 +22,8 @@ export const ServiceCreatePost = async (body) => {
   //API SENTIMENT
 
   const sentiment = await sentimentAnalysis(body)
-  console.log(sentiment.data.sentiment, 'sentiment')
+  console.log(sentiment.data.sentiment, 22222)
+
 
   body.append('sentiment', sentiment.data.sentiment)
 

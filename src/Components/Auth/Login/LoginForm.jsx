@@ -28,7 +28,7 @@ const LoginForm = () => {
     <Form
       name="basic"
       align='center'
-      labelCol={{ span: 8, }}
+      labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       style={{ padding: '20px', width: '100%' }}
       initialValues={{ remember: true }}

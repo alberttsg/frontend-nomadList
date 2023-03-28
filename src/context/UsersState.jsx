@@ -3,10 +3,11 @@ import * as userService from '../service/userService'
 import AppReducer from './UserReducer.js'
 import axios from 'axios'
 
-const token = userService.validateToken();
+//const token = userService.validateToken();
+const token = JSON.parse(localStorage.getItem("token"));
 
 const initialState = {
-  token: token,
+  token: token ? token : null,
   user: token ? await userService.getUserInfo(1, 1, 1, 1) : null,
   isSuccess: false,
   isError: false,
