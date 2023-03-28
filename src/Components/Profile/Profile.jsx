@@ -7,6 +7,7 @@ import UsersPosts from '../UsersPosts/UsersPosts';
 import { getUserById } from '../../service/userService';
 import { Spin } from 'antd';
 import './Profile.scss';
+import CountryUser from './components/CountryUser/CountryUser';
 
 export const ProfileContext = createContext();
 
@@ -36,6 +37,7 @@ export const Profile = () => {
           <UserCard />
           {console.log(userData)}
           <Divider plain />
+          <CountryUser/>
           {/* <UsersPosts /> */}
         </div>
       </Spin>
