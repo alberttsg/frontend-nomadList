@@ -2,15 +2,14 @@ import { useRoutes } from 'react-router-dom';
 import { PrivateZone } from '../../guards/PrivateZone';
 import { Content } from '../Content/Content';
 import Countries from '../Countries/Countries';
-import { CreatePost } from '../CreatePost/CreatePost';
-import { CreatePostNew } from '../CreatePostNew/CreatePostNew';
 import { Profile } from '../Profile/Profile';
 import { NotFound } from '../Content/NotFound';
 import { PostHomeLayout } from '../PostComponent/PostHomeLayout';
+import { CreatePostAI } from '../CreatePostNew/CreatePostAI';
 
 export const Routes = () => {
   return useRoutes(
-    [
+    [ 
       {
         element: <Content><PostHomeLayout /></Content>,
         path: '/'
@@ -24,12 +23,12 @@ export const Routes = () => {
         path: '/profile/:userId'
       },
       {
-        element: <PrivateZone><CreatePost /></PrivateZone>,
-        path: '/createpost'
-      },
-      {
         element: <Content><Countries /></Content>,
         path: '/countries'
+      },
+      {
+          element: <PrivateZone><Content><CreatePostAI /></Content></PrivateZone>,
+          path: '/createpostai'
       },
       {
         element: <PrivateZone><Content><NotFound /></Content></PrivateZone>,

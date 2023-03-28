@@ -1,10 +1,12 @@
-import './NavBar.scss'
+
+
 import { HomeFilled, PlusCircleFilled, UserOutlined, UnlockFilled, EnvironmentOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
-import { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Modal } from 'antd';
 import { GlobalContext } from '../../context/UsersState'
 import { CreatePostNew } from '../CreatePostNew/CreatePostNew';
+import './NavBar.scss'
 
 export const NavBar = () => {
   const navigate = useNavigate()
@@ -18,6 +20,7 @@ export const NavBar = () => {
   };
   const handleCancel = () => {
     setIsModalOpen(false);
+    
   };
 
   return (
@@ -33,14 +36,14 @@ export const NavBar = () => {
         <div className='logout'
           onClick={() => {
             logOut(),
-              navigate('/')
+            navigate('/')
             reset()
           }}>
           <UnlockFilled className='iconlogout' /><div className='divLogout'>Log out</div></div>
 
       </div>
-      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} centered >
-        <CreatePostNew />
+      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} centered  footer={null} >
+        <CreatePostNew onAction={handleCancel} />
       </Modal>
     </div>
   )
