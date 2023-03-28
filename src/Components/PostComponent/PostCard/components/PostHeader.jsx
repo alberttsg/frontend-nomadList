@@ -17,21 +17,21 @@ export function PostHeader() {
       <Row
         style={{
           display: 'flex',
-          justifyContent:'left',
+          justifyContent: 'left',
           alignItems: 'center',
           width: '100%',
           margin: '10px 0 5px 0',
           fontSize: '12px',
         }}>
-        <Avatar 
-        onClick={
-          ()=>{
-            navigate(`/profile/${post?.author?._id}`);
-          }}
-        span style={{
-          boxShadow:'initial',
-          border: '0.2px solid lightgray',
-        }}size={29} src={post?.author?.avatar} />
+        <Avatar
+          onClick={
+            () => {
+              navigate(`/profile/${post?.author?._id}`);
+            }}
+          style={{
+            boxShadow: 'initial',
+            border: '0.2px solid lightgray',
+          }} size={29} src={post?.author?.avatar} />
         <Button size='small' type='secondary' style={{
           textTransform: 'capitalize',
           fontWeight: 'bold',
@@ -39,19 +39,15 @@ export function PostHeader() {
           color: '#598aa8',
           display: 'flex',
           alignItems: 'center',
-          justifyContent:'start',
-          padding:'0 9px 2px 5px ',
-          
-          
-       
-       
+          justifyContent: 'start',
+          padding: '0 9px 2px 5px ',
         }} onClick={
-          ()=>{
+          () => {
             navigate(`/profile/${post?.author?._id}`);
           }
         }><span>{post?.author?.displayName}</span></Button>
-        <DateComponent datePost={post?.createdAt}  />
-        {canEdit && <EditPostButton  />}
+        <DateComponent datePost={post?.createdAt} />
+        {canEdit && <EditPostButton />}
       </Row>
       <Row
         align='middle'
