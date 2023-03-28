@@ -1,6 +1,13 @@
 import axios from 'axios'
 
 export const ServiceCreatePost = async (body) => {
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers:{
+      'Authorization': token,
+    }
+  }
+
   console.log(body)
 
   //API BAD LANGUAGE
@@ -11,17 +18,12 @@ export const ServiceCreatePost = async (body) => {
   if(validation.data.classification == 1 || validation.data.classification == 2 || validation.data.classification == 3){
     return false
   }
+  
   //API SENTIMENT
 
   const sentiment = await sentimentAnalysis(body)
-  console.log(sentiment.data.sentiment, 22222)
+  console.log(sentiment.data.sentiment, 'sentiment')
 
-  const token = JSON.parse(localStorage.getItem('token'))
-  const config = {
-    headers:{
-      'Authorization': token,
-    }
-  }
   body.append('sentiment', sentiment.data.sentiment)
 
   const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/post/newpost', body, config)

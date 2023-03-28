@@ -38,12 +38,12 @@ export const UserCard = () => {
             {canEdit && <EditUser />}
           </Row>
 
-          <Row>
-            <div className='second-line'>
-              <FollowersModal />
-              <FollowedModal />
-            </div>
-          </Row>
+        <Row>
+          <div className='second-line'>
+            <FollowersModal />
+            <FollowedModal />
+          </div>
+        </Row>
 
           <Row>
             <Descriptions title={ 'Info' }>

@@ -41,6 +41,13 @@ export function paginatePostsByUser(pageNumber, id) {
   const [hasMore, setHasMore] = useState(false)
   const token = JSON.parse(localStorage.getItem("token"));
 
+  if (posts.some(e => e.author._id !== id)) {
+    setLoading(false);
+    setError(false);
+    setPosts([]);
+    setHasMore(false);
+  }
+
   useEffect(() => {
     setLoading(true);
     setError(false);
@@ -54,7 +61,7 @@ export function paginatePostsByUser(pageNumber, id) {
     }).then(res => {
       if (res.data.posts.length > 0) {
         setPosts(prevPosts => {
-          return [...new Set([...prevPosts, ...res.data.posts])]
+          return [...new Set([...prevPosts, ...res.data.posts])];
         })
       }
       setHasMore(posts.length < res.data.totalPosts)
@@ -89,7 +96,6 @@ export async function createComment(content, postId) {
  
   //API BAD LENGUAGE
   const validation = await badLanguage(contentValue)
-  console.log(validation.data.classification)
 
   if(validation.data.classification == 1 || validation.data.classification == 2 || validation.data.classification == 3){
     return false;
@@ -120,10 +126,3 @@ const badLanguage = async (contentValue) => {
   const validation = await axios.post('https://flask-production-782a.up.railway.app/bad-language', content)
   return validation
 }
-
-// const sentimentAnalysis = async (body) => {
-//   const content = {text:body.get('content')}
-
-//   const validation = await axios.post('https://flask-production-782a.up.railway.app/sentiment', content)
-//   return validation
-// }
