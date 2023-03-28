@@ -1,12 +1,12 @@
-import { Divider } from 'antd';
-import { useContext, useEffect, useState, createContext } from 'react';
-import { useParams, useNavigate } from 'react-router';
-import { GlobalContext } from '../../context/UsersState';
-import { UserCard } from './components/UserCard/UserCard';
-import { UserContent } from './components/UserContent/UserContent';
-import { getUserById } from '../../service/userService';
-import CountryUser from './components/CountryUser/CountryUser';
-import { Spin, Row } from 'antd';
+import { Divider } from "antd";
+import { useContext, useEffect, useState, createContext } from "react";
+import { useParams, useNavigate } from "react-router";
+import { GlobalContext } from "../../context/UsersState";
+import { UserCard } from "./components/UserCard/UserCard";
+import { UserContent } from "./components/UserContent/UserContent";
+import { getUserById } from "../../service/userService";
+import CountryUser from "./components/CountryUser/CountryUser";
+import { Spin, Row } from "antd";
 
 export const ProfileContext = createContext();
 
@@ -20,26 +20,29 @@ export const Profile = () => {
   useEffect(() => {
     async function getData() {
       setLoading(true);
-      if (!userId) return navigate('/profile/' + user._id);
+      if (!userId) return navigate("/profile/" + user._id);
       const response = await getUserById(userId);
-      if (!response) return navigate('/home');
+      if (!response) return navigate("/home");
       setUserData(response);
       setLoading(false);
-      
-    };
+    }
     getData();
-  }, [userId])
+  }, [userId]);
 
   return (
     <ProfileContext.Provider value={{ userData, setUserData }}>
-      {console.log('28, userData: ',userData)}
+      {console.log("28, userData: ", userData)}
       <Spin spinning={isLoading}>
         <Row>
           <UserCard />
         </Row>
+
         <Row>
-          <Divider plain />
           <CountryUser />
+        </Row>
+       
+
+        <Row>
           <UserContent />
         </Row>
       </Spin>
