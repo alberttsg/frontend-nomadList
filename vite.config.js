@@ -7,6 +7,9 @@ export default defineConfig({
   plugins: [react()],
   esbuild: {
     loader: 'jsx',
+    supported: {
+      'top-level-await': true //browsers can handle top-level-await features
+    },
   },
   resolve: {
     alias: {
