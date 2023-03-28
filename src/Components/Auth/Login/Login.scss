@@ -8,119 +8,70 @@
   font-family: "Tilt Neon";
 }
 
-.container {
-  display: flex;
-  width: 100%;
-  
 
-  .primary-container {
-    width: 50%;
-    margin-right: 3%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-
-    .logo-login {
-      display: flex;
-      justify-content: flex-end;
-      width: 65%;
-      height: 50px;
-      user-select: none;
-      font: 400 6vh "Monoton";
-      cursor: pointer;
-      margin-bottom: 5%;
-    }
-  }
-}
 .logo-login {
   display: flex;
-  justify-content: flex-end;
-  width: 65%;
+  justify-content: center;
+  width: 100%;
   height: 50px;
   user-select: none;
   font: 400 6vh "Monoton";
   cursor: pointer;
   margin-bottom: 5%;
+  align-items: center;
 }
-.login-container {
-  width: 50%;
-  margin-left: 3%;
+
+.title-login {
+  padding: 5% 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
-  background-color: white;
+}
 
-  .title-login {
-    padding-bottom: 20%;
-    display: flex;
-    justify-content: center;
+.register-content {
+  display: flex;
+  align-items: center;
+  margin-left: 1%;
+
+  .register-button {
+    color: black;
+    margin: 5px;
   }
 
-  .register-content {
-    display: flex;
-    align-items: center;
-    margin-left: 1%;
-
-    .register-button {
-      color: black;
-      margin: 5px;
-    }
-
-    p {
-      margin: 5px;
-    }
+  p {
+    margin: 5px;
   }
 }
+
 
 .image {
-  width: 100%;
+  width: 80%;
   border-radius: 3%;
+}
+
+.register-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1%;
 }
 
 @media (max-width: 1024px) {
   .logo-login {
-    width: 40% !important;
-    height: auto !important;
-    font: 400 4vh "Monoton" !important;
-  }
-
-  .carousel-container {
-    width: 50%;
+    font: 400 5vh "Monoton" !important;
   }
 }
 
 @media (max-width: 670px) {
 
-  .container {
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-
-    .primary-container {
-      position: absolute;
-      top: 120px;
-      width: auto;
-      margin: 5px;
-    }
-
-    .login-container {
-      height: 50vh;
-      margin-left: 0;
-    }
+  .login-container {
+    height: 50vh;
+    margin-left: 0;
   }
 
   .logo-login {
     font: 400 6vh "Monoton" !important;
-    width: 85% !important;
     margin: 20px;
     align-items: center;
-  }
-
-  .carousel-container {
-    display: none;
   }
 
 }

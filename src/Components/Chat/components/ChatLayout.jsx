@@ -16,7 +16,7 @@ export function ChatLayout() {
     <ChatProvider>
       <Affix
         offsetBottom={10}
-        style={{ position: 'fixed', right: '10px', bottom: '10px', minWidth: '100px' }}
+        style={{ position: 'fixed', right: '20px', bottom: '20px', minWidth: '100px' }}
       >
         <Collapse
           expandIconPosition='end'

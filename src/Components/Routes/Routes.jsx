@@ -1,35 +1,40 @@
 import { useRoutes } from 'react-router-dom';
 import { PrivateZone } from '../../guards/PrivateZone';
 import { Content } from '../Content/Content';
-import { CreatePost } from '../CreatePost/CreatePost';
+import Countries from '../Countries/Countries';
 import { Profile } from '../Profile/Profile';
-import ProfileUserId from '../ProfileUserId/ProfileUserId';
+import { NotFound } from '../Content/NotFound';
+import { PostHomeLayout } from '../PostComponent/PostHomeLayout';
+import { CreatePostAI } from '../CreatePostNew/CreatePostAI';
 
 export const Routes = () => {
   return useRoutes(
-
-        [
-              {
-                element:<Content/> ,
-                path: '/'
-              },
-              {
-                element:<PrivateZone><Profile/></PrivateZone> ,
-                path: '/profile'
-              },
-              {
-                element:<PrivateZone><CreatePost/></PrivateZone> ,
-                path: '/createpost'
-              },
-              {
-                element:<PrivateZone><Content/></PrivateZone> ,
-                path: '/*'
-              },
-              {
-                element:<PrivateZone><ProfileUserId/></PrivateZone> ,
-                path: '/profile/:userId'
-              },
-        ]
-        );
+    [ 
+      {
+        element: <Content><PostHomeLayout /></Content>,
+        path: '/'
+      },
+      {
+        element: <PrivateZone><Content><Profile /></Content></PrivateZone>,
+        path: '/profile'
+      },
+      {
+        element: <PrivateZone><Content><Profile /></Content></PrivateZone>,
+        path: '/profile/:userId'
+      },
+      {
+        element: <Content><Countries /></Content>,
+        path: '/countries'
+      },
+      {
+          element: <PrivateZone><Content><CreatePostAI /></Content></PrivateZone>,
+          path: '/createpostai'
+      },
+      {
+        element: <PrivateZone><Content><NotFound /></Content></PrivateZone>,
+        path: '*'
+      },
+    ]
+  );
 
 }

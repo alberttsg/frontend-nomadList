@@ -1,18 +1,17 @@
 import React from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime';
-import * as locale from 'dayjs/locale/es'
 
-
-export const DateComponent = (props) => {
-  dayjs.locale(locale)
+export const DateComponent = ({ datePost, datePost2 }) => {
+  dayjs.locale('en')
   dayjs.extend(relativeTime)
-  const {datePost} = props
-  const dateString = dayjs(datePost).format('YYYY-MM-DD')
-  const time = dayjs().to(dayjs(dateString))
+  const time1 = dayjs().to(dayjs(datePost))
+  const time2 = dayjs().to(dayjs(datePost2))
+
   return (
-    <div>
-      <span>{time}</span>
-    </div>
+    <>
+      <span style={{ fontStyle: 'italic', fontWeight: 'normal' }} >{time1}</span>
+      {datePost2 && datePost2 !== datePost && <span style={{ fontStyle: 'italic', fontWeight: 'normal' }} >(updated {time2})</span>}
+    </>
   )
 }

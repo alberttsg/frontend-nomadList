@@ -10,6 +10,8 @@
   background-size:contain;
 }
 
+
+
 .form {
   display: flex;
   flex-direction: column;
@@ -51,4 +53,11 @@
     font-family: "Tilt Neon";
     font-size: 15px;
   }
+
+  .input-file {
+    display: none;
+    width: 10%;
+    visibility: hidden;
+  }
 }
+

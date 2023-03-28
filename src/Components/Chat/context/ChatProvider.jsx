@@ -18,7 +18,7 @@ export const ChatContext = createContext(initialState);
 export const ChatProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ChatReducer, initialState);
 
-  const URL = 'https://nomadsocietychat.onrender.com/';
+  const URL = import.meta.env.VITE_CHAT_URL;
 
   useEffect(() => {
     newManager();
@@ -79,8 +79,8 @@ export const ChatProvider = ({ children }) => {
     const token = JSON.parse(localStorage.getItem('token'));
     const body = { contactId: contactId };
     const contacts = await axios.post(URL + 'addContact?token=' + token, body);
-    const addedUsers = contacts.data.map(item => item.userId);
-    const checkAdded = state.searchResult.map(e => {
+    const addedUsers = contacts?.data?.map(item => item.userId);
+    const checkAdded = state?.searchResult?.map(e => {
       return {
         ...e,
         added: addedUsers.includes(e._id),
@@ -100,8 +100,8 @@ export const ChatProvider = ({ children }) => {
     const token = JSON.parse(localStorage.getItem('token'));
     const body = { contactId: contactId };
     const contacts = await axios.post(URL + 'removeContact?token=' + token, body);
-    const addedUsers = contacts.data.map(item => item.userId);
-    const checkAdded = state.searchResult.map(e => {
+    const addedUsers = contacts?.data?.map(item => item.userId);
+    const checkAdded = state?.searchResult?.map(e => {
       return {
         ...e,
         added: addedUsers.includes(e._id),
@@ -129,10 +129,12 @@ export const ChatProvider = ({ children }) => {
   }
 
   const search = async (search) => {
+    console.log(state)
     const searchResult = await axios.get(URL + 'find/' + search);
-    const users = searchResult.data;
-    const addedUsers = state.contacts.map(item => item.userId);
-    const checkAdded = users.map(e => {
+    const users = searchResult?.data;
+    console.log(users)
+    const addedUsers = state?.contacts?.map(item => item.userId);
+    const checkAdded = users?.map(e => {
       return {
         ...e,
         added: addedUsers.includes(e._id),

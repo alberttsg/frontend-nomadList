@@ -1,13 +1,14 @@
 import React, { createContext, useReducer } from 'react'
+import * as userService from '../service/userService'
 import AppReducer from './UserReducer.js'
 import axios from 'axios'
 
+//const token = userService.validateToken();
 const token = JSON.parse(localStorage.getItem("token"));
-const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
   token: token ? token : null,
-  user: user ? user : null,
+  user: token ? await userService.getUserInfo(1, 1, 1, 1) : null,
   isSuccess: false,
   isError: false,
   isErrorRegister: false,
@@ -77,7 +78,7 @@ export const UsersProvider = ({ children }) => {
 
   const getUserInfo = async () => {
     const token = JSON.parse(localStorage.getItem("token"));
-    const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/users/info?populateFollowers=${true}&populateFollowed=${true}&populatedLikedPosts=${false}`, {
+    const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/users/info?populateFollowers=${true}&populateFollowed=${true}&populatedLikedPosts=${false}&visited=${true}`, {
       headers: {
         authorization: token,
       },
