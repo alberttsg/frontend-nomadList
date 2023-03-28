@@ -17,7 +17,7 @@ import { ProfileContext } from "../../Profile";
 
 const CountryUser = () => {
   const { userData, setUserData } = useContext(ProfileContext);
-  const { user, getUserInfo } = useContext(GlobalContext);
+  const { getUserInfo } = useContext(GlobalContext);
   const [selectedCountry, setSelectedCountry] = useState(null);
 
   const mostrarModal = (country) => {
@@ -36,10 +36,17 @@ const CountryUser = () => {
   const getFormattedPercent = (percent) => {
     return percent.toFixed(1);
   };
+  const gradient = 'linear-gradient(to right, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)';
+  const styles = {
+    border: '1.3px solid black',
+    boxShadow: `0 0 0 3px #fff, 0 0 0 2px #ccc}`,
+    margin: "18px",
+  };
+
   return (
     <>
       <div style={{ margin: "20px", display: "flex", overflowX: "scroll" }}>
-        {user.visited.map((country) => (
+        {userData?.visited?.map((country) => (
           <div
             key={country._id}
             style={{
@@ -52,9 +59,9 @@ const CountryUser = () => {
             onClick={() => mostrarModal(country)}
           >
             <Avatar
-              style={{
-                margin: "18px",
-              }}
+              style={
+               styles
+              }
               size={90}
               src={country.image}
             />

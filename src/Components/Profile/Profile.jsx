@@ -25,12 +25,14 @@ export const Profile = () => {
       if (!response) return navigate('/home');
       setUserData(response);
       setLoading(false);
+      
     };
     getData();
   }, [userId])
 
   return (
     <ProfileContext.Provider value={{ userData, setUserData }}>
+      {console.log('28, userData: ',userData)}
       <Spin spinning={isLoading}>
         <Row>
           <UserCard />
