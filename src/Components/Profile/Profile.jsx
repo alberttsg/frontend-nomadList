@@ -7,7 +7,6 @@ import { UserContent } from './components/UserContent/UserContent';
 import { getUserById } from '../../service/userService';
 import CountryUser from './components/CountryUser/CountryUser';
 import { Spin, Row } from 'antd';
-import './Profile.scss';
 
 export const ProfileContext = createContext();
 
