@@ -3,9 +3,9 @@ import * as userService from '../service/userService'
 import AppReducer from './UserReducer.js'
 import axios from 'axios'
 
-async function initialData() {
-  const token = await userService.validateToken();
-  const user = token ? await userService.getUserInfo(1, 1, 1, 1) : null;
+function initialData() {
+  const token = userService.validateToken().then(res => res).catch(e => null);
+  const user = token ? userService.getUserInfo(1, 1, 1, 1).then(res => res).catch(e => null) : null;
   return { token, user };
 }
 const { token, user } = initialData();
