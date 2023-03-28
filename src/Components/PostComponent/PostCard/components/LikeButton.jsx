@@ -18,11 +18,11 @@ export function LikeButton() {
   }
 
   return (
-    <Badge count={likes} overflowCount={99} size='small'>
+    <Badge count={likes} overflowCount={99} size='small'style={{background: 'rgb(0,153,154,0.45)', color: 'white'}}>
       {isLiked ?
         <HeartFilled
           onClick={() => likeToggle()}
-          style={{ fontSize: '20px', color: "#eb2f96", marginRight: '5px' }}
+          style={{ fontSize: '20px', color: "#EE0104", marginRight: '5px'}}
         />
         :
         <HeartOutlined

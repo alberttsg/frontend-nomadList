@@ -12,13 +12,13 @@ export function CommentsInputForm() {
     setLoading(true);
     const res = await createComment(values, post._id);
 
-    if(!res) {
+    if (!res) {
       setLoading(true);
       setLoading(false);
       form.resetFields();
-      return message.warning ({
+      return message.warning({
         content: 'Your comment contains bad lenguage.Try again',
-        style: {marginTop: '20vh'}
+        style: { marginTop: '20vh' }
       })
     }
 
