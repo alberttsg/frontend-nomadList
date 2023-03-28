@@ -33,9 +33,7 @@ export const ServiceCreatePost = async (body) => {
 }
 
 const badLanguage = async (body) => {
-
   const content = {text:body.get('content')}
-
   const validation = await axios.post('https://flask-production-782a.up.railway.app/bad-language', content)
   return validation
 }
