@@ -9,7 +9,8 @@ export function PostContent() {
 
   return (
     <>
-    <Card bordered={true} style={{ width: '100%', border:'0.1px solid lightgray' }}>
+    <Card bordered={true} style={{ width: '100%', webkitBoxShadow: '4px 6px 10px 1px rgba(0,0,0,0.22)', 
+boxShadow:' 4px 6px 10px 1px rgba(0,0,0,0.06)' }}>
     <p>{post?.content}</p>
     
   </Card>

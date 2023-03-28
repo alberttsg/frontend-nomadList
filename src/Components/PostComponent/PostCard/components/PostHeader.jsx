@@ -23,7 +23,12 @@ export function PostHeader() {
           margin: '10px 0 5px 0',
           fontSize: '12px',
         }}>
-        <Avatar span style={{
+        <Avatar 
+        onClick={
+          ()=>{
+            navigate(`/profile/${post?.author?._id}`);
+          }}
+        span style={{
           boxShadow:'initial',
           border: '0.2px solid lightgray',
         }}size={29} src={post?.author?.avatar} />
