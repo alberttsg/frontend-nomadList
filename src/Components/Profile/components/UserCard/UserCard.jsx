@@ -15,8 +15,8 @@ export const UserCard = () => {
   const canEdit = user?._id === userData?._id;
 
   return (
-    <>
-      <Divider plain />
+    <div style={{padding: '10px'}} >
+      {/* <Divider plain /> */}
       <Row>
         <Col xs={0} lg={1}></Col>
         <Col xs={24} lg={6} className='left-avatar'>
@@ -77,7 +77,7 @@ export const UserCard = () => {
         <Col xs={2} lg={2}></Col>
       </Row>
 
-    </>
+    </div>
   );
 };
 
