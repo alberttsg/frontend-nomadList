@@ -26,11 +26,12 @@
     padding: 0.5rem;
 }
 .second-line{
+    width: 100%;
     cursor: pointer;
     text-align: left;
     text-align: left;
     display: flex;
-    justify-content:space-between;
+    justify-content:space-evenly;
     padding: 0.5rem;
 
     span{
@@ -48,4 +49,11 @@
 
         margin: 0.2rem;
     }
+}
+.social-networks{
+    
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
 }

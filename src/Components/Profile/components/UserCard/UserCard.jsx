@@ -6,7 +6,7 @@ import { FollowersModal } from "../FollowersModal/FollowersModal";
 import { FollowedModal } from "../FollowedModal/FollowedModal";
 import { FollowButton } from "../FollowButton/FollowButton";
 import { Avatar, Button, Col, Descriptions, Divider, Row } from "antd";
-import { CheckCircleTwoTone, InstagramFilled, LinkedinFilled, TwitterCircleFilled } from "@ant-design/icons";
+import { CheckCircleFilled, CheckCircleTwoTone, InfoCircleTwoTone, InstagramFilled, LinkedinFilled, TwitterCircleFilled } from "@ant-design/icons";
 import "./UserCard.scss";
 
 export const UserCard = () => {
@@ -15,24 +15,28 @@ export const UserCard = () => {
   const canEdit = user?._id === userData?._id;
 
   return (
-    <Row style={{ padding: '10px' }}>
-      <Col xs={0} lg={1}></Col>
-      <Col xs={24} lg={6} className='left-avatar'>
-        <Avatar size={180} src={userData?.avatar} />
-      </Col>
-      <Col xs={22} lg={14} className='right-info'>
-        <Row justify='space-between'>
-          <h4>
-            {userData?.username || userData?.firstName}{" "}
-            <CheckCircleTwoTone
-              style={{ fontSize: "12px" }}
-              twoToneColor={"#3797F0"}
-            />
-          </h4>
-          {/* <button>Enviar mensaje Añadir contacto</button> */}
-          {!canEdit && <FollowButton />}
-          {canEdit && <EditUser />}
-        </Row>
+    <>
+      <Divider plain />
+      <Row>
+        <Col xs={0} lg={1}></Col>
+        <Col xs={24} lg={6} className='left-avatar'>
+          <Avatar style={{border: '1px solid black'}} size={180} src={userData?.avatar} />
+        </Col>
+        <Col xs={22} lg={14} className='right-info'>
+          <Row justify='space-between'>
+          
+              {<h4
+             
+              >{userData?.username }{" "}
+              <CheckCircleFilled
+                style={{ fontSize: "14px" , color: '#3797F0', margin: '5px'}}
+                
+              /></h4>}
+            
+            {/* <button>Enviar mensaje Añadir contacto</button> */}
+            {!canEdit && <FollowButton />}
+            {canEdit && <EditUser />}
+          </Row>
 
         <Row>
           <div className='second-line'>
@@ -41,44 +45,47 @@ export const UserCard = () => {
           </div>
         </Row>
 
-        <Row>
-          <Descriptions title='Info'>
-            <Descriptions.Item label={"Bio "}>
-              {userData?.bio}
-            </Descriptions.Item>
-            <Descriptions.Item label={"Profession "}>
-              {userData?.profession}
-            </Descriptions.Item>
-            <Descriptions.Item label={"Hobbies "}>
-              {userData?.hobby},{userData?.hobby2}
-            </Descriptions.Item>
-          </Descriptions>
-        </Row>
+          <Row>
+            <Descriptions title={ 'Info' }>
+              <Descriptions.Item label={"Bio "}>
+                {userData?.bio}
+              </Descriptions.Item>
+              <Descriptions.Item label={"Profession "}>
+                {userData?.profession}
+              </Descriptions.Item>
+              <Descriptions.Item label={"Hobbies "}>
+                {userData?.hobby},{userData?.hobby2}
+              </Descriptions.Item>
+            </Descriptions>
+          </Row>
 
-        <Row>
-          <Descriptions title='Social networks'>
-            <Descriptions.Item label={<LinkButton logo='linkedin' to={userData?.linkedin} />}>
-              {userData?.linkedin}
-            </Descriptions.Item>
-            <Descriptions.Item label={<LinkButton logo='twitter' to={userData?.twitter} />}>
-              {userData?.twitter}
-            </Descriptions.Item>
-            <Descriptions.Item label={<LinkButton logo='instagram' to={userData?.instagram} />}>
-              {userData?.instagram}
-            </Descriptions.Item>
-          </Descriptions>
-        </Row>
-      </Col>
-      <Col xs={2} lg={2}></Col>
-    </Row>
+          <Row >
+            <Descriptions className="social-networks" title='Social networks'>
+          <div>
+              <LinkButton logo='linkedin' to={userData?.linkedin}/>
+            
+
+              <LinkButton logo='twitter' to={userData?.twitter}/>
+          
+          <LinkButton logo='instagram' to={userData?.instagram}/>
+          </div>
+          <span></span>
+          
+            </Descriptions>
+          </Row>
+        </Col>
+        <Col xs={2} lg={2}></Col>
+      </Row>
+
+    </>
   );
 };
 
 function LinkButton({ logo, to }) {
   const logos = {
-    twitter: <TwitterCircleFilled />,
-    linkedin: <LinkedinFilled />,
-    instagram: <InstagramFilled />,
+    twitter: <TwitterCircleFilled style={{ fontSize: '20px', color: '#1D9BF0' }} />,
+    linkedin: <LinkedinFilled style={{ fontSize: '20px', color: '#0B66C2' }} />,
+    instagram: <InstagramFilled style={{ fontSize: '20px', color: '#FF5420' }}/>,
   };
   const urls = {
     twitter: 'https://twitter.com/',
