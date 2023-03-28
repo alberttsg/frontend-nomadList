@@ -8,7 +8,6 @@ import './Login.scss';
 import LoginForm from './LoginForm';
 import { images } from './loginImages';
 
-
 export const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { reset } = useContext(GlobalContext);
