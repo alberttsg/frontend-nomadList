@@ -47,7 +47,7 @@ export function paginatePostsByUser(pageNumber, id) {
     let cancel;
     axios({
       method: 'GET',
-      url: URL + 'post/userPosts/' + id,
+      url: import.meta.env.VITE_DEV_URL + 'post/userPosts/' + id,
       params: { page: pageNumber },
       headers: { Authorization: token },
       cancelToken: new axios.CancelToken(c => cancel = c)
