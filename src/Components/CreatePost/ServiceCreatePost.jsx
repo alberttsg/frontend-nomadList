@@ -20,6 +20,7 @@ export const ServiceCreatePost = async (body) => {
   const config = {
     headers:{
       'Authorization': token,
+      'Content-Type': 'multipart/form-data'
     }
   }
 

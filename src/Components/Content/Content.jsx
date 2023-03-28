@@ -10,7 +10,7 @@ export const Content = () => {
 
   },[])
   return (
-    <div className='content'>
+    <div className='content'id='content'>
       <PostHomeLayout />
       <ChatLayout/>
     </div>

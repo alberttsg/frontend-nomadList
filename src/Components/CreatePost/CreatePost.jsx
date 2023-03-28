@@ -49,7 +49,7 @@ export const CreatePost = ()  => {
       <form onSubmit={handleForm} id='form' className='form' encType="multipart/form-data" method="post">
         <input placeholder='Title'  className='input-title' type='text' name='title'   />
         <textarea placeholder='Content' className='textArea' name='content' />
-        <label htmlFor="image" className='ant-btn css-dev-only-do-not-override-1me4733 ant-btn-default'> <UploadOutlined /> Click to Upload</label>
+        <label type='primary' htmlFor="image" className='ant-btn css-dev-only-do-not-override-1me4733 ant-btn-default'> <UploadOutlined /> Click to Upload</label>
           <input type="file" name='image' className='input-file' id='image' />
         <p>o</p>
         <UploadImagesModal/>

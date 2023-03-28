@@ -3,6 +3,7 @@ import { PrivateZone } from '../../guards/PrivateZone';
 import { Content } from '../Content/Content';
 import Countries from '../Countries/Countries';
 import { CreatePost } from '../CreatePost/CreatePost';
+import { CreatePostNew } from '../CreatePostNew/CreatePostNew';
 import { Profile } from '../Profile/Profile';
 
 export const Routes = () => {
@@ -18,7 +19,7 @@ export const Routes = () => {
                 path: '/profile'
               },
               {
-                element:<PrivateZone><CreatePost/></PrivateZone> ,
+                element:<PrivateZone><CreatePostNew/></PrivateZone> ,
                 path: '/createpost'
               },
               {
