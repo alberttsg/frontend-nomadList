@@ -89,7 +89,6 @@ export async function createComment(content, postId) {
  
   //API BAD LENGUAGE
   const validation = await badLanguage(contentValue)
-  console.log(validation.data.classification)
 
   if(validation.data.classification == 1 || validation.data.classification == 2 || validation.data.classification == 3){
     return false;
@@ -120,10 +119,3 @@ const badLanguage = async (contentValue) => {
   const validation = await axios.post('https://flask-production-782a.up.railway.app/bad-language', content)
   return validation
 }
-
-// const sentimentAnalysis = async (body) => {
-//   const content = {text:body.get('content')}
-
-//   const validation = await axios.post('https://flask-production-782a.up.railway.app/sentiment', content)
-//   return validation
-// }
