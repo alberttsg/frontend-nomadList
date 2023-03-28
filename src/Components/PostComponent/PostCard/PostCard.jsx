@@ -7,12 +7,15 @@ import { CommentsButton } from './components/comments/CommentsButton.jsx'
 import { CommentsDisplay } from './components/comments/CommentsDisplay';
 import { CommentsInputForm } from './components/comments/CommentsInputForm';
 import { Card, Divider } from 'antd';
+import { emojisBySentiment } from '../../../resources/sentimentAnalysis';
 
 export const PostContext = createContext();
 
 export function PostCard({ post, forwardedRef }) {
   const [postData, setPostData] = useState(post)
   const [showComments, setShowComments] = useState(false);
+
+  const emojiSentiment = emojisBySentiment(postData.sentiment)
 
   return (
     <PostContext.Provider value={{ post: postData, setPostData }}>
@@ -24,6 +27,7 @@ export function PostCard({ post, forwardedRef }) {
           <div style={{ display: 'flex', gap: '20px' }}>
             <LikeButton />
             <CommentsButton handleOpen={() => setShowComments(!showComments)} />
+            <div>{emojiSentiment}</div>
           </div>
           {showComments &&
             <>
