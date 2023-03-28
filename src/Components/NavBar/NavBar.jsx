@@ -29,15 +29,6 @@ export const NavBar = () => {
       <div className='container-nav'>
         <div className='home' onClick={() => navigate('/')}><HomeFilled className='iconHome' /><div className='divHome'>Home</div> </div>
         <div className='profile' onClick={() => navigate('/profile')}><UserOutlined className='iconProfile' /><div className='divProfile'>Profile</div></div>
-<<<<<<< HEAD
-        <div className='create' onClick={() => navigate('/createpost')} ><PlusCircleFilled className='iconCreate' /><div className='divCreate'>Create</div></div>
-        <div className='logout' 
-        onClick={()=>{
-          logOut(),
-          navigate('/')
-          reset()
-        }}>
-=======
         <div className='create' onClick={() => setIsModalOpen(!isModalOpen)} ><PlusCircleFilled className='iconCreate' /><div className='divCreate'>Post</div></div>
         <div className='logout' onClick={() => navigate('/countries')}>
           <EnvironmentOutlined className='iconlogout' /> <div className='divLogout'>Countries</div>
@@ -48,7 +39,6 @@ export const NavBar = () => {
             navigate('/')
             reset()
           }}>
->>>>>>> develop
           <UnlockFilled className='iconlogout' /><div className='divLogout'>Log out</div></div>
 
       </div>
