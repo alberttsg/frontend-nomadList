@@ -11,7 +11,7 @@ export function PostContent() {
     <>
     <Card bordered={true} style={{ width: '100%', WebkitBoxShadow: '4px 6px 10px 1px rgba(0,0,0,0.22)', 
 boxShadow:' 4px 6px 10px 1px rgba(0,0,0,0.06)' }}>
-    <p>{post?.content}</p>
+    <p style={{wordBreak: 'break-word'}}>{post?.content}</p>
     
   </Card>
         </>
