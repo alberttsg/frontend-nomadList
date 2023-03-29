@@ -42,6 +42,10 @@ export const CreatePostAI = ({onAction}) => {
       setSeeImg(true)    
     })};
 
+    const getSelectedImage = (e) => {
+        console.log(e.target.src)
+    }
+
   return (
     <>
         {contextHolder}
@@ -83,11 +87,14 @@ export const CreatePostAI = ({onAction}) => {
           <Button type='link' onClick={onAction}>Return</Button>
         </div>
         <Divider />
+        <div className='ia-img-container'>
+          
       {loading === true && <Spin />}
       {seeImg === true && iaImage.map((img) => {
         const key = img.url.split('/')[img.url.split('/').length - 1 ].split('.')[0]
-        return <img key={key} src={img.url} alt='img' className='ia-img' />
+        return <img key={key} src={img.url} alt='img' className='ia-img' onClick={getSelectedImage}/>
       })}
+        </div>
       </Form>
       </Spin>
     </>
