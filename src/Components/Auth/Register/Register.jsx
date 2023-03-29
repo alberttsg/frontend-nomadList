@@ -110,12 +110,35 @@ export const Register = ({ onCancel }) => {
           rules={[
             {
               required: true,
-              message: 'Please input your password!',
+              pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/,
+              message: 'Must be between 8 and 15 digits. Include at leaste one number, and one upper case letter',
             },
           ]}
         >
           <Input.Password />
         </Form.Item>
+        <Form.Item
+        name="confirm"
+        label="Confirm Password"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!',
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('The two passwords that you entered do not match!'));
+            },
+          }),
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
 
         <Form.Item
           name="nationality"
