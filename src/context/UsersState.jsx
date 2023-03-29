@@ -3,12 +3,16 @@ import * as userService from '../service/userService'
 import AppReducer from './UserReducer.js'
 import axios from 'axios'
 
-//const token = userService.validateToken();
-const token = JSON.parse(localStorage.getItem("token"));
+function initialData() {
+  const token = userService.validateToken().then(res => res).catch(e => null);
+  const user = token ? userService.getUserInfo(1, 1, 1, 1).then(res => res).catch(e => null) : null;
+  return { token, user };
+}
+const { token, user } = initialData();
 
 const initialState = {
-  token: token ? token : null,
-  user: token ? await userService.getUserInfo(1, 1, 1, 1) : null,
+  token: token,
+  user: user,
   isSuccess: false,
   isError: false,
   isErrorRegister: false,
@@ -83,7 +87,7 @@ export const UsersProvider = ({ children }) => {
         authorization: token,
       },
     });
-    if(res.data){
+    if (res.data) {
       localStorage.setItem('user', JSON.stringify(res.data));
     }
     dispatch({
@@ -121,16 +125,16 @@ export const UsersProvider = ({ children }) => {
     return res;
   }
   const getUserById = async (id) => {
-  const token = JSON.parse(localStorage.getItem('token'));
-  const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/users/id/${id}`, {
-    headers: {
-      Authorization: token
-    }
-  });
-  dispatch({
-    type: 'GET_USER_BY_ID',
-    payload: res.data,
-  });
+    const token = JSON.parse(localStorage.getItem('token'));
+    const res = await axios.get(`https://backend-nomadsociety-development.up.railway.app/users/id/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
+    dispatch({
+      type: 'GET_USER_BY_ID',
+      payload: res.data,
+    });
   }
   return (
     <GlobalContext.Provider
@@ -139,7 +143,7 @@ export const UsersProvider = ({ children }) => {
         user: state.user,
         isSuccess: state.isSuccess,
         isError: state.isError,
-        isErrorRegister:state.isErrorRegister,
+        isErrorRegister: state.isErrorRegister,
         isLogOut: state.isLogOut,
         login,
         register,

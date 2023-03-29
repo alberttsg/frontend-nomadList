@@ -13,7 +13,6 @@ export const Header = () => {
     if (!input) return;
     setIsLoading(true);
     const result = await searchByName(input);
-    console.log(result,'result');
     setSearchResult(result);
     setDropdownOpen(true);
     setIsLoading(false);

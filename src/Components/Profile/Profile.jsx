@@ -1,4 +1,3 @@
-import { Divider } from "antd";
 import { useContext, useEffect, useState, createContext } from "react";
 import { useParams, useNavigate } from "react-router";
 import { GlobalContext } from "../../context/UsersState";
@@ -31,7 +30,6 @@ export const Profile = () => {
 
   return (
     <ProfileContext.Provider value={{ userData, setUserData }}>
-      {console.log("28, userData: ", userData)}
       <Spin spinning={isLoading}>
         <Row>
           <UserCard />

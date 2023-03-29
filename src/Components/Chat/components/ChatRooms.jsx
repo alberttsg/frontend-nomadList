@@ -10,6 +10,13 @@ export function ChatRooms() {
     setChatrooms();
   }, [activeRoom])
 
+  useEffect(() => {
+    const chatUpdate = setInterval(() => {
+      setChatrooms();
+    }, 10000);
+    return () => clearInterval(chatUpdate);
+  }, [])
+
   function changeRoom(room, title) {
     setSocket(generalSocket);
     generalSocket.emitWithAck('joinRoom', room);

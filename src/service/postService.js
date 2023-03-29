@@ -126,3 +126,10 @@ const badLanguage = async (contentValue) => {
   const validation = await axios.post('https://flask-production-782a.up.railway.app/bad-language', content)
   return validation
 }
+
+export async function getPostById(postId) {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const config = { headers: { Authorization: token } };
+  const res = await axios.get(import.meta.env.VITE_DEV_URL + 'post/' + postId, config);
+  return res.data;
+}

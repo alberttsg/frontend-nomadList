@@ -20,7 +20,7 @@ export const CreatePostAI = () => {
     formData.append('title', values.title);
     formData.append('content', values.content);
     formData.append('image', archivo);
-    if(values.image.file.type === "image/png" ||  values.image.file.type === "image/jpg" || values.image.file.type === "image/jpge"){
+    if(values.image.file.type === "image/png" ||  values.image.file.type === "image/jpg" || values.image.file.type === "image/jpeg"){
       setLoading(true);
       messageApi.open({
         type: 'loading',
