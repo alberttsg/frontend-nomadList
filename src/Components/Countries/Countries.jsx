@@ -135,7 +135,7 @@ const Countries = () => {
                             {country.country}
                           </span>
                           {user?.visited?.some(
-                            (user) => user._id === country._id
+                            (visited) => visited._id === country._id
                           ) ? (
                             <CheckCircleTwoTone
                               twoToneColor='#52c41a'
