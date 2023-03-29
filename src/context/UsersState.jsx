@@ -1,18 +1,11 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useReducer, useEffect } from 'react'
 import * as userService from '../service/userService'
 import AppReducer from './UserReducer.js'
 import axios from 'axios'
 
-function initialData() {
-  const token = userService.validateToken().then(res => res).catch(e => null);
-  const user = token ? userService.getUserInfo(1, 1, 1, 1).then(res => res).catch(e => null) : null;
-  return { token, user };
-}
-const { token, user } = initialData();
-
 const initialState = {
-  token: token,
-  user: user,
+  token: null,
+  user: null,
   isSuccess: false,
   isError: false,
   isErrorRegister: false,
@@ -23,6 +16,23 @@ export const GlobalContext = createContext(initialState);
 
 export const UsersProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  async function initialData() {
+    const token = await userService.validateToken();
+    const user = token ? userService.getUserInfo(1, 1, 1, 1) : null;
+    dispatch({
+      type: 'SET_TOKEN',
+      payload: token,
+    })
+    dispatch({
+      type: 'GET_USER_INFO',
+      payload: user,
+    })
+  }
+
+  useEffect(() => {
+    initialData();
+  }, [])
 
   const login = async (user) => {
     try {
