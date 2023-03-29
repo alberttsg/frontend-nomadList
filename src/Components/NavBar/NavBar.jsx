@@ -7,11 +7,13 @@ import { Modal } from 'antd';
 import { GlobalContext } from '../../context/UsersState'
 import { CreatePostNew } from '../CreatePostNew/CreatePostNew';
 import './NavBar.scss'
+import { CreatePostAI } from '../CreatePostNew/CreatePostAI';
 
 export const NavBar = () => {
   const navigate = useNavigate()
   const { reset, logOut } = useContext(GlobalContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formWithIA, setFormWithIA] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -23,6 +25,10 @@ export const NavBar = () => {
     
   };
 
+  const handleAction = () => {
+    setFormWithIA(!formWithIA);
+  }
+
   return (
     <div className='navbar'>
       <div className='logo' onClick={() => navigate('/')}>nomad</div>
@@ -31,7 +37,7 @@ export const NavBar = () => {
         <div className='profile' onClick={() => navigate('/profile')}><UserOutlined className='iconProfile' /><div className='divProfile'>Profile</div></div>
         <div className='create' onClick={() => setIsModalOpen(!isModalOpen)} ><PlusCircleFilled className='iconCreate' /><div className='divCreate'>Post</div></div>
         <div className='logout' onClick={() => navigate('/countries')}>
-          <EnvironmentOutlined className='iconlogout' /> <div className='divLogout'>Countries</div>
+          <EnvironmentOutlined className='iconlogout'/> <div className='divLogout'>Countries</div>
         </div>
         <div className='logout'
           onClick={() => {
@@ -43,7 +49,8 @@ export const NavBar = () => {
 
       </div>
       <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} centered  footer={null} >
-        <CreatePostNew onAction={handleCancel} />
+        {formWithIA === false? <CreatePostNew onAction={handleAction} /> : <CreatePostAI onAction={handleAction} />}
+        
       </Modal>
     </div>
   )
