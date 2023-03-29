@@ -1,6 +1,9 @@
+import { UsergroupAddOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/UsersState";
 import { ChatLayout } from '../Chat/components/ChatLayout';
+
 
 export const Content = ({ children }) => {
   const { getUserInfo } = useContext(GlobalContext);

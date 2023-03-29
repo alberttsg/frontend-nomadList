@@ -5,7 +5,7 @@ import { UserCard } from "./components/UserCard/UserCard";
 import { UserContent } from "./components/UserContent/UserContent";
 import { getUserById } from "../../service/userService";
 import CountryUser from "./components/CountryUser/CountryUser";
-import { Spin, Row } from "antd";
+import { Spin, Row, Divider } from "antd";
 
 export const ProfileContext = createContext();
 
@@ -31,7 +31,9 @@ export const Profile = () => {
   return (
     <ProfileContext.Provider value={{ userData, setUserData }}>
       <Spin spinning={isLoading}>
+       
         <Row>
+
           <UserCard />
         </Row>
 

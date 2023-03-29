@@ -6,6 +6,7 @@ import { UploadAvatar } from "./UploadAvatar";
 import { editUserById, deleteUserById } from '../../../../service/userService';
 import { GlobalContext } from '../../../../context/UsersState';
 import { DeleteOutlined } from '@ant-design/icons';
+import TextArea from 'antd/es/input/TextArea';
 
 export function EditUserForm({ setModalOpen }) {
   const { logOut } = useContext(GlobalContext);
@@ -72,7 +73,7 @@ export function EditUserForm({ setModalOpen }) {
             <Select placeholder='select your country' showSearch="true" options={[{ options: countriesArray }]} />
           </Form.Item>
           <Form.Item label='BIO' name='bio'>
-            <Input placeholder='What are you thinking?' />
+            <TextArea maxLength={100} placeholder='What are you thinking?' />
           </Form.Item>
           <Form.Item label='Profession' name='profession'>
             <Input placeholder='Tell us what you are working on!' />
