@@ -1,4 +1,3 @@
-import { Divider } from "antd";
 import { useContext, useEffect, useState, createContext } from "react";
 import { useParams, useNavigate } from "react-router";
 import { GlobalContext } from "../../context/UsersState";
