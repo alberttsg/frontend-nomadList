@@ -15,6 +15,7 @@ export const Profile = () => {
   const [userData, setUserData] = useState();
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
+  console.log(user, 2222)
 
   useEffect(() => {
     async function getData() {
