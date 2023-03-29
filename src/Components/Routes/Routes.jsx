@@ -5,6 +5,7 @@ import Countries from '../Countries/Countries';
 import { Profile } from '../Profile/Profile';
 import { NotFound } from '../Content/NotFound';
 import { PostHomeLayout } from '../PostComponent/PostHomeLayout';
+import { PostSearchLayout } from '../PostComponent/PostSearchLayout';
 import { CreatePostAI } from '../CreatePostNew/CreatePostAI';
 
 export const Routes = () => {
@@ -13,6 +14,10 @@ export const Routes = () => {
       {
         element: <Content><PostHomeLayout /></Content>,
         path: '/'
+      },
+      {
+        element: <Content><PostSearchLayout /></Content>,
+        path: '/post/:postId'
       },
       {
         element: <PrivateZone><Content><Profile /></Content></PrivateZone>,

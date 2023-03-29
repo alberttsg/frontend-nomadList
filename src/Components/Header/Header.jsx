@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { searchService } from '../../service/searchService';
+import { searchByName } from '../../service/searchServ';
 import { Input, Dropdown } from 'antd';
 
 export const Header = () => {
@@ -12,7 +12,7 @@ export const Header = () => {
   const onSearch = async (input) => {
     if (!input) return;
     setIsLoading(true);
-    const result = await searchService(input);
+    const result = await searchByName(input);
     setSearchResult(result);
     setDropdownOpen(true);
     setIsLoading(false);
@@ -35,7 +35,7 @@ export const Header = () => {
           allowClear={true}
           loading={isLoading}
           onSearch={(input) => onSearch(input)}
-          placeholder='Find users or posts in Nomad'
+          placeholder='Find users in Nomad'
           enterButton='Search'
         />
       </Dropdown>

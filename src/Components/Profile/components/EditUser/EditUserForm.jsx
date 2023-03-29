@@ -5,6 +5,7 @@ import { ProfileContext } from '../../Profile';
 import { UploadAvatar } from "./UploadAvatar";
 import { editUserById, deleteUserById } from '../../../../service/userService';
 import { GlobalContext } from '../../../../context/UsersState';
+import { DeleteOutlined } from '@ant-design/icons';
 
 export function EditUserForm({ setModalOpen }) {
   const { logOut } = useContext(GlobalContext);
@@ -77,7 +78,7 @@ export function EditUserForm({ setModalOpen }) {
             <Input placeholder='Tell us what you are working on!' />
           </Form.Item>
         </Col>
-        
+
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Form.Item label='Hobbie' name='hobby'>
             <Input placeholder='What are you passionate about?' />
@@ -102,12 +103,14 @@ export function EditUserForm({ setModalOpen }) {
           </Form.Item>
         </Col>
       </Row>
-      <Form.Item>
+      <div style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'space-between', gap: '20px' }}>
         <Button
-          type='primary'
-          style={{ background: '#F23F42' }}
+          type='secondary'
+          className='delete-account-button'
           onClick={() => onDelete(userData._id)}
+          style={{ color: 'tomato', border: '1.5px solid tomato' }}
         >
+          <DeleteOutlined />
           Delete account
         </Button>
         <Button
@@ -116,7 +119,7 @@ export function EditUserForm({ setModalOpen }) {
         >
           Update info
         </Button>
-      </Form.Item>
+      </div>
     </Form>
   )
 }

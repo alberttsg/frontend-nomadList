@@ -13,12 +13,10 @@ export function MessageBoard() {
   function onConnect() { }
 
   function onDisconnect(err) {
-    console.log(err.message);
     return setEvents(prev => [...prev, { type: 'warning', value: 'You are now disconnected' }]);
   }
 
   function onMessage(value, type, username) {
-    console.log(value, type, username)
     if (type == 'warning') return setEvents([{ type: 'warning', value }]);
     if (!colors.has(username)) {
       const randomColor = Math.floor(Math.random() * 16777215).toString(16);
@@ -70,14 +68,14 @@ export function MessageBoard() {
         renderItem={(event, index) => (
           <List.Item style={{ padding: '5px 5px' }}>
             <div key={index}>
-              {event.type != 'warning' &&
+              {event.type !== 'warning' &&
                 <div className='username'>
                   {event.username}
                 </div>
               }
               <div
                 className={event.type}
-                style={{ backgroundColor: `${event.bg}` }}
+                style={{ backgroundColor: `${!event.bg ? 'white' : event.bg}` }}
               >
                 {event.value}
               </div>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 export const ServiceCreatePost = async (body) => {
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
@@ -13,7 +14,6 @@ export const ServiceCreatePost = async (body) => {
   //API BAD LANGUAGE
 
   const validation = await badLanguage(body)
-  console.log(validation.data.classification, 222222)
 
   if(validation.data.classification == 1 || validation.data.classification == 2 || validation.data.classification == 3){
     return false
@@ -22,8 +22,6 @@ export const ServiceCreatePost = async (body) => {
   //API SENTIMENT
 
   const sentiment = await sentimentAnalysis(body)
-  console.log(sentiment.data.sentiment, 22222)
-
 
   body.append('sentiment', sentiment.data.sentiment)
 
@@ -33,9 +31,7 @@ export const ServiceCreatePost = async (body) => {
 }
 
 const badLanguage = async (body) => {
-
   const content = {text:body.get('content')}
-
   const validation = await axios.post('https://flask-production-782a.up.railway.app/bad-language', content)
   return validation
 }

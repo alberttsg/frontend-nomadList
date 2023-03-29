@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  border-right: 1px solid black;
+  border-right: 1px solid rgb(175 175 175 / 54%);
   font-family: "Tilt Neon";
   font-size: 10px;
 
@@ -29,7 +29,7 @@
     display: flex;
     align-items: center;
     padding: 5px;
-    width:130px;
+    // width:130px;
     height: 30px;
     transition: all 0.8s;
     border-radius: 10px;
@@ -38,25 +38,25 @@
 
   div.home:hover{
     cursor: pointer;
-    background-color: rgba(205, 205, 205, 0.183);
+    background-color: rgba(46, 42, 42, 0.131);
     border-radius: 10px;
   }
 
   div.profile:hover{
     cursor: pointer;
-    background-color: rgba(205, 205, 205, 0.183);
+    background-color: rgba(46, 42, 42, 0.131);
     border-radius: 10px;
   }
 
   div.create:hover{
     cursor: pointer;
-    background-color: rgba(205, 205, 205, 0.183);
+    background-color: rgba(46, 42, 42, 0.131);
     border-radius: 10px;
   }
 
   div.logout:hover{
     cursor: pointer;
-    background-color: rgba(205, 205, 205, 0.183);
+    background-color: rgba(46, 42, 42, 0.131);
     border-radius: 10px;
   }
 
@@ -86,8 +86,11 @@
   display: flex;
   gap: 10px;
   margin-top: 30px;
+  border-radius: 50%;
 }
-
+.divProfile{
+  padding: 0px;
+}
 @media(max-width: 1020px){
   .logo {
     display: none;

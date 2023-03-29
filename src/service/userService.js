@@ -16,7 +16,7 @@ export async function validateToken() {
 export async function getUserInfo(followers, followed, likedPosts, visited) {
   const token = JSON.parse(localStorage.getItem("token"));
   const config = { headers: { authorization: token } };
-  const res = await axios.get(URL + `users/info?populateFollowers=${followers}&populateFollowed=${followed}&populatedLikedPosts=${likedPosts}&visited=${visited}`, config);
+  const res = await axios.get(URL + `users/info?populateFollowers=${true}&populateFollowed=${true}&populatedLikedPosts=${true}&visited=${true}`, config);
   return res.data;
 }
 
