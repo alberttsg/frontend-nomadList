@@ -1,8 +1,11 @@
+import { GlobalOutlined } from "@ant-design/icons";
 import {
   Avatar,
+  Descriptions,
   Divider,
   Modal,
   Progress,
+
 
 } from "antd";
 import Meta from "antd/es/card/Meta";
@@ -40,8 +43,11 @@ const CountryUser = () => {
 
   return (
     <>
-      <div style={{ margin: "20px", display: "flex", overflowX: "scroll" }}>
-        {userData?.visited?.map((country) => (
+      <Divider plain />
+      <Descriptions  title={<><GlobalOutlined /> <span style={{padding: '5px'}}>Countries Visited</span></> } style={{textAlign: 'center', width: '100%'}}/>
+      <div style={{ boxSizing: 'border-box', margin: "20px", display: "flex",overflowX: "auto" }}>
+      
+         {userData?.visited?.map((country) => (
           <div
             key={country._id}
             style={{

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { PostContext } from '../PostCard';
 import { GlobalContext } from '../../../../context/UsersState';
 import { Badge } from 'antd';
@@ -9,7 +9,11 @@ export function LikeButton() {
   const { post } = useContext(PostContext);
   const { user, getUserInfo } = useContext(GlobalContext);
   const [likes, setLikes] = useState(post?.likesCount);
-  const [isLiked, setIsLiked] = useState(user?.likedPosts?.includes(post?._id));
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    setIsLiked(user?.likedPosts?.includes(post?._id) || user?.likedPosts?.some(e => e._id === post?._id))
+  }, [user, post])
 
   const likeToggle = async () => {
     setIsLiked(!isLiked);
@@ -18,11 +22,11 @@ export function LikeButton() {
   }
 
   return (
-    <Badge count={likes} overflowCount={99} size='small'style={{background: 'rgb(0,153,154,0.45)', color: 'white'}}>
+    <Badge count={likes} overflowCount={99} size='small' style={{ background: 'rgb(0,153,154,0.45)', color: 'white' }}>
       {isLiked ?
         <HeartFilled
           onClick={() => likeToggle()}
-          style={{ fontSize: '20px', color: "#EE0104", marginRight: '5px'}}
+          style={{ fontSize: '20px', color: "#EE0104", marginRight: '5px' }}
         />
         :
         <HeartOutlined

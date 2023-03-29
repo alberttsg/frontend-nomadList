@@ -61,11 +61,17 @@ const LoginForm = () => {
       >
         <Input.Password />
       </Form.Item>
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+
+      <div
+        style={{
+          display: 'flex',
+          flexFlow: 'row nowrap',
+          justifyContent: 'center'
+        }}>
         <Button type="primary" htmlType="submit">
           Login
         </Button>
-      </Form.Item>
+      </div>
     </Form>
   )
 }
