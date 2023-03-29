@@ -36,8 +36,10 @@ const CountryData = ({ country }) => {
       cursor: 'pointer',
       transition: 'all 0.3s ease',
       zIndex: 1,
-      padding: '10px',
-      paddingTop: '10px',
+      padding: '15px',
+      paddingTop: '50px',
+
+     
     }}>
       <Row justify='space-between' wrap={false}>
         <Col style={{ flex: '1 0 auto' }}><span>⭐️ Overall</span></Col>
