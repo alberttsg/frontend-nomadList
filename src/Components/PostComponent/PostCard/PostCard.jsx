@@ -15,18 +15,21 @@ export function PostCard({ post, forwardedRef }) {
   const [postData, setPostData] = useState(post)
   const [showComments, setShowComments] = useState(false);
 
-  const emojiSentiment = emojisBySentiment(postData.sentiment)
+
+  const emojiSentiment = emojisBySentiment(postData?.sentiment)
 
   return (
     <PostContext.Provider value={{ post: postData, setPostData }}>
-      <Card hoverable title={<PostHeader />} style={{ width: '100%', maxWidth: '450px', paddingTop:'none' }}>
-        <div style={{paddingTop:'none'}} ref={forwardedRef}>
+      <Card hoverable title={<PostHeader />} style={{ width: '100%', maxWidth: '450px', paddingTop: 'none' }}>
+        <div style={{ paddingTop: 'none' }} ref={forwardedRef}>
           <PostImage />
           <PostContent />
           <Divider type='horizontal' />
-          <div style={{ display: 'flex', gap: '20px' }}>
-            <LikeButton />
-            <CommentsButton handleOpen={() => setShowComments(!showComments)} />
+          <div style={{ display: 'flex', justifyContent: "space-between", gap: '20px' }}>
+            <div style={{ display: 'flex', gap: '20px' }}>
+              <LikeButton />
+              <CommentsButton handleOpen={() => setShowComments(!showComments)} />
+            </div>
             <div>{emojiSentiment}</div>
           </div>
           {showComments &&
