@@ -40,7 +40,7 @@ const CountryUser = () => {
 
   return (
     <>
-      <div style={{ margin: "20px", display: "flex", overflowX: "scroll" }}>
+      <div style={{ boxSizing: 'border-box', margin: "20px", display: "flex", overflowX: "auto" }}>
         {userData?.visited?.map((country) => (
           <div
             key={country._id}

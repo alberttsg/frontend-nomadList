@@ -28,7 +28,7 @@ export function FollowButton() {
     <Spin spinning={isLoading}>
       <Button
         style={{
-          backgroundColor: !followed ? '#3d61fb' : '#c8c6c7',
+          backgroundColor: !followed ? '#52B2C8' : '#c8c6c7',
           color: 'white',
         }}
         onClick={() => handleFollow()}

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import { ProfileContext } from '../../Profile';
 import { paginatePostsByUser } from '../../../../service/postService';
 import { PostCard } from '../../../PostComponent/PostCard/PostCard';
@@ -7,7 +7,7 @@ import { Spin, Alert } from 'antd';
 export function UserPosts() {
   const { userData } = useContext(ProfileContext);
   const [page, setPage] = useState(1);
-  const { posts, hasMore, loading, error } = paginatePostsByUser(page, userData?.id, );
+  const { posts, hasMore, loading, error } = paginatePostsByUser(page, userData?.id );
   const observer = useRef();
 
   const lastPostElementRef = useCallback(node => {
