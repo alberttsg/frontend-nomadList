@@ -10,7 +10,7 @@ import { CreatePostAI } from '../CreatePostNew/CreatePostAI';
 
 export const Routes = () => {
   return useRoutes(
-    [ 
+    [
       {
         element: <Content><PostHomeLayout /></Content>,
         path: '/'
