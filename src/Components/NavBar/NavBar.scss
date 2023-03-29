@@ -10,15 +10,6 @@
   border-right: 1px solid rgb(175 175 175 / 54%);
   font-family: "Tilt Neon";
   font-size: 10px;
-
-  .logo {
-    text-align: center;
-    width:100%;
-    height: 50px;
-    user-select: none;
-    font: 400 5vh "Monoton";
-    cursor: pointer;
-  }
 }
 
 .container-nav {
@@ -61,19 +52,19 @@
   }
 
   div:hover .iconHome {
-    scale: 1.2;
+    transform: scale(1.2);
   }
 
   div:hover .iconProfile {
-    scale: 1.2;
+    transform: scale(1.2);
   }
 
   div:hover .iconCreate {
-    scale: 1.2;
+    transform: scale(1.2);
   }
 
   div:hover .iconlogout {
-    scale: 1.2;
+    transform: scale(1.2);
   }
 
   .iconHome, .iconProfile, .iconCreate, .iconlogout {
@@ -91,12 +82,6 @@
 .divProfile{
   padding: 0px;
 }
-@media(max-width: 1020px){
-  .logo {
-    font: 400 4vh "Monoton" !important;
-    width:100%;
-  }
-}
 
 @media (max-width: 768px) {
  
@@ -107,7 +92,7 @@
     align-items: center;
     background-color: white;
 
-    .logo{
+    .logo {
       display: none;
     }
     .iconHome, .iconProfile, .iconCreate, .iconlogout {
