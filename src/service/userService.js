@@ -6,7 +6,7 @@ export async function validateToken() {
   const token = JSON.parse(localStorage.getItem("token"));
   if (!token) return null;
   try {
-    axios.get(URL + 'token', { headers: { Authorization: token } });
+    await axios.get(URL + 'token', { headers: { Authorization: token } });
     return token;
   } catch (error) {
     return null;

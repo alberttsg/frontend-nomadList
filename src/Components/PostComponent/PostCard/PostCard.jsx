@@ -8,6 +8,7 @@ import { CommentsDisplay } from './components/comments/CommentsDisplay';
 import { CommentsInputForm } from './components/comments/CommentsInputForm';
 import { Card, Divider } from 'antd';
 import { emojisBySentiment } from '../../../resources/sentimentAnalysis';
+import { useNavigate } from 'react-router';
 
 export const PostContext = createContext();
 
@@ -17,10 +18,10 @@ export function PostCard({ post, forwardedRef }) {
 
 
   const emojiSentiment = emojisBySentiment(postData?.sentiment)
-
+  
   return (
     <PostContext.Provider value={{ post: postData, setPostData }}>
-      <Card hoverable title={<PostHeader />} style={{ width: '100%', maxWidth: '450px', paddingTop: 'none' }}>
+      <Card hoverable title={<PostHeader />} style={{ width: '100%', maxWidth: '450px', paddingTop: 'none' }} >
         <div style={{ paddingTop: 'none' }} ref={forwardedRef}>
           <PostImage />
           <PostContent />
