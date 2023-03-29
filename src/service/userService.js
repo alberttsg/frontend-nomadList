@@ -54,3 +54,12 @@ export async function toggleFollow(userId) {
   const response = await axios.post(URL + 'users/follow/' + userId, {}, config);
   return response.data;
 }
+
+export async function recomendation(userId){
+  const body = {
+    'id':userId
+  }
+  const response = axios.post('https://flask-production-782a.up.railway.app/recomendations', body)
+  console.log(response, 9999)
+  return response.data
+}
