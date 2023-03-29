@@ -55,7 +55,7 @@ export async function toggleFollow(userId) {
   return response.data;
 }
 
-export async function Recomendation(userId){
+export async function recomendation(userId){
   const body = {
     'id':userId
   }
