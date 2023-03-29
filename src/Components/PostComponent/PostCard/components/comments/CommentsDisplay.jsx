@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { PostContext } from '../../PostCard';
 import { editComment, getCommentsByPostId } from '../../../../../service/postService';
 import { DateComponent } from '../../../../DateComponent/DateComponent';
-import { Space, List, Avatar, Row, Divider, Input, Tooltip, Button, Form } from 'antd';
+import { Space, List, Avatar, Row, Input, Tooltip, Button, Form } from 'antd';
 import { GlobalContext } from '../../../../../context/UsersState';
 import { deleteComment } from '../../../../../service/postService';
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -13,6 +13,7 @@ export function CommentsDisplay() {
   const [comments, setComments] = useState();
   const [edited, setEdited] = useState();
   const [isLoading, setLoading] = useState(false);
+  const [form] = Form.useForm();
 
   useEffect(() => {
     async function getData() {
@@ -32,7 +33,7 @@ export function CommentsDisplay() {
     setLoading(false);
   };
 
-  const handleEdit = async (id, value) => {
+  const handleOnEdit = async (id, value) => {
     setLoading(true);
     await editComment(id, value);
     const res = await getCommentsByPostId(post?._id);
@@ -40,6 +41,11 @@ export function CommentsDisplay() {
     setEdited();
     setLoading(false);
   };
+
+  const handleEditing = (comment) => {
+    setEdited(comment._id);
+    form.setFieldsValue(comment);
+  }
 
   return (
     <Space direction='vertical' style={{ width: '100%' }}>
@@ -62,11 +68,14 @@ export function CommentsDisplay() {
               }}>
               <Avatar size={20} src={comment?.author?.avatar} />
               <span>{comment?.author?.displayName}</span>
-              <DateComponent datePost={comment?.createdAt} datePost2={comment?.updatedAt} />
+              <DateComponent
+                datePost={comment?.createdAt}
+                datePost2={comment?.updatedAt}
+              />
               {user?._id == comment?.author?._id &&
                 <>
                   <Tooltip title='Edit comment' placement='top'>
-                    <EditOutlined onClick={() => setEdited(comment._id)} />
+                    <EditOutlined onClick={() => handleEditing(comment)} />
                   </Tooltip>
                   <Tooltip title='Delete comment' placement='top'>
                     <DeleteOutlined onClick={() => handleDelete(comment._id)} />
@@ -77,22 +86,30 @@ export function CommentsDisplay() {
             <Row
               align='middle'
               style={{
-                padding: '0 10px',
+                boxSizing: 'border-box',
                 width: '100%',
+                padding: '0 10px',
+                marginBottom: '20px',
                 fontSize: '12px',
-                boxSizing: 'content-box',
                 whiteSpace: 'pre-wrap',
                 wordBreak: 'normal',
-                marginBottom: '20px',
               }}>
               {comment?._id == edited ?
                 <Form
-                  onFinish={(value) => handleEdit(comment._id, value)}
-                >
-                  <Form.Item name='content' >
-                    <Input.TextArea showCount maxLength={500} defaultValue={comment?.content} style={{ width: '180%' }} bordered={false} />
+                  form={form}
+                  onFinish={(value) => handleOnEdit(comment._id, value)}
+                  style={{ width: '100%' }}>
+                  <Form.Item name='content'>
+                    <Input.TextArea
+                      showCount
+                      bordered={true}
+                      autoSize={true}
+                      maxLength={500}
+                      style={{ width: '100%' }} />
                   </Form.Item>
-                  <Button type="primary" size='small' htmlType='submit'>Update</Button>
+                  <Button type="primary" size='small' htmlType='submit'>
+                    Update
+                  </Button>
                 </Form>
                 :
                 comment?.content

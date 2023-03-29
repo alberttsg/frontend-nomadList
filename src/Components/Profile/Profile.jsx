@@ -31,7 +31,6 @@ export const Profile = () => {
 
   return (
     <ProfileContext.Provider value={{ userData, setUserData }}>
-      {console.log("28, userData: ", userData)}
       <Spin spinning={isLoading}>
         <Row>
           <UserCard />

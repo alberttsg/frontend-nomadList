@@ -1,4 +1,12 @@
-.handle-user-actions{
-    display:flex;
-    justify-content: space-evenly;
+.handle-user-actions {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.delete-account-button:hover {
+	background: tomato;
+
+	span {
+		color: white
+	}
 }

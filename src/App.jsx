@@ -7,6 +7,7 @@ import { GlobalContext } from './context/UsersState'
 import { Login } from './Components/Auth/Login/Login'
 import { useContext, useEffect } from 'react'
 import { notification } from 'antd'
+import { ChatProvider } from './Components/Chat/context/ChatProvider'
 
 export const App = () => {
 
@@ -26,16 +27,15 @@ export const App = () => {
         {
           !token ?
             <Login /> :
-            <>
+            <ChatProvider>
               <NavBar className='navbar' />
               <div className='header-container'>
                 <Header className='header' />
                 <Routes className='content' />
               </div>
-            </>
+            </ChatProvider>
         }
       </BrowserRouter>
-
     </div>
   )
 }
