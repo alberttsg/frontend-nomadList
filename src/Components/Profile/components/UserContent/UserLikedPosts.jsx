@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { ProfileContext } from '../../Profile';
 import { PostCard } from '../../../PostComponent/PostCard/PostCard';
 
