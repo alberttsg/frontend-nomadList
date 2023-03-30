@@ -2,6 +2,8 @@ import axios from 'axios'
 
 
 export const ServiceCreatePost = async (body) => {
+
+  try {
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
     headers:{
@@ -19,6 +21,9 @@ export const ServiceCreatePost = async (body) => {
   body.append('sentiment', sentiment.data.sentiment)
   const res = await axios.post('https://backend-nomadsociety-development.up.railway.app/post/newpost', body, config)
   return res.data
+  } catch (error) {
+    throw new Error(error) 
+  }
 }
 
 export const ServiceCreatePostbyIa = async (body) => {
