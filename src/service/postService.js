@@ -133,3 +133,13 @@ export async function getPostById(postId) {
   const res = await axios.get(import.meta.env.VITE_DEV_URL + 'post/' + postId, config);
   return res.data;
 }
+
+export async function editPost(id,post){
+  const token = JSON.parse(localStorage.getItem("token"));
+    const res = await axios.put(`https://backend-nomadsociety-development.up.railway.app/post/${id}/`,post, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return res.data;
+  }
