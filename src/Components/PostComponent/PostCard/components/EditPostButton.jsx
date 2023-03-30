@@ -50,16 +50,17 @@ export function EditPostButton() {
       <Modal
         style={{ maxWidth: '100%' }}
         footer={null}
-        open={open}
-        onCancel={() => setEditing(false)}>
+        closable={false}
+        open={open}>
         <div onClick={() => {setEditing(!editing),setOpen(!open)}} style={{width:'100%', display:'flex', justifyContent:'center'}}>Edit</div>
         <Divider/>
         <div onClick={() => {setDeleting(!deleting),setOpen(!open)}}style={{color:'red', width:'100%', display:'flex', justifyContent:'center'}}>Delete</div>
+        <Divider/>
+        <div onClick={() => setOpen(!open)}style={{width:'100%', display:'flex', justifyContent:'center'}}>cancel</div>
       </Modal>
       <Modal
         style={{ maxWidth: '100%' }}
         title='Edit post'
-        closable='true'
         footer={null}
         open={editing}
         onCancel={() => setEditing(false)}>
