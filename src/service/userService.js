@@ -30,7 +30,7 @@ export async function getUserById(userId) {
 export async function editUserById(userId, update) {
   const token = JSON.parse(localStorage.getItem('token'));
   const config = { headers: { Authorization: token } };
-  const response = await axios.put(URL + 'users/id/' + userId, update, config);
+  const response = await axios.put( URL + 'users/id/' + userId, update, config );
   return response.data;
 }
 
