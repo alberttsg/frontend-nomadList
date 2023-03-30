@@ -1,7 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react'
 import { paginatePosts } from '../../service/postService';
 import { PostCard } from './PostCard/PostCard';
-import { Spin, Alert } from 'antd';
+import { Spin, Alert, Row } from 'antd';
+import RelatedFriends from '../RelatedFriends/RelatedFriends';
+import './PostHomeLayout.scss'
 
 export function PostHomeLayout() {
   const [page, setPage] = useState(1)
@@ -20,8 +22,9 @@ export function PostHomeLayout() {
   }, [loading, hasMore]);
 
   return (
-    <>
-    <div style={{ display: 'flex', boxSizing: 'border-box', flexFlow: 'column nowrap', width: '100%', alignItems: 'center', padding: '10px', gap:'20px' }}>
+
+      <Row style={{ display: 'flex', boxSizing: 'border-box', flexFlow: 'column nowrap', width: '100%', alignItems: 'center', padding: '10px', gap:'20px', paddingRight: '300px' }}>
+      <RelatedFriends/>
       {posts && posts.map((post, index) => {
         if (posts.length === index + 1) {
           return <PostCard post={post} key={index} forwardedRef={lastPostElementRef} />
@@ -31,8 +34,6 @@ export function PostHomeLayout() {
       })}
       {loading && <Spin tip='Loading posts...' />}
       {error && <Alert type='error' message="Couldn't load more posts" banner />}
-    </div>
- 
-      </>
+    </Row>
   )
 }

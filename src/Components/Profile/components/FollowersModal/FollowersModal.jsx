@@ -54,7 +54,22 @@ export const FollowersModal = () => {
                 setOpen(false)
               }}>
               <Avatar size={50} src={follower.avatar || 'https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w'} alt={follower.firstName} />
-              {follower.firstName}
+              <Button
+                    size='small'
+                    type='secondary'
+                    style={{
+                      textTransform: "capitalize",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      color: "#598aa8",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "start",
+                      padding: "0 9px 2px 5px ",
+                    }}
+                  >
+                    <span>{follower.firstName}</span>
+                  </Button>
             </div>
             <FollowButtonModal userId={follower._id} />
           </div >
