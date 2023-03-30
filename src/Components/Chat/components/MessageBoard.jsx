@@ -73,6 +73,7 @@ export function MessageBoard() {
         bordered={true}
         itemLayout='vertical'
         dataSource={events}
+        style={{ height: '90%', overflowY: 'auto' }}
         renderItem={(event, index) => (
           <>
             <List.Item style={{ padding: '5px 5px' }}>

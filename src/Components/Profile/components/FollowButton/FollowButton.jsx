@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../../../../context/UsersState";
-import { ProfileContext } from "../../Profile";
-import { getUserById, toggleFollow } from "../../../../service/userService";
-import { Button, Spin } from "antd";
-import { StarOutlined, StarFilled } from "@ant-design/icons";
+import { useContext, useEffect, useState } from 'react';
+import { GlobalContext } from '../../../../context/UsersState';
+import { ProfileContext } from '../../Profile';
+import { toggleFollow } from '../../../../service/userService';
+import { Button, Spin } from 'antd';
+import { StarOutlined, StarFilled } from '@ant-design/icons';
 
 export function FollowButton() {
   const { user, getUserInfo } = useContext(GlobalContext);

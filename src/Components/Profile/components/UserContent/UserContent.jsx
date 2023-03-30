@@ -3,7 +3,7 @@ import { UserLikedPosts } from './UserLikedPosts';
 import { UserComments } from './UserComments';
 import { UserFollowedPosts } from './UserFollowedPosts';
 import { Tabs, Row } from 'antd';
-import { CommentOutlined, ThunderboltFilled, HeartTwoTone } from '@ant-design/icons';
+import { CommentOutlined, ThunderboltFilled, HeartTwoTone, StarTwoTone } from '@ant-design/icons';
 
 export function UserContent() {
   return (
@@ -32,9 +32,8 @@ export function UserContent() {
             children: <UserLikedPosts />
           },
           {
-            key: '3',
-            label: <div style={{ padding: ' 0 10px ' }}><h3 ><HeartTwoTone twoToneColor={'#F70000'}
-            />LIKED POSTS</h3></div>,
+            key: '4',
+            label: <div style={{ padding: ' 0 10px ' }}><h3 ><StarTwoTone twoToneColor={'yellow'} style={{ fontSize: '20px' }} />FOLLOWED</h3></div>,
             forceRender: true,
             children: <UserFollowedPosts />
           },
