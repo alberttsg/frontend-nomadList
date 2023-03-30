@@ -10,6 +10,7 @@ export const CreatePostNew = ({onAction}) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  
   const { TextArea } = Input;
 
   const navigate = useNavigate();
@@ -103,12 +104,12 @@ export const CreatePostNew = ({onAction}) => {
           <TextArea rows={4}  placeholder="Description"/>
         </Form.Item>
         <Form.Item name='image' rules ={[{required: true, message: 'Please upload a image'}]} style={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
-        <Upload beforeUpload={(file)=> {if(file){resolve("success")}}} multiple={false} maxCount='1' name='image' accept="image/png" style={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
+        <Upload beforeUpload={(file)=> {if(file){resolve("success")}}} multiple={false} maxCount='1' name='image' accept="image/*" style={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
           <Button style={{width:'34vh'}} icon={<UploadOutlined />}>Click to Upload a image</Button>
         </Upload>
         </Form.Item>
         <div style={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
-          <Button type='default' onClick={()=>{navigate('/createpostai')}} style={{width:'34vh', alignContent: 'center'}}>Post with AI image generator</Button>
+          <Button type='default' onClick={onAction} style={{width:'34vh', alignContent: 'center'}}>Post with AI image generator</Button>
         </div>
         <br/>
         <br/>

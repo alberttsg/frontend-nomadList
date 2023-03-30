@@ -7,11 +7,13 @@ import { CreatePostNew } from '../CreatePostNew/CreatePostNew'
 import { Logo } from '../../resources/Logo'
 import './NavBar.scss'
 import { ChatLayout } from '../Chat/components/ChatLayout';
+import { CreatePostAI } from '../CreatePostNew/CreatePostAI';
 
 export const NavBar = () => {
   const navigate = useNavigate()
   const { reset, logOut, user } = useContext(GlobalContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formWithIA, setFormWithIA] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -22,6 +24,10 @@ export const NavBar = () => {
     setIsModalOpen(false);
 
   };
+
+  const handleAction = () => {
+    setFormWithIA(!formWithIA);
+  }
 
   return (
     <div className='navbar'>
@@ -37,7 +43,7 @@ export const NavBar = () => {
         }}>Profile</div></div>
         <div className='create' onClick={() => setIsModalOpen(!isModalOpen)} ><PlusCircleFilled className='iconCreate' /><div className='divCreate'>Post</div></div>
         <div className='logout' onClick={() => navigate('/countries')}>
-          <EnvironmentOutlined className='iconlogout' /> <div className='divLogout'>Countries</div>
+          <EnvironmentOutlined className='iconlogout'/> <div className='divLogout'>Countries</div>
         </div>
         <div className='logout'
           onClick={() => {
@@ -48,8 +54,9 @@ export const NavBar = () => {
           <UnlockFilled className='iconlogout' /><div className='divLogout'>Log out</div></div>
 
       </div>
-      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} centered footer={null} >
-        <CreatePostNew onAction={handleCancel} />
+      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} centered  footer={null} >
+        {formWithIA === false? <CreatePostNew onAction={handleAction} /> : <CreatePostAI onAction={handleAction} />}
+        
       </Modal>
     </div>
   )
