@@ -23,8 +23,8 @@ export function PostHomeLayout() {
 
   return (
 
-      <Row style={{ display: 'flex', boxSizing: 'border-box', flexFlow: 'column nowrap', width: '100%', alignItems: 'center', padding: '10px', gap:'20px', paddingRight: '300px' }}>
-      <RelatedFriends/>
+      <Row className='rowPadding' style={{ display: 'flex', boxSizing: 'border-box', flexFlow: 'column nowrap', width: '100%', alignItems: 'center', gap:'20px' }}>
+      <RelatedFriends className='relatedFriends' />
       {posts && posts.map((post, index) => {
         if (posts.length === index + 1) {
           return <PostCard post={post} key={index} forwardedRef={lastPostElementRef} />

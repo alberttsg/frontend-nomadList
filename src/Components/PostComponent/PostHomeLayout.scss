@@ -1,0 +1,11 @@
+.rowPadding {
+    padding-right:200px;
+    padding-top:10px;
+}
+
+@media (max-width: 1470px){
+
+    .rowPadding{
+        padding:0px;
+    }
+  }
