@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { ChatContext } from '../context/ChatProvider';
 import { List, Avatar, Button, ConfigProvider } from 'antd';
+import { MessageTwoTone } from '@ant-design/icons';
 import '../styles/chatStyles.scss';
 
 export function ContactList() {
@@ -41,7 +42,11 @@ export function ContactList() {
                 style={{ flex: '0 0 auto', width: '20px', height: '20px' }}
               />
               <span>{item.title}</span>
-              <span style={{ position: 'absolute', right: '5px' }}>{item.state}</span>
+              <span style={{ position: 'absolute', right: '5px' }}>{item.state ?
+                <MessageTwoTone twoToneColor={'#00FF00'} />
+                :
+                <MessageTwoTone twoToneColor={'tomato'} />
+              }</span>
             </Button>
           </List.Item>
         )}

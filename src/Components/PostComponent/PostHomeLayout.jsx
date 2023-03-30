@@ -1,9 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react'
 import { paginatePosts } from '../../service/postService';
 import { PostCard } from './PostCard/PostCard';
-import { Spin, Alert, Button } from 'antd';
-import RelatedFriends from '../RelatedFriends/RelatedFriends';
-
+import { Spin, Alert } from 'antd';
 
 export function PostHomeLayout() {
   const [page, setPage] = useState(1)
@@ -23,7 +21,6 @@ export function PostHomeLayout() {
 
   return (
     <>
-    <RelatedFriends/>
     <div style={{ display: 'flex', boxSizing: 'border-box', flexFlow: 'column nowrap', width: '100%', alignItems: 'center', padding: '10px', gap:'20px' }}>
       {posts && posts.map((post, index) => {
         if (posts.length === index + 1) {

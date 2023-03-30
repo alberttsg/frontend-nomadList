@@ -6,6 +6,7 @@ import { GlobalContext } from '../../context/UsersState'
 import { CreatePostNew } from '../CreatePostNew/CreatePostNew'
 import { Logo } from '../../resources/Logo'
 import './NavBar.scss'
+import { ChatLayout } from '../Chat/components/ChatLayout';
 
 export const NavBar = () => {
   const navigate = useNavigate()
@@ -24,6 +25,7 @@ export const NavBar = () => {
 
   return (
     <div className='navbar'>
+      <ChatLayout/>
       <Logo/>
       <div className='container-nav'>
         <div className='home' onClick={() => navigate('/')}><HomeFilled className='iconHome' /><div className='divHome'>Home</div> </div>

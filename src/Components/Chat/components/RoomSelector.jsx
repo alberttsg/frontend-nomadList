@@ -27,7 +27,7 @@ export function RoomSelector() {
             <Button
               size='small'
               shape='circle'
-              icon={<PlusCircleOutlined/>}
+              icon={<PlusCircleOutlined />}
               onClick={showModal1}
               style={{ position: 'absolute', right: '10px' }}
             ></Button>
@@ -48,7 +48,7 @@ export function RoomSelector() {
             <Button
               size='small'
               shape='circle'
-              icon={<PlusCircleOutlined/>}
+              icon={<PlusCircleOutlined />}
               onClick={showModal2}
               style={{ position: 'absolute', right: '10px' }}
             ></Button>
