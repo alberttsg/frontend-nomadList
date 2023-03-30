@@ -10,14 +10,10 @@ export const CreatePostNew = ({onAction}) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
-  
   const { TextArea } = Input;
-
   const navigate = useNavigate();
 
   const onFinish = (values) => {
-    console.log(values.image.file.type)
-    console.log(values.image)
     const archivo = values.image.file
     const formData = new FormData();
     formData.append('title', values.title);
@@ -32,13 +28,11 @@ export const CreatePostNew = ({onAction}) => {
         maxCount: 3,
         duration: 0,
         style: {
-          marginLeft: '45vh',
           textAlign : 'center',
         },
       })
 
       ServiceCreatePost(formData).then((res) => {
-        console.log(res);
         messageApi.destroy();
         setLoading(false);
         if(res === false){
@@ -48,7 +42,6 @@ export const CreatePostNew = ({onAction}) => {
             content: 'Bad language has been detected, please use good words..',
             duration: 10,
             style: {
-              marginLeft: '45vh',
               textAlign : 'center',
             },
           })
@@ -62,7 +55,6 @@ export const CreatePostNew = ({onAction}) => {
             content: 'Post has been successfully created',
             duration: 10,
             style: {
-              marginLeft: '45vh',
               textAlign : 'center',
             },
           })
@@ -78,7 +70,6 @@ export const CreatePostNew = ({onAction}) => {
       content: 'Please upload an valid image',
       duration: 5,
       style: {
-        marginLeft: '45vh',
         textAlign : 'center',
       }})}};
   return (
