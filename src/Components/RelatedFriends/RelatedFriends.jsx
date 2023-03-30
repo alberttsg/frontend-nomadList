@@ -1,3 +1,4 @@
+import { UsergroupAddOutlined } from "@ant-design/icons";
 import { Affix, Avatar, Card, Col, Collapse, List, Row, Skeleton } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -7,26 +8,25 @@ import './RelatedFriends.scss';
 
 const RelatedFriends = () => {
 
-    return (
-        <Affix
-        offsetBottom={10}
-        style={{ position: 'fixed', right: '20px', top: '83px', minWidth: '50px', borderRadius: '3rem',
+    // return (
+    //     <Affix
+    //     offsetBottom={10}
+    //     style={{ position: 'fixed', right: '20px', top: '83px', minWidth: '50px', borderRadius: '3rem',
 
-    }}
-      >
-           <Collapse
-        expandIconPosition={'left'}
-        bordered={true}
-        collapsible='icon'
-        style={{ background: 'rgb(23,119,255, 0.6)', }}
-      >
-        <Collapse.Panel header={  <UsergroupAddOutlined />}>
-        
+    // }}
+    //   >
+    //        <Collapse
+    //     expandIconPosition={'left'}
+    //     bordered={true}
+    //     collapsible='icon'
+    //     style={{ background: 'rgb(23,119,255, 0.6)', }}
+    //   >
+    //     <Collapse.Panel header={  <UsergroupAddOutlined />}>
 
-        </Collapse.Panel>
-        </Collapse>
-        </Affix>
-        
+    //     </Collapse.Panel>
+    //     </Collapse>
+    //     </Affix>
+
         // <Button type="primary" style={{
         //     position: 'absolute',
         //     right: '20px',
@@ -39,7 +39,7 @@ const RelatedFriends = () => {
         //   }}>
         //     <UsergroupAddOutlined />
         //   </Button>
-    );
+      //)
 
   const { user } = useContext(GlobalContext);
   const [relatedFriends, setRelatedFriends] = useState([]);
@@ -79,7 +79,7 @@ const RelatedFriends = () => {
     </Affix>
   </>
   );
->>>>>>> develop
+
 };
 
 export default RelatedFriends;
