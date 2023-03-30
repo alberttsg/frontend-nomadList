@@ -84,6 +84,13 @@ export function paginateFollowedPostsByUser(pageNumber, id) {
   const token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
+    setLoading(false);
+    setError(false);
+    setPosts([]);
+    setHasMore(false);
+  }, [id])
+
+  useEffect(() => {
     setLoading(true);
     setError(false);
     let cancel;
