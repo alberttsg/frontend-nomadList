@@ -18,12 +18,12 @@ export function UserContent() {
             forceRender: true,
             children: <UserPosts />,
           },
-          {
-            key: '2',
-            label: <div style={{ padding: ' 0 10px ' }}><h3 ><CommentOutlined style={{ color: 'rgb(152,2,154,0.8)' }} />COMMENTS</h3></div>,
-            forceRender: true,
-            children: <UserComments />
-          },
+          // {
+          //   key: '2',
+          //   label: <div style={{ padding: ' 0 10px ' }}><h3 ><CommentOutlined style={{ color: 'rgb(152,2,154,0.8)' }} />COMMENTS</h3></div>,
+          //   forceRender: true,
+          //   children: <UserComments />
+          // },
           {
             key: '3',
             label: <div style={{ padding: ' 0 10px ' }}><h3 ><HeartTwoTone twoToneColor={'#F70000'}

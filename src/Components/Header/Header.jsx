@@ -19,7 +19,7 @@ export const Header = () => {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: '20px', borderBottom: '1px solid #efefef' }} onMouseLeave={() => setDropdownOpen(false)}>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }} onMouseLeave={() => setDropdownOpen(false)}>
       <Dropdown
         menu={{
           items: searchResult,

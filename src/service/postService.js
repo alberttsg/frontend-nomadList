@@ -84,6 +84,13 @@ export function paginateFollowedPostsByUser(pageNumber, id) {
   const token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
+    setLoading(false);
+    setError(false);
+    setPosts([]);
+    setHasMore(false);
+  }, [id])
+
+  useEffect(() => {
     setLoading(true);
     setError(false);
     let cancel;
@@ -168,3 +175,13 @@ export async function getPostById(postId) {
   const res = await axios.get(import.meta.env.VITE_DEV_URL + 'post/' + postId, config);
   return res.data;
 }
+
+export async function editPost(id,post){
+  const token = JSON.parse(localStorage.getItem("token"));
+    const res = await axios.put(`https://backend-nomadsociety-development.up.railway.app/post/${id}/`,post, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return res.data;
+  }
