@@ -185,3 +185,14 @@ export async function editPost(id,post){
     });
     return res.data;
   }
+
+export async function deletePost(id){
+  const token = JSON.parse(localStorage.getItem("token"));
+    const res = await axios.delete(`https://backend-nomadsociety-development.up.railway.app/post/${id}/`,{
+      headers: {
+        Authorization: token,
+      },
+    });
+    console.log(res);
+    return res.data;
+  }
