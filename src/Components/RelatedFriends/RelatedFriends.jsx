@@ -7,7 +7,6 @@ const RelatedFriends = () => {
         <Affix
         offsetBottom={10}
         style={{ position: 'fixed', right: '20px', top: '83px', minWidth: '50px', borderRadius: '3rem',
-        
 
     }}
       >
