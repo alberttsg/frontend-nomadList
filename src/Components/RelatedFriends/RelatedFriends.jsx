@@ -18,7 +18,7 @@ const RelatedFriends = () => {
     });
   }, [user]);
   return (
-<>
+<div className='relatedFriends' >
     <Affix
       style={{ position: 'fixed', right: '40px', top: '83px', minWidth: '100px' }}
     >
@@ -42,7 +42,7 @@ const RelatedFriends = () => {
         </Row>
       </Card>
     </Affix>
-  </>
+  </div>
   );
 };
 
