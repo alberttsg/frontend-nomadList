@@ -4,7 +4,8 @@ import { RoomSelector } from './RoomSelector';
 import { ActiveRoom } from './ActiveRoom';
 import { MessageBoard } from './MessageBoard';
 import { ChatInput } from './ChatInput';
-import { Affix, Collapse, Col, Row, Divider } from 'antd';
+import { Affix, Collapse, Col, Row } from 'antd';
+import { UsergroupAddOutlined } from "@ant-design/icons";
 
 export function ChatLayout() {
   const { token } = useContext(GlobalContext);
@@ -13,8 +14,13 @@ export function ChatLayout() {
 
   return (
     <Affix
-      offsetBottom={10}
-      style={{ position: 'fixed', right: '20px', bottom: '20px', minWidth: '100px' }}
+      style={{
+        position: 'absolute',
+        boxSizing: 'border-box',
+        bottom: '0',
+        right: '0',
+        zIndex: 1,
+      }}
     >
       <Collapse
         expandIconPosition='end'
@@ -22,21 +28,18 @@ export function ChatLayout() {
         collapsible='icon'
         style={{ background: '#efefef' }}
       >
-        <Collapse.Panel header={<>Chat</>}>
-          <Row align='center' gutter={0} justify='center' wrap={false} style={{ minWidth: '500px', height: '400px' }} >
-            <Col flex='1 1 40%' style={{ overflowY: 'auto' }}>
+        <Collapse.Panel header={<UsergroupAddOutlined />}>
+          <Row justify='center' gutter={[10, 10]} style={{ maxHeight: '100vh', maxWidth: '600px' }}>
+            <Col xs={{ span: 24 }} md={{ span: 12 }} style={{ maxHeight: '20vh', overflowY: 'auto' }}>
               <RoomSelector />
             </Col>
-            <Col flex='0 0 5%'>
-              <Divider type='vertical' style={{ height: '100%' }} />
-            </Col>
-            <Col flex='1 0 55%'>
+            <Col xs={{ span: 24 }} md={{ span: 12 }} style={{ maxHeight: '50vh' }}>
               <ActiveRoom />
               <MessageBoard />
             </Col>
-          </Row>
-          <Row>
-            <ChatInput />
+            <Col xs={{ span: 24 }} md={{ span: 24 }} style={{ height: '50px' }}>
+              <ChatInput />
+            </Col>
           </Row>
         </Collapse.Panel>
       </Collapse>

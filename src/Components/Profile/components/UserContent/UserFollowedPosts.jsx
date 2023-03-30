@@ -1,13 +1,13 @@
 import React, { useCallback, useContext, useRef, useState } from 'react'
 import { ProfileContext } from '../../Profile';
-import { paginatePostsByUser } from '../../../../service/postService';
+import { paginateFollowedPostsByUser } from '../../../../service/postService';
 import { PostCard } from '../../../PostComponent/PostCard/PostCard';
 import { Spin, Alert } from 'antd';
 
-export function UserPosts() {
+export function UserFollowedPosts() {
   const { userData } = useContext(ProfileContext);
   const [page, setPage] = useState(1);
-  const { posts, hasMore, loading, error } = paginatePostsByUser(page, userData?._id);
+  const { posts, hasMore, loading, error } = paginateFollowedPostsByUser(page, userData?._id);
   const observer = useRef();
 
   const lastPostElementRef = useCallback(node => {

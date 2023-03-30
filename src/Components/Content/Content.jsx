@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/UsersState";
-import { ChatLayout } from '../Chat/components/ChatLayout';
 
 export const Content = ({ children }) => {
   const { getUserInfo } = useContext(GlobalContext);
@@ -12,7 +11,6 @@ export const Content = ({ children }) => {
   return (
     <div className='content'>
       {children}
-      <ChatLayout />
     </div>
   )
 }

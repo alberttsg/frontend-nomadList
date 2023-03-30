@@ -1,28 +1,24 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { GlobalContext } from '../../../../context/UsersState';
-import { ProfileContext } from '../../Profile';
 import { toggleFollow } from '../../../../service/userService';
 import { Button, Spin } from 'antd';
 import { StarOutlined, StarFilled } from '@ant-design/icons';
 
-export function FollowButton() {
+export function FollowButtonModal({ userId }) {
   const { user, getUserInfo } = useContext(GlobalContext);
-  const { userData, setUserData } = useContext(ProfileContext);
-  const [followed, setFollowed] = useState(userData?.followers?.some(e => e._id == user?._id))
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false);
+  const [followed, setFollowed] = useState(user?.followed.some(e => e._id === userId));
 
   const handleFollow = async () => {
     setLoading(true);
-    const res = await toggleFollow(userData?._id);
-    setUserData(res);
+    await toggleFollow(userId);
     await getUserInfo();
     setLoading(false);
   }
 
   useEffect(() => {
-    const followStatus = userData?.followers?.some(e => e._id == user?._id);
-    setFollowed(followStatus);
-  }, [userData])
+    setFollowed(user?.followed.some(e => e._id === userId));
+  }, [user])
 
   return (
     <Spin spinning={isLoading}>

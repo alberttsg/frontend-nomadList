@@ -16,6 +16,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { GlobalContext } from "../../context/UsersState";
 import { getCountries, toggleVisited } from "../../service/countryService";
+import ToggleIconCountries from "./components/ToggleIconCountries";
 import CountryData from "./CountryData";
 
 const Countries = () => {
@@ -131,68 +132,7 @@ const Countries = () => {
                       </div>
                     }
                   >
-                    <Card.Meta
-                   
-                      key={country._id}
-                      title={
-                        <Space direction='horizontal' align='baseline'>
-                          <span style={{ fontSize: "18px", marginLeft: '0px'}}>
-                            {country.country}
-                          </span>
-                          {user?.visited?.some(
-                            (visited) => visited._id === country._id
-                          ) ? (
-                            <CheckCircleTwoTone
-                              twoToneColor='#52c41a'
-                              style={{ fontSize: "20px" ,}}
-                              onClick={() => toggleVisit(country._id)}
-                            />
-                          ) : (
-                            <PlusCircleTwoTone
-                              twoToneColor='lightgray'
-                              style={{ fontSize: "20px" }}
-                              onClick={() => toggleVisit(country._id)}
-                            />
-                          )}
-                        </Space>
-                      }
-                      avatar={
-                        <Avatar.Group
-                          maxCount={2}
-                          size='small'
-                          maxStyle={{
-                            // gap: '100px',
-                            overflowX:'auto',
-                            color: "#f56a00",
-                            backgroundColor: "#fde3cf",
-                            cursor: "pointer",
-                          }}
-                         
-                        > 
-                        <>
-                       
-                          {country?.visitors.map((visitorAvatar, index) => (
-                            <span
-                            onClick={() => {
-                              navigate(`/profile/${visitorAvatar._id}`);
-                            }}
-                            key={visitorAvatar._id + index}
-                            >
-                              <Tooltip
-                                title={visitorAvatar.firstName}
-                                placement='top'
-                                >
-                                <Avatar
-                                  key={visitorAvatar._id + index}
-                                  src={visitorAvatar.avatar || <UserOutlined />}
-                                  />
-                              </Tooltip>
-                            </span>
-                          ))}
-                          </>
-                        </Avatar.Group>
-                      }
-                    />
+                    <ToggleIconCountries country={country} toggleVisit={toggleVisit} user={user}/>
                      
                   </Card>
 

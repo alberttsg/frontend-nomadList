@@ -1,11 +1,11 @@
 import { countries } from '../../../../resources/countries';
-import { Button, Modal, Form, Input, Select, Row, Col } from "antd";
+import { Button, Modal, Form, Input, Select, Row, Col, Upload, message } from "antd";
 import { useContext, useEffect } from 'react';
 import { ProfileContext } from '../../Profile';
-import { UploadAvatar } from "./UploadAvatar";
 import { editUserById, deleteUserById } from '../../../../service/userService';
 import { GlobalContext } from '../../../../context/UsersState';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
+import TextArea from 'antd/es/input/TextArea';
 
 export function EditUserForm({ setModalOpen }) {
   const { logOut } = useContext(GlobalContext);
@@ -18,11 +18,29 @@ export function EditUserForm({ setModalOpen }) {
   }, [userData]);
 
   const onFinish = (values) => {
+    const formData = new FormData();
+    formData.append('firstName', values.firstName);
+    formData.append('lastName', values.lastName);
+    formData.append('nationality', values.nationality);
+    formData.append('image', values.avatar.file);
+    formData.append('bio', values.bio);
+    formData.append('hobby', values.hobby);
+    formData.append('hobby2', values.hobby2);
+    formData.append('prefLocation', values.prefLocation);
+    formData.append('linkedin', values.linkedin);
+    formData.append('twitter', values.twitter);
+    formData.append('instagram', values.instagram);
+    formData.append('profession', values.profession);
+    formData.append('username', values.username);
+    formData.append('email', values.email);
+
     async function updateUser() {
-      const res = await editUserById(userData._id, values);
+      const res = await editUserById(userData._id, formData);
       setUserData(res);
     };
-    updateUser();
+    updateUser()
+    .then(res => message.success('User updated successfully'))
+    .catch(err => message.error('Something went wrong, please try again later'));
     setModalOpen(false);
   };
 
@@ -72,7 +90,7 @@ export function EditUserForm({ setModalOpen }) {
             <Select placeholder='select your country' showSearch="true" options={[{ options: countriesArray }]} />
           </Form.Item>
           <Form.Item label='BIO' name='bio'>
-            <Input placeholder='What are you thinking?' />
+            <TextArea maxLength={100} placeholder='What are you thinking?' />
           </Form.Item>
           <Form.Item label='Profession' name='profession'>
             <Input placeholder='Tell us what you are working on!' />
@@ -98,8 +116,10 @@ export function EditUserForm({ setModalOpen }) {
           <Form.Item label='Instagram' name='instagram'>
             <Input placeholder='@instagram' />
           </Form.Item>
-          <Form.Item label='Profile photo' name='avatar'>
-            <UploadAvatar />
+          <Form.Item  name='avatar' style={{ display: 'flex', justifyContent: 'right'}}>
+          <Upload beforeUpload={(file)=> {if(file){resolve("success")}}} multiple={false} maxCount='1' name='image' accept="image/*" style={{ }}>
+            <Button style={{alignSelf: 'flex-start'}} icon={<UploadOutlined />}>Click to Upload your profile's picture</Button>
+          </Upload>
           </Form.Item>
         </Col>
       </Row>

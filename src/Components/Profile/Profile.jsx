@@ -5,7 +5,7 @@ import { UserCard } from "./components/UserCard/UserCard";
 import { UserContent } from "./components/UserContent/UserContent";
 import { getUserById } from "../../service/userService";
 import CountryUser from "./components/CountryUser/CountryUser";
-import { Spin, Row } from "antd";
+import { Spin, Row, Divider, Skeleton } from "antd";
 
 export const ProfileContext = createContext();
 
@@ -30,8 +30,19 @@ export const Profile = () => {
 
   return (
     <ProfileContext.Provider value={{ userData, setUserData }}>
-      <Spin spinning={isLoading}>
+      <Skeleton style={{
+        padding: '50px',
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+        width: '100%'
+      }}  paragraph={{
+        rows: 20,
+     
+      }} size={'small'} avatar loading={isLoading}>
+       
         <Row>
+
           <UserCard />
         </Row>
 
@@ -43,7 +54,7 @@ export const Profile = () => {
         <Row>
           <UserContent />
         </Row>
-      </Spin>
+      </Skeleton>
     </ProfileContext.Provider>
   );
 };

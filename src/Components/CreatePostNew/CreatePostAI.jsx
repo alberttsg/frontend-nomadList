@@ -1,114 +1,168 @@
 import React from 'react';
-import { Button, Form, Input, Upload, Col, message, Spin } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import {
+    Button,
+    Form,
+    Input,
+    Upload,
+    Col,
+    message,
+    Spin,
+    Space,
+    Divider,
+    Image,
+} from 'antd';
 import { useState } from 'react';
-import { ServiceCreatePost } from '../CreatePost/ServiceCreatePost';
 import { useNavigate } from 'react-router';
+import './CreatePostAI.scss';
+import axios from 'axios';
+import { CaretLeftOutlined } from '@ant-design/icons';
+import { ServiceCreatePostbyIa } from '../CreatePost/ServiceCreatePost';
 
 const { TextArea } = Input;
 
-export const CreatePostAI = () => {
-  const [messageApi, contextHolder] = message.useMessage();
-  const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const onFinish = (values) => {
-    console.log(values.image.file.type)
-    console.log(values.image)
-    const archivo = values.image.file
-    const formData = new FormData();
-    formData.append('title', values.title);
-    formData.append('content', values.content);
-    formData.append('image', archivo);
-    if(values.image.file.type === "image/png" ||  values.image.file.type === "image/jpg" || values.image.file.type === "image/jpeg"){
-      setLoading(true);
-      messageApi.open({
-        type: 'loading',
-        content: 'Loading...',
-        maxCount: 3,
-        duration: 0,
-        style: {
-          marginLeft: '45vh',
-          textAlign : 'center',
-        },
-      })
-      ServiceCreatePost(formData).then((res) => {
-        console.log(res);
-        messageApi.destroy();
-        setLoading(false);
-        if(res === false){
-          messageApi.open({
-            type: 'error',
-            maxCount: 3,
-            content: 'Bad language has been detected, please use good words..',
-            duration: 10,
-            style: {
-              marginLeft: '45vh',
-              textAlign : 'center',
-            },
-          })
-          setTimeout(messageApi.destroy, 3500);
-        }
-        if (res) {
-          messageApi.open({
-            type: 'success',
-            maxCount: 3,
-            content: 'Post has been successfully created',
-            duration: 10,
-            style: {
-              marginLeft: '45vh',
-              textAlign : 'center',
-            },
-          })
-          setTimeout(() => navigate('/'), 3500);
-        }
-      });
-      
-  }else{
-    return messageApi.open({
-      type: 'error',
-      maxCount: 3,
-      content: 'Please upload an valid image',
-      duration: 5,
-      style: {
-        marginLeft: '45vh',
-        textAlign : 'center',
-      },
-    }
-    )
-  }
-  };
-  return (
-    <>
-      
-        {contextHolder}
-        <Spin spinning={loading} delay={500}>
-      <Form
-        form={form}
-        wrapperCol={{span: 24}}
-        layout="horizontal"
-        style={{
-          width: '100%',
-          padding: "20px",
-        }}
-        size="large"
-        onFinish={onFinish}>
-        <h2 style={{textAlign: 'center'}}>Create post</h2>
-        <br/>
-        <Form.Item name="title" rules ={[{required: true, message: 'Please enter a title'}]}>
-          <Input placeholder='Title' />
-        </Form.Item>
-        <Form.Item name="content" rules ={[{required: true, message: 'Please enter a content'}]}>
-          <TextArea rows={4}  placeholder="Description"/>
-        </Form.Item>
+export const CreatePostAI = ({ onAction }) => {
+    const [messageApi, contextHolder] = message.useMessage();
+    const [form1] = Form.useForm();
+    const [form5] = Form.useForm();
+    const [iaImage, setIaImage] = useState([]);
+    const [seeImg, setSeeImg] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [selectedImage, setSelectedImage] = useState('');
+    const navigate = useNavigate();
+    const onFinish = (values) => {
+        const formData = new FormData();
+        formData.append('title', values.title);
+        formData.append('content', values.content);
+        formData.append('image', selectedImage);
+        console.log(Object.fromEntries(formData));
+        ServiceCreatePostbyIa(formData).then((res) => {
+            if (res === false) {
+                messageApi.error('Bad language detected');
+            } else {
+                messageApi.success('Post created');
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+          
+    };
+    const prueba = (values) => {
+        const value = values.mySearch;
+        const body = { prompt: value };
+        setSeeImg(false);
+        setLoading(true);
 
-        <br/>
-        <br/>
-        <Form.Item>
-          <Button htmlType='submit' style={{width:'100%', backgroundColor: 'black', color: 'white'}} >Create Post</Button>
-        </Form.Item>
-      </Form>
-      </Spin>
-    </>
-  );
-}
+        const searchImag = async (body) => {
+            const res = await axios.post(
+                'https://flask-production-782a.up.railway.app/image',
+                body
+            );
+            console.log(res.data);
+            return res.data;
+        };
+        searchImag(body).then((res) => {
+            console.log(res);
+            setIaImage(res);
+            setLoading(false);
+            setSeeImg(true);
+        });
+    };
+
+    const getSelectedImage = (e) => {
+        const src = e.target.src;
+        setSelectedImage(src);
+    };
+    const finishForm = (values) => {
+       console.log(values)
+
+    }
+
+    return (
+        <>
+                                  <div>
+                                      <Button type="link" onClick={onAction}>
+                                      <CaretLeftOutlined />  Return
+                                      </Button>
+                                  </div>
+                    <h2 style={{ textAlign: 'center' }}>Create post with AI</h2>
+                    <br />
+            {contextHolder}
+            <Spin spinning={loading} delay={500}>
+                    <Form form={form5} onFinish={prueba}>
+                        <Form.Item name="mySearch">
+                            <Space.Compact style={{ width: '100%' }}>
+                                <Input type="text" name="searchBar" placeholder='Search an image' />
+                                <Button type="primary" htmlType="submit">
+                                    Submit
+                                </Button>
+                            </Space.Compact>
+                        </Form.Item>
+                    <div className="ia-img-container">
+                        {loading === true && <Spin />}
+                        {seeImg === true &&
+                            iaImage.map((img) => {
+                                const key = img.url
+                                    .split('/')
+                                    [img.url.split('/').length - 1].split(
+                                        '.'
+                                    )[0];
+                                return (
+                                    <img
+                                        key={key}
+                                        src={img.url}
+                                        alt="img"
+                                        className="ia-img"
+                                        onClick={getSelectedImage}
+                                    />
+                                );
+                            })}
+                    </div>
+                    </Form>
+                <Form
+                    form={form1}
+                    wrapperCol={{ span: 24 }}
+                    layout="horizontal"
+                    style={{
+                      width: '100%',
+                      padding: '20px',
+                    }}
+                    size="large"
+                    onFinish={onFinish}>
+                    <div>
+                    </div>
+                    <Form.Item
+                        name="title"
+                        rules={[
+                            { required: true, message: 'Please enter a title' },
+                        ]}>
+                        <Input placeholder="Title" />
+                    </Form.Item>
+                    <Form.Item
+                        name="content"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please enter a content',
+                            },
+                        ]}>
+                        <TextArea rows={4} placeholder="Description" />
+                    </Form.Item>
+                    <br />
+                    <br />
+                    <Form.Item>
+                        <Button
+                            htmlType="submit"
+                            style={{
+                                width: '100%',
+                                backgroundColor: 'black',
+                                color: 'white',
+                            }}>
+                            Create Post
+                        </Button>
+                    </Form.Item>
+                    <Divider />
+                </Form>
+            </Spin>
+        </>
+    );
+};
