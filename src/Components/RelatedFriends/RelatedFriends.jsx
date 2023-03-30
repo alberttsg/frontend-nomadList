@@ -20,9 +20,9 @@ const RelatedFriends = () => {
   return (
 <div className='relatedFriends' >
     <Affix
-      style={{ position: 'fixed', right: '40px', top: '83px', minWidth: '100px' }}
+      style={{ position: 'fixed', right: '60px', top: '83px', minWidth: '100px' }}
     >
-      <Card title='Sugerencias de amistad' style={{ textAlign: 'center', width: '300px', marginTop: '10', WebkitBoxShadow: '-15px -4px 43px 0px rgba(214,214,214,1)', MozBoxShadow: '-15px -4px 43px 0px rgba(214,214,214,1)', boxShadow: '-15px -4px 43px 0px rgba(214,214,214,1)' }}>
+      <Card title='Sugerencias de amistad' style={{ textAlign: 'center', width: '400px', marginTop: '10', WebkitBoxShadow: '-15px -4px 43px 0px rgba(214,214,214,1)', MozBoxShadow: '-15px -4px 43px 0px rgba(214,214,214,1)', boxShadow: '-15px -4px 43px 0px rgba(214,214,214,1)' }}>
         <Row align='center' gutter={0} justify='center' wrap={false} style={{ width: '100%', height: '100%' }}>
           <Col flex='1 1 40%' style={{ overflowY: 'auto' }}>
             <Skeleton size='large' loading={loading} active>
