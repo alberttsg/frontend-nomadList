@@ -11,12 +11,9 @@ export const CreatePostNew = ({onAction}) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const { TextArea } = Input;
-
   const navigate = useNavigate();
 
   const onFinish = (values) => {
-    console.log(values.image.file.type)
-    console.log(values.image)
     const archivo = values.image.file
     const formData = new FormData();
     formData.append('title', values.title);
@@ -31,13 +28,11 @@ export const CreatePostNew = ({onAction}) => {
         maxCount: 3,
         duration: 0,
         style: {
-          marginLeft: '45vh',
           textAlign : 'center',
         },
       })
 
       ServiceCreatePost(formData).then((res) => {
-        console.log(res);
         messageApi.destroy();
         setLoading(false);
         if(res === false){
@@ -47,7 +42,6 @@ export const CreatePostNew = ({onAction}) => {
             content: 'Bad language has been detected, please use good words..',
             duration: 10,
             style: {
-              marginLeft: '45vh',
               textAlign : 'center',
             },
           })
@@ -61,7 +55,6 @@ export const CreatePostNew = ({onAction}) => {
             content: 'Post has been successfully created',
             duration: 10,
             style: {
-              marginLeft: '45vh',
               textAlign : 'center',
             },
           })
@@ -77,7 +70,6 @@ export const CreatePostNew = ({onAction}) => {
       content: 'Please upload an valid image',
       duration: 5,
       style: {
-        marginLeft: '45vh',
         textAlign : 'center',
       }})}};
   return (
@@ -103,12 +95,12 @@ export const CreatePostNew = ({onAction}) => {
           <TextArea rows={4}  placeholder="Description"/>
         </Form.Item>
         <Form.Item name='image' rules ={[{required: true, message: 'Please upload a image'}]} style={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
-        <Upload beforeUpload={(file)=> {if(file){resolve("success")}}} multiple={false} maxCount='1' name='image' accept="image/png" style={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
+        <Upload beforeUpload={(file)=> {if(file){resolve("success")}}} multiple={false} maxCount='1' name='image' accept="image/*" style={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
           <Button style={{width:'34vh'}} icon={<UploadOutlined />}>Click to Upload a image</Button>
         </Upload>
         </Form.Item>
         <div style={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
-          <Button type='default' onClick={()=>{navigate('/createpostai')}} style={{width:'34vh', alignContent: 'center'}}>Post with AI image generator</Button>
+          <Button type='default' onClick={onAction} style={{width:'34vh', alignContent: 'center'}}>Post with AI image generator</Button>
         </div>
         <br/>
         <br/>

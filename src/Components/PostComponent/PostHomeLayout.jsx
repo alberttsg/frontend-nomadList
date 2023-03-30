@@ -20,6 +20,7 @@ export function PostHomeLayout() {
   }, [loading, hasMore]);
 
   return (
+    <>
     <div style={{ display: 'flex', boxSizing: 'border-box', flexFlow: 'column nowrap', width: '100%', alignItems: 'center', padding: '10px', gap:'20px' }}>
       {posts && posts.map((post, index) => {
         if (posts.length === index + 1) {
@@ -31,5 +32,7 @@ export function PostHomeLayout() {
       {loading && <Spin tip='Loading posts...' />}
       {error && <Alert type='error' message="Couldn't load more posts" banner />}
     </div>
+ 
+      </>
   )
 }

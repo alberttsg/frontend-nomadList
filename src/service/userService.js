@@ -30,7 +30,7 @@ export async function getUserById(userId) {
 export async function editUserById(userId, update) {
   const token = JSON.parse(localStorage.getItem('token'));
   const config = { headers: { Authorization: token } };
-  const response = await axios.put(URL + 'users/id/' + userId, update, config);
+  const response = await axios.put( URL + 'users/id/' + userId, update, config );
   return response.data;
 }
 
@@ -54,3 +54,13 @@ export async function toggleFollow(userId) {
   const response = await axios.post(URL + 'users/follow/' + userId, {}, config);
   return response.data;
 }
+
+export async function recomendation(userId){
+  const body = {
+    'id':userId
+  }
+  const response = axios.post('https://flask-production-782a.up.railway.app/recomendations', body)
+  console.log(response, 9999)
+  return response.data
+}
+
