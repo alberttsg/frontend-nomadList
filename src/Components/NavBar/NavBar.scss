@@ -138,7 +138,6 @@
     width: 100%;
     height: 100%;
   }
-
 }
 
 @media (max-width: 640px){
@@ -148,9 +147,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 45px;
     width: 100%;
     height: 100%;
     padding-bottom: 5px;
+  }
+  .iconHome, .iconCreate, .iconlogout{
+    font-size: 24px;
   }
 }
