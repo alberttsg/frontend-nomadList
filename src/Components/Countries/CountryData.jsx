@@ -72,7 +72,7 @@ const CountryData = ({ country }) => {
       <Row justify='space-between' wrap={false}>
         <Col style={{ flex: '1 0 auto' }}><span>🏭 Pollution:</span></Col>
         <Col style={{ flex: '0 0 50%' }}>
-          <ProgressBar input={country.pollution_index} min={100} max={0} />
+          <ProgressBar input={country.pollution_index} min={0} max={100} />
         </Col>
       </Row>
     </Col>
