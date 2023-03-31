@@ -11,11 +11,15 @@ import { ChatProvider } from './Components/Chat/context/ChatProvider'
 
 export const App = () => {
 
-  const { token, isSuccess, reset } = useContext(GlobalContext);
+  const { isSuccess, reset, token } = useContext(GlobalContext);
+  
   useEffect(() => {
     if (isSuccess) {
       return notification.success({
         message: "Welcome to Nomad, your social network!",
+        style: {
+          width: "100%"
+        }
       });
     }
     reset()

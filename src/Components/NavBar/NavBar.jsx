@@ -22,12 +22,12 @@ export const NavBar = () => {
   };
   const handleCancel = () => {
     setIsModalOpen(false);
-
   };
 
   const handleAction = () => {
     setFormWithIA(!formWithIA);
   }
+
 
   return (
     <div className='navbar'>
@@ -41,21 +41,24 @@ export const NavBar = () => {
         }} size={24} shape={'circle'} src={user?.avatar} /><div className='divProfile' style={{
           padding: '0'
         }}>Profile</div></div>
-        <div className='create' onClick={() => setIsModalOpen(!isModalOpen)} ><PlusCircleFilled className='iconCreate' /><div className='divCreate'>Post</div></div>
+        <div className='create' onClick={() => setIsModalOpen(!isModalOpen)} >
+          <PlusCircleFilled className='iconCreate' />
+          <div className='divCreate'>Post</div>
+        </div>
         <div className='logout' onClick={() => navigate('/countries')}>
           <EnvironmentOutlined className='iconlogout'/> <div className='divLogout'>Countries</div>
         </div>
         <div className='logout'
           onClick={() => {
             logOut(),
-              navigate('/')
+            navigate('/')
             reset()
           }}>
           <UnlockFilled className='iconlogout' /><div className='divLogout'>Log out</div></div>
 
       </div>
       <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} centered  footer={null} >
-        {formWithIA === false? <CreatePostNew onAction={handleAction} /> : <CreatePostAI onAction={handleAction} />}
+        {formWithIA === false? <CreatePostNew onAction={handleAction} onClose={handleCancel} /> : <CreatePostAI onAction={handleAction} onClose={handleCancel}/>}
         
       </Modal>
     </div>

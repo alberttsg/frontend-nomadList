@@ -6,12 +6,13 @@ import { ServiceCreatePost } from '../CreatePost/ServiceCreatePost';
 import { useNavigate } from 'react-router';
 
 
-export const CreatePostNew = ({onAction}) => {
+export const CreatePostNew = ({onAction, onClose}) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const { TextArea } = Input;
   const navigate = useNavigate();
+  const [tipState, setTipState] = useState('')
 
   const onFinish = (values) => {
     const archivo = values.image.file
@@ -22,6 +23,7 @@ export const CreatePostNew = ({onAction}) => {
 
     if(values.image.file.type === "image/png" ||  values.image.file.type === "image/jpg" || values.image.file.type === "image/jpeg"){
       setLoading(true);
+      setTipState('Uploading ...');
       messageApi.open({
         type: 'loading',
         content: 'Loading...',
@@ -60,7 +62,9 @@ export const CreatePostNew = ({onAction}) => {
           })
 
           navigate('/');
-          setTimeout(() => navigate('/'), 3500);
+          onClose();
+          location.reload();
+          form.resetFields();
         }
       });
 
@@ -76,7 +80,7 @@ export const CreatePostNew = ({onAction}) => {
   return (
     <>
         {contextHolder}
-        <Spin spinning={loading} delay={500}>
+        <Spin spinning={loading} delay={500} tip={tipState} >
       <Form
         form={form}
         wrapperCol={{span: 24}}

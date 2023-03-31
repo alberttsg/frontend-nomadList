@@ -13,7 +13,7 @@ export function EditPostButton() {
 
   useEffect(() => {
     form.setFieldsValue(post)
-  }, [editing])
+  }, [editing, post ])
 
   async function handleSubmit(inputs){
     const id = post._id;
@@ -37,12 +37,12 @@ export function EditPostButton() {
 
   return (
     <>
-      <Tooltip title={!open && 'Edit post'} placement='left'>
+      <Tooltip title={!open && 'Edit post'} placement='right'>
         <Button
-          type='primary'
+          type='secondary'
           size='small'
           onClick={() => setOpen(!open)}
-          style={{ position: 'absolute', right: '10px', top: '10px' }}
+          style={{ position: 'absolute', right: '10px', top: '10px', background:'transparent', color:'gray' }}
         >
         <EllipsisOutlined />
         </Button>
@@ -50,16 +50,17 @@ export function EditPostButton() {
       <Modal
         style={{ maxWidth: '100%' }}
         footer={null}
-        open={open}
-        onCancel={() => setEditing(false)}>
-        <div onClick={() => {setEditing(!editing),setOpen(!open)}} style={{width:'100%', display:'flex', justifyContent:'center'}}>Edit</div>
+        closable={false}
+        open={open}>
+        <div onClick={() => {setEditing(!editing),setOpen(!open)}} style={{width:'100%', display:'flex', justifyContent:'center', cursor: 'pointer'}}>Edit</div>
         <Divider/>
-        <div onClick={() => {setDeleting(!deleting),setOpen(!open)}}style={{color:'red', width:'100%', display:'flex', justifyContent:'center'}}>Delete</div>
+        <div onClick={() => {setDeleting(!deleting),setOpen(!open)}}style={{color:'red', width:'100%', display:'flex', justifyContent:'center', cursor: 'pointer'}}>Delete</div>
+        <Divider/>
+        <div onClick={() => setOpen(!open)}style={{width:'100%', display:'flex', justifyContent:'center', cursor: 'pointer'}}>Cancel</div>
       </Modal>
       <Modal
         style={{ maxWidth: '100%' }}
         title='Edit post'
-        closable='true'
         footer={null}
         open={editing}
         onCancel={() => setEditing(false)}>
@@ -71,8 +72,8 @@ export function EditPostButton() {
             <Input.TextArea autoSize={{ minRows: 3 }} />
           </Form.Item>
           <Row justify='end' style={{ gap: '10px' }}>
-            <Button type='primary' onClick={() => setEditing(false)}>Cancel</Button>
-            <Button type='primary' htmlType='submit'>Submit</Button>
+            <Button type='primary' style={{cursor: 'pointer'}} onClick={() => setEditing(false)}>Cancel</Button>
+            <Button type='primary'style={{cursor: 'pointer'}} htmlType='submit'>Submit</Button>
           </Row>
         </Form>
       </Modal>
@@ -83,11 +84,11 @@ export function EditPostButton() {
         footer={null}
         open={deleting}
         onCancel={() => setDeleting(false)}>
-        <div style={{color:'red'}}>¿Are you sure you want to delete this post?</div>
+        <div style={{color:'red', cursor: 'pointer'}}>¿Are you sure you want to delete this post?</div>
         <Divider/>
-        <div onClick={() => setDeleting(!deleting)} style={{width:'100%', display:'flex', justifyContent:'center'}}>Cancel</div>
+        <div onClick={() => setDeleting(!deleting)} style={{width:'100%', display:'flex', justifyContent:'center', cursor: 'pointer'}}>Cancel</div>
         <Divider/>
-        <div onClick={() => {handleDelete(),setDeleting(!deleting)}}style={{color:'red', width:'100%', display:'flex', justifyContent:'center'}}>Delete</div>
+        <div onClick={() => {handleDelete(),setDeleting(!deleting)}}style={{color:'red', width:'100%', display:'flex', justifyContent:'center', cursor: 'pointer'}}>Delete</div>
       </Modal>
     </>
   )

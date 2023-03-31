@@ -32,13 +32,14 @@ export const Register = ({ onCancel }) => {
       <Form
         name="basic"
         labelCol={{
-          span: 8,
+          span: 24,
         }}
         wrapperCol={{
-          span: 16,
+          span: 24,
         }}
         style={{
           maxWidth: 800,
+         
         }}
         initialValues={{
           remember: true,
@@ -170,16 +171,20 @@ export const Register = ({ onCancel }) => {
         </Form.Item>
         <Form.Item
           wrapperCol={{
-            offset: 8,
-            span: 16,
+            offset: 10,
+           
           }}
         >
-          <Button type="primary" htmlType="submit" onClick={onCancel}>
+          <Button style={{
+        position:'absolute'
+      }}  type="primary" htmlType="submit" onClick={onCancel}>
             Register
           </Button>
         </Form.Item>
       </Form>
-      <Button type="link" href='/' className='login-button'>Login</Button>
+      <Button style={{
+        marginLeft:'2px'
+      }} type="link" href='/' className='login-button'>Login</Button>
     </div>
   )
 }
