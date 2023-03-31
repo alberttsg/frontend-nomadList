@@ -63,7 +63,7 @@ export const CreatePostNew = ({onAction, onClose}) => {
 
           navigate('/');
           onClose();
-          location.reload();
+          //location.reload();
           form.resetFields();
         }
       });
