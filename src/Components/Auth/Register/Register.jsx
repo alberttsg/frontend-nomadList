@@ -32,7 +32,7 @@ export const Register = ({ onCancel }) => {
       <Form
         name="basic"
         labelCol={{
-          span: 8,
+          span: 24,
         }}
         wrapperCol={{
           span: 16,
