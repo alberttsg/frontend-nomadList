@@ -38,7 +38,7 @@ export const NavBar = () => {
         <div className='profile' onClick={() => navigate('/profile')}><Avatar style={{
           objectFit: 'cover',
           border: '0.5px solid rgb(0,0,0, 0.7)'
-        }} size={24} shape={'circle'} src={user?.avatar} /><div className='divProfile' style={{
+        }} size={26} shape={'circle'} src={user?.avatar} /><div className='divProfile' style={{
           padding: '0'
         }}>Profile</div></div>
         <div className='create' onClick={() => setIsModalOpen(!isModalOpen)} >

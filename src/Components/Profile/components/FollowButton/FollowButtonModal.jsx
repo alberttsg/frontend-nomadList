@@ -22,6 +22,8 @@ export function FollowButtonModal({ userId }) {
   
   if (user?._id == userId) return null;
 
+  if (user?._id == userId) return null;
+  
   return (
     <Spin spinning={isLoading}>
       <Button
