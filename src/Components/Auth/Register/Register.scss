@@ -8,12 +8,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
   background-color: white;
 }
-.ant-modal .ant-modal-content{
-  padding: 16px 20px;
-}
+
 
 .ant-input:focus,
 .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):focus,
@@ -48,7 +45,4 @@
 :where(.css-dev-only-do-not-override-1me4733).ant-btn-link:not(:disabled):hover{
   background-color:rgb(176, 171, 171) ;
   color: #000000;
-}
-:where(.css-dev-only-do-not-override-1me4733).ant-modal{
-  top: 35px;
 }

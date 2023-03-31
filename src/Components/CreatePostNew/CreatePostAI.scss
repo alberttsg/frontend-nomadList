@@ -1,15 +1,24 @@
-.ia-img-container{
+.container-modal-ai{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .ia-img-container{
   display: flex;
   flex-direction: row;
-  width: 50%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   gap: 10px;
-  .ia-img{
+ 
+  .ai-img{
     object-fit: cover;
-    width: 100%;
+    width: 50%;
+    height: auto;
   }
-  .ia-img-selected{
+  .ai-img-selected{
     object-fit: cover;
-    width: 100%;
-    border: 4px solid #0078d4;
+    width: 50%;
+    border: 4px solid #00b7ff;
   }
+}
 }

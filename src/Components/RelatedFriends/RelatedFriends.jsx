@@ -46,7 +46,7 @@ const RelatedFriends = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
-    recomendation(user._id).then((data) => {
+    recomendation(user?._id).then((data) => {
         console.log('dentro',data)
       setRelatedFriends(data);
       setLoading(false);

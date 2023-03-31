@@ -65,7 +65,7 @@ export function CommentsDisplay() {
                   margin: '10px',
                   fontSize: '12px',
                   fontStyle: 'bold',
-                  gap: '10px',
+                  gap: '5px',
                 }}>
                 <Avatar size={20} src={comment?.author?.avatar} />
                 <span>{comment?.author?.displayName}</span>
@@ -74,14 +74,18 @@ export function CommentsDisplay() {
                   datePost2={comment?.updatedAt}
                 />
                 {user?._id == comment?.author?._id &&
-                  <>
-                    <Tooltip title='Edit comment' placement='top'>
-                      <EditOutlined onClick={() => handleEditing(comment)} />
+                  <span style={{
+                    maxWidth:'100%',
+                    display: 'flex'
+                    
+                  }}>
+                    <Tooltip title='Edit comment' placement='right'>
+                      <EditOutlined  style={{marginRight: '1px', color: 'gray'}} onClick={() => handleEditing(comment)} />
                     </Tooltip>
-                    <Tooltip title='Delete comment' placement='top'>
-                      <DeleteOutlined onClick={() => handleDelete(comment._id)} />
+                    <Tooltip title='Delete comment' placement='right'>
+                      <DeleteOutlined style={{marginLeft: '5px', color: 'red'}} onClick={() => handleDelete(comment._id)} />
                     </Tooltip>
-                  </>
+                  </span>
                 }
               </Row>
               <Row
