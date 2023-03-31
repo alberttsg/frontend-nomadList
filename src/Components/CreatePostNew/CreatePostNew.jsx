@@ -6,7 +6,7 @@ import { ServiceCreatePost } from '../CreatePost/ServiceCreatePost';
 import { useNavigate } from 'react-router';
 
 
-export const CreatePostNew = ({onAction}) => {
+export const CreatePostNew = ({onAction, onClose}) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
@@ -59,7 +59,8 @@ export const CreatePostNew = ({onAction}) => {
             },
           })
           navigate('/');
-          setTimeout(() => navigate('/'), 3500);
+          onClose();
+          form.resetFields();
         }
       });
       

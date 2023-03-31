@@ -20,7 +20,7 @@ import { ServiceCreatePostbyIa } from '../CreatePost/ServiceCreatePost';
 
 const { TextArea } = Input;
 
-export const CreatePostAI = ({ onAction }) => {
+export const CreatePostAI = ({ onAction, onClose }) => {
     const [messageApi, contextHolder] = message.useMessage();
     const [form1] = Form.useForm();
     const [form5] = Form.useForm();
@@ -30,8 +30,10 @@ export const CreatePostAI = ({ onAction }) => {
     const [selectedImage, setSelectedImage] = useState('');
     const [classImage, setClassImage] = useState('ai-img');
     const [classImage1, setClassImage1] = useState('ai-img');
-    const navigate = useNavigate();
+   
     const onFinish = (values) => {
+        if (selectedImage === '') { return  messageApi.error('Select an image') }
+        
         const formData = new FormData();
         formData.append('title', values.title);
         formData.append('content', values.content);
@@ -44,6 +46,9 @@ export const CreatePostAI = ({ onAction }) => {
                 } else {
                     messageApi.success('Post created');
                     setLoading(false);
+                    onClose();
+                    form1.resetFields();
+                    form5.resetFields();
                 }
             })
             .catch((err) => {
@@ -77,7 +82,6 @@ export const CreatePostAI = ({ onAction }) => {
         const cname = e.target.className;
         const imgId = e.target.id;
         setSelectedImage(src);
-        console.log (cname)
         if (imgId === 'img1') {
             setClassImage('ai-img-selected');
             setClassImage1('ai-img');
