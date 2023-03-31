@@ -58,11 +58,12 @@ export const CreatePostNew = ({onAction}) => {
               textAlign : 'center',
             },
           })
+
           navigate('/');
           setTimeout(() => navigate('/'), 3500);
         }
       });
-      
+
   }else{
     return messageApi.open({
       type: 'error',
