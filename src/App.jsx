@@ -11,8 +11,8 @@ import { ChatProvider } from './Components/Chat/context/ChatProvider'
 
 export const App = () => {
 
-  const { isSuccess, reset } = useContext(GlobalContext);
-  const token = localStorage.getItem('token');
+  const { isSuccess, reset, token } = useContext(GlobalContext);
+  
   useEffect(() => {
     if (isSuccess) {
       return notification.success({

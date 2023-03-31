@@ -19,7 +19,7 @@ export const UsersProvider = ({ children }) => {
 
   async function initialData() {
     const token = await userService.validateToken();
-    const user = token ? userService.getUserInfo(1, 1, 1, 1) : null;
+    const user = token ? await userService.getUserInfo(1, 1, 1, 1) : null;
     dispatch({
       type: 'SET_TOKEN',
       payload: token,
