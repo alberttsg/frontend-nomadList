@@ -19,6 +19,8 @@ export function FollowButtonModal({ userId }) {
   useEffect(() => {
     setFollowed(user?.followed.some(e => e._id === userId));
   }, [user])
+  
+  if (user?._id == userId) return null;
 
   if (user?._id == userId) return null;
   
