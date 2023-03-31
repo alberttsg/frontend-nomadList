@@ -60,6 +60,7 @@ export const CreatePostNew = ({onAction, onClose}) => {
           })
           navigate('/');
           onClose();
+          location.reload();
           form.resetFields();
         }
       });

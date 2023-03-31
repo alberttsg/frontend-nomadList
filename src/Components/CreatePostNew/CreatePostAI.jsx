@@ -30,6 +30,10 @@ export const CreatePostAI = ({ onAction, onClose }) => {
     const [selectedImage, setSelectedImage] = useState('');
     const [classImage, setClassImage] = useState('ai-img');
     const [classImage1, setClassImage1] = useState('ai-img');
+    const [tipState, setTipState] = useState('')
+
+
+    const navigate = useNavigate();
    
     const onFinish = (values) => {
         if (selectedImage === '') { return  messageApi.error('Select an image') }
@@ -39,6 +43,7 @@ export const CreatePostAI = ({ onAction, onClose }) => {
         formData.append('content', values.content);
         formData.append('image', selectedImage);
         setLoading(true);
+        setTipState('Uploading...')
         ServiceCreatePostbyIa(formData)
             .then((res) => {
                 if (res === false) {
@@ -46,7 +51,9 @@ export const CreatePostAI = ({ onAction, onClose }) => {
                 } else {
                     messageApi.success('Post created');
                     setLoading(false);
+                    navigate('/');
                     onClose();
+                    location.reload();
                     form1.resetFields();
                     form5.resetFields();
                 }
@@ -62,6 +69,7 @@ export const CreatePostAI = ({ onAction, onClose }) => {
         const body = { prompt: value };;
         setSeeImg(false);
         setLoading(true);
+        setTipState('Creating AI image...')
 
         const searchImag = async (body) => {
             const res = await axios.post(
@@ -103,7 +111,7 @@ export const CreatePostAI = ({ onAction, onClose }) => {
             <h2 style={{ textAlign: 'center' }}>Create post with AI</h2>
             <br />
             {contextHolder}
-            <Spin spinning={loading} delay={500}>
+            <Spin spinning={loading} delay={500} tip={tipState} >
                 <Form form={form5} onFinish={prueba}>
                     <Form.Item name="mySearch">
                         <Space.Compact style={{ width: '100%' }}>
