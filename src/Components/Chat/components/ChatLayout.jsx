@@ -29,11 +29,11 @@ export function ChatLayout() {
         style={{ background: '#efefef' }}
       >
         <Collapse.Panel header={<UsergroupAddOutlined />}>
-          <Row justify='center' gutter={[10, 10]} style={{ maxHeight: '100vh', maxWidth: '600px' }}>
-            <Col xs={{ span: 24 }} md={{ span: 12 }} style={{ maxHeight: '20vh', overflowY: 'auto' }}>
+          <Row justify='center' gutter={[10, 10]} style={{ maxHeight: '600px', maxWidth: '600px' }}>
+            <Col xs={{ span: 24 }} md={{ span: 12 }} style={{ maxHeight: '300px', overflowY: 'auto' }}>
               <RoomSelector />
             </Col>
-            <Col xs={{ span: 24 }} md={{ span: 12 }} style={{ maxHeight: '50vh' }}>
+            <Col xs={{ span: 24 }} md={{ span: 12 }} style={{ maxHeight: '300px' }}>
               <ActiveRoom />
               <MessageBoard />
             </Col>
