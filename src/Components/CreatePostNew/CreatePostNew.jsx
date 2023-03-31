@@ -12,6 +12,7 @@ export const CreatePostNew = ({onAction, onClose}) => {
   const [loading, setLoading] = useState(false);
   const { TextArea } = Input;
   const navigate = useNavigate();
+  const [tipState, setTipState] = useState('')
 
   const onFinish = (values) => {
     const archivo = values.image.file
@@ -22,6 +23,7 @@ export const CreatePostNew = ({onAction, onClose}) => {
 
     if(values.image.file.type === "image/png" ||  values.image.file.type === "image/jpg" || values.image.file.type === "image/jpeg"){
       setLoading(true);
+      setTipState('Uploading ...');
       messageApi.open({
         type: 'loading',
         content: 'Loading...',
@@ -77,7 +79,7 @@ export const CreatePostNew = ({onAction, onClose}) => {
   return (
     <>
         {contextHolder}
-        <Spin spinning={loading} delay={500}>
+        <Spin spinning={loading} delay={500} tip={tipState} >
       <Form
         form={form}
         wrapperCol={{span: 24}}
