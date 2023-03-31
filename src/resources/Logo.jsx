@@ -6,7 +6,7 @@ export function Logo({ disabled }) {
 
   return (
     <Button
-      onClick={() => navigate('/')}
+      onClick={() => navigate('/home')}
       type='secondary'
       style={{ width: '100%', height: 'auto' }}
       className='logo'

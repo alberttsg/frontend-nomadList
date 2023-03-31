@@ -34,7 +34,7 @@ export const NavBar = () => {
       <ChatLayout/>
       <Logo/>
       <div className='container-nav'>
-        <div className='home' onClick={() => navigate('/')}><HomeFilled className='iconHome' /><div className='divHome'>Home</div> </div>
+        <div className='home' onClick={() => navigate('/home')}><HomeFilled className='iconHome' /><div className='divHome'>Home</div> </div>
         <div className='profile' onClick={() => navigate('/profile')}><Avatar style={{
           objectFit: 'cover',
           border: '0.5px solid rgb(0,0,0, 0.7)'
