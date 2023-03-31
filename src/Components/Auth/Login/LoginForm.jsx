@@ -11,7 +11,7 @@ const LoginForm = () => {
   const onFinish = (values) => {
     login(values);
     form.resetFields()
-    navigate('/home');
+    navigate('/');
     reset()
   };
 

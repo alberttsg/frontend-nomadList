@@ -51,7 +51,7 @@ export const CreatePostAI = ({ onAction, onClose }) => {
                 } else {
                     messageApi.success('Post created');
                     setLoading(false);
-                    navigate('/home');
+                    navigate('/');
                     onClose();
                     location.reload();
                     form1.resetFields();

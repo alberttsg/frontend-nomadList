@@ -60,7 +60,7 @@ export const CreatePostNew = ({onAction, onClose}) => {
               textAlign : 'center',
             },
           })
-          navigate('/home');
+          navigate('/');
           onClose();
           location.reload();
           form.resetFields();

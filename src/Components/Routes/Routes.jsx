@@ -17,10 +17,6 @@ export const Routes = () => {
         path: '/'
       },
       {
-        element: <Content><PostHomeLayout /></Content>,
-        path: '/home'
-      },
-      {
         element: <Content><PostSearchLayout /></Content>,
         path: '/post/:postId'
       },
